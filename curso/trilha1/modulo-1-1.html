@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.1 — Por que PME &amp; por que agora | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 1</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 1.1</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">MÓDULO 1.1</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🌎 Por que PME &amp; por que agora</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">O mercado de pequenos negócios reúne três coisas raras ao mesmo tempo: dor visível, ausência de fornecedor qualificado e curiosidade aberta sobre IA. Esta janela não fica aberta para sempre.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Essencial</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Convicção</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📉 A dor real do pequeno empresário</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O dono de PME vive um paradoxo: tem <strong class="text-emerald-400">curiosidade</strong> sobre IA mas <strong class="text-emerald-400">não tem tempo</strong> para aprender. Tem necessidade de vender mais, mas não sabe onde está perdendo venda. Atende WhatsApp tarde da noite, esquece follow-up, faz proposta do zero a cada cliente. A burocracia invisível drena a margem antes da conta do mês fechar.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 border border-emerald-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-emerald-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">O cliente não compra IA. Compra <strong>alívio</strong> de uma dor que ele já conhece, mas naturalizou. Sua tarefa é nomear a dor de forma que ele reconheça e quantificar para que ele se importe.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Reconhecer estes sinais</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Respondo cliente até meia-noite"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Perdi a contagem dos leads parados"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Só eu sei fazer essa proposta"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Toda planilha mora na minha cabeça"</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sintomas que viraram normais</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Lead frio em 24h é tratado como "não interessou"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Não tenho tempo de medir isso"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Equipe pergunta a mesma coisa 3x</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Relatório do mês passado nunca saiu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Na conversa de venda, peça para o dono <strong>contar a última segunda-feira</strong> em detalhe. Em 5 minutos aparecem 3 gargalos óbvios que você pode mapear depois.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Tempo é o recurso mais escasso</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Cliente compra resultado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Burocracia invisível drena margem</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🚪 Por que soluções prontas não resolvem</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">CRMs genéricos, automações engessadas de WhatsApp e ChatGPT cru não conhecem o <strong class="text-emerald-400">jeito da empresa funcionar</strong>. O cliente compra, instala, frustra, abandona — e culpa a tecnologia. A brecha é sua: o valor está em <strong class="text-emerald-400">adaptar a IA ao processo</strong>, não em vender a ferramenta.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 O que a pesquisa mostra</h3>
+        <p class="text-neutral-300 text-sm mb-3">Estudos com PMEs que adotaram SaaS de IA genérica relatam abandono em até <strong>70%</strong> dos casos dentro de 90 dias. Os motivos repetem:</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• "Não responde do jeito que eu falaria"</li>
+          <li>• "Mais trabalho configurar do que continuar manual"</li>
+          <li>• "Não sabia que precisava treinar"</li>
+          <li>• "Funcionou na demo, errou na empresa"</li>
+        </ul>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Cliente compra ferramenta</h4>
+            <p class="text-neutral-300 text-sm">Atraído por anúncio, demo bonita, promessa genérica.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Tenta usar como veio</h4>
+            <p class="text-neutral-300 text-sm">Padrões da ferramenta colidem com o jeito real da empresa.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Frustra e abandona</h4>
+            <p class="text-neutral-300 text-sm">"IA não serviu pra minha empresa" vira a história que ele conta pros pares.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Você entra com adaptação</h4>
+            <p class="text-neutral-300 text-sm">Mesmo modelo de IA, mas adaptado ao fluxo dele. Cliente percebe a diferença na primeira semana.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Workflow &gt; prompt isolado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Implícito vira explícito</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Personalização = retenção</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🪟 A janela de adoção que está aberta</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A janela tem <strong class="text-emerald-400">curiosidade do dono</strong> alta e <strong class="text-emerald-400">oferta qualificada</strong> baixa. Em 2-3 anos haverá padronização, ferramentas embutidas em todo SaaS e concorrentes regionais. Quem entra agora vira referência local antes da onda chegar.</p>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-primary mb-3">💡 Por que agora</h3>
+        <p class="text-neutral-300 text-sm">Três forças concorrem ao mesmo tempo: (a) LLMs ficaram baratos o suficiente para PME, (b) automação no-code amadureceu (n8n, Make, Zapier) e (c) o dono já viu colega usando ChatGPT. É o momento em que a vontade existe mas o método ainda não chegou.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Aproveitar agora</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Posicionar antes da concorrência</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Construir portfólio com cases reais</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Educar mercado e virar referência</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pegar indicação enquanto demanda é maior que oferta</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Esperar custa</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Aguardar "ferramenta perfeita" — não vem</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Estudar mais antes de vender qualquer coisa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ficar olhando lançamento sem aplicar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Entrar depois com tudo padronizado</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Categoria nova: consultor aplicado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Janela curta, vantagem composta</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Primeiro entrega &gt; primeiro a estudar</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎯 As 5 áreas que pagam</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Toda PME tem dor em pelo menos 3 destas 5 áreas. Memorizar este mapa significa entrar em qualquer conversa de venda <strong class="text-emerald-400">com hipóteses</strong>, não com curiosidade.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">📱 1. Atendimento &amp; WhatsApp</div><p class="text-neutral-300 text-sm">Respostas tarde, sem padrão, lead perdido. Solução: assistente de qualificação + base de FAQ + handoff humano.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">💼 2. Vendas &amp; Propostas</div><p class="text-neutral-300 text-sm">Cada proposta do zero, follow-up esquecido. Solução: agente de proposta com template + lembrete de follow-up.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">📣 3. Marketing &amp; Conteúdo</div><p class="text-neutral-300 text-sm">Posta quando lembra, sem calendário. Solução: máquina de conteúdo local com pauta + variações + agenda.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">⚙️ 4. Gestão &amp; Operação</div><p class="text-neutral-300 text-sm">Tarefa repetitiva, dúvida da equipe, retrabalho. Solução: assistente interno de procedimentos.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 md:col-span-2"><div class="text-emerald-400 font-bold mb-2">💰 5. Financeiro Simples</div><p class="text-neutral-300 text-sm">Relatório atrasado, conciliação manual, esquecimento de cobrança. Solução: extrato consolidado + alertas + relatório semanal automático.</p></div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">No primeiro diagnóstico, percorra as 5 áreas em ordem. Para cada uma, faça <strong>3 perguntas</strong> e classifique a dor em alta/média/baixa. Saia com prioridade clara para a proposta.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Vendas é a porta mais rápida</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Atendimento é o mais visível</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Gestão é o mais sustentável</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">💰 O que o cliente realmente compra</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Quando você descreve <strong class="text-emerald-400">resultado</strong>, vende. Quando descreve <strong class="text-emerald-400">tecnologia</strong>, perde. Troque "agente IA com RAG" por "lead respondido em 2 minutos mesmo no domingo".</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 border border-emerald-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-emerald-400 mb-3">💡 A tradução técnica → resultado</h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Implementação de LLM com embeddings"</span> → <span class="text-emerald-400 font-semibold">"Atendimento que responde igual você, mesmo quando você não está"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Automação multi-step com webhooks"</span> → <span class="text-emerald-400 font-semibold">"Toda proposta sai no mesmo dia, sem você abrir o computador"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Pipeline de geração de conteúdo"</span> → <span class="text-emerald-400 font-semibold">"30 posts no mês sem você travar pensando no que postar"</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Sempre que escrever proposta, faça o <strong>teste do avô</strong>: leia em voz alta para alguém de 70 anos. Se a pessoa não entende o resultado prometido, reescreva. Nada de jargão.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">ROI 1</div><div class="text-neutral-300 text-sm">Horas economizadas</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">ROI 2</div><div class="text-neutral-300 text-sm">Lead recuperado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">ROI 3</div><div class="text-neutral-300 text-sm">Padronização</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📊 Tamanho da oportunidade</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">No Brasil, são milhões de PMEs ativas, a maioria sem fornecedor dedicado de tecnologia. Cada uma com 3-5 oportunidades de automação. Mesmo capturando <strong class="text-emerald-400">0,001%</strong> desse universo, é uma carteira saudável.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Conta plausível</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div>Ticket diagnóstico: R$ 1.500</div>
+          <div>Ticket implementação: R$ 6.000</div>
+          <div>Mensalidade média: R$ 800</div>
+          <div class="border-t border-dark-600 pt-2 mt-2">Conversão diagnóstico → projeto: ~60%</div>
+          <div>10 diagnósticos/mês = 6 projetos = R$ 36k + recorrência crescente</div>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Atenção</h4>
+        <p class="text-neutral-300 text-sm">Os números acima são <strong>plausíveis</strong>, não promessa. Dependem de nicho, região, conversão e tempo de maturação. Use como referência de modelo, não como garantia.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Mercado fragmentado = oportunidade</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Local + nicho = vantagem</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Carteira pequena, recorrência alta</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você identifica a dor real do dono — tempo, lead perdido, dependência da própria cabeça.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você entende por que SaaS genérico fracassa em PME e por que adaptação ao processo é o seu diferencial.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você reconhece a janela aberta de adoção e sabe por que vale entrar agora.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você memorizou as 5 áreas que pagam — sua bússola em toda conversa de venda.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você sabe traduzir tecnologia em resultado e tem ideia plausível do tamanho da oportunidade.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Voltar à Trilha 1</a>
+        <a href="modulo-1-2.html" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors text-center">Próximo: A nova profissão →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 1 — Módulo 1.1</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

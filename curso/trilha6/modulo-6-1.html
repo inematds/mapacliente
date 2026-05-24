@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 6.1 — Padronizar entrega | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .bg-dark-700\/30 { background-color: rgba(243,244,246,.5); }
+    html:not(.dark) .bg-dark-700\/50 { background-color: rgba(243,244,246,.7); }
+    html:not(.dark) .bg-dark-900\/50 { background-color: rgba(255,255,255,.7); }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-rose-400 { color: #be123c; }
+    html:not(.dark) .bg-rose-500\/20 { background-color: rgba(190,18,60,.12); }
+    html:not(.dark) .bg-rose-500\/10 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .bg-rose-900\/20 { background-color: rgba(190,18,60,.06); }
+    html:not(.dark) .bg-rose-900\/30 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .border-rose-500\/30 { border-color: rgba(190,18,60,.25); }
+    html:not(.dark) .hover\:bg-rose-500\/30:hover { background-color: rgba(190,18,60,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 6</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 6.1</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-rose-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-4">MÓDULO 6.1</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">⚙️ Padronizar entrega</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Sem padronização todo cliente vira projeto novo, prazo dobra e margem some. Aqui você sai com a regra de ouro, biblioteca pessoal de playbooks, kit de implementação por pacote, onboarding repetível e checklist de qualidade — as quatro engrenagens que fazem a entrega escalar.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Operacional</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Sistema</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🥇 Regra de ouro da escala</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Existe uma fronteira invisível entre o que precisa ser único por cliente e o que precisa ser igual entre clientes. Atravessar essa fronteira nas direções erradas é o que faz consultor de IA travar em 3 clientes simultâneos e desistir achando que "não dá pra escalar serviço".</p>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300"><strong>Personalize o diagnóstico, padronize o projeto.</strong> A frente do cliente (entrevista, mapa, relatório) é hiperpersonalizada porque é onde nasce a confiança. O bastidor (prompts, fluxos, código, propostas) é 80% repetível porque a infraestrutura técnica de uma clínica é igual à de outra clínica.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Escala certa</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada cliente recebe relatório único com nome e números dele</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>O fluxo n8n do assistente é o mesmo, só muda o conhecimento</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Os prompts vivem em uma biblioteca versionada</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>3º cliente do nicho fica pronto em 10 dias</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Armadilha da escala</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cada cliente vira projeto novo, do zero</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Relatório virou template genérico com nome trocado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você refaz prompt porque "esqueceu como tinha feito antes"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>10º cliente demora igual ao 1º</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Depois do 3º cliente, abra uma planilha com 2 colunas: <strong>"o que mudou"</strong> e <strong>"o que repetiu"</strong>. Tudo que aparece na coluna "repetiu" 2 vezes ou mais vai pra biblioteca como template. Em 6 meses sua biblioteca cobre 80% do trabalho.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Frente única, bastidor igual</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">80% repetível por nicho</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Tempo cai a cada projeto</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📚 Biblioteca pessoal de playbooks</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sua biblioteca é o ativo invisível que cresce a cada projeto entregue. Quem trata cada cliente como evento isolado nunca consolida memória externa — e a cada novo projeto reaprende coisas que já sabia. Biblioteca é o que separa quem improvisa de quem opera com sistema.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📂 Estrutura mínima da biblioteca</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div>📁 biblioteca/</div>
+          <div>├── 📁 nichos/</div>
+          <div>│   ├── 📁 clinicas/ → diagnóstico, prompts, fluxos</div>
+          <div>│   ├── 📁 imobiliarias/ → roteiro, FAQ, scripts</div>
+          <div>│   └── 📁 restaurantes/ → cardápio, pedidos, reservas</div>
+          <div>├── 📁 prompts-mestres/ → atendimento, vendas, ops</div>
+          <div>├── 📁 fluxos-n8n/ → export .json versionados</div>
+          <div>├── 📁 propostas-modelo/ → 3 pacotes × 3 nichos</div>
+          <div>├── 📁 calculadoras/ → ROI, precificação, custo de API</div>
+          <div>└── 📁 scripts/ → objeções, kickoff, follow-up</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Captura no momento do trabalho</h4>
+            <p class="text-neutral-300 text-sm">Toda vez que você ajusta um prompt ou cria um fluxo, salva imediatamente na biblioteca. Não deixe pra depois.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Versiona cada melhoria</h4>
+            <p class="text-neutral-300 text-sm">Prompt v1 → v2 → v3. Quando v3 quebra, você volta pra v2 em 30 segundos.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Anonimiza antes de salvar</h4>
+            <p class="text-neutral-300 text-sm">Tira nome de cliente, valores específicos, dados sensíveis. Mantém estrutura. Reuso fica seguro.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Revisa trimestralmente</h4>
+            <p class="text-neutral-300 text-sm">A cada 3 meses, varre a pasta e marca o que virou padrão de fato. O que ninguém usou em 6 meses, aposenta.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">1 pasta por nicho</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Versionar cada peça</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Cada projeto alimenta o próximo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📦 Kit de implementação por pacote</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cliente compra <strong class="text-rose-400">nome simples</strong>, não arquitetura. Crie 3 pacotes nomeados, com escopo claro, preço de tabela e kit técnico pronto. Cada novo projeto começa em "qual pacote?" — não em "vamos pensar no que dá pra fazer".</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-rose-400 font-bold text-lg mb-2">📱 Pacote Atende</div>
+          <p class="text-neutral-300 text-sm mb-3">Assistente WhatsApp + FAQ + handoff humano. Para quem perde lead na demora.</p>
+          <div class="text-xs text-neutral-500 border-t border-dark-600 pt-2">Kit: prompt mestre, fluxo n8n, base de FAQ, regra de handoff, painel de métricas.</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-rose-400 font-bold text-lg mb-2">💼 Pacote Vende</div>
+          <p class="text-neutral-300 text-sm mb-3">Qualificação + proposta automática + follow-up. Para quem demora dias para responder lead.</p>
+          <div class="text-xs text-neutral-500 border-t border-dark-600 pt-2">Kit: qualificador, gerador de proposta, agenda de follow-up, CRM mínimo.</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-rose-400 font-bold text-lg mb-2">⚙️ Pacote Opera</div>
+          <p class="text-neutral-300 text-sm mb-3">Procedimentos + checklist + relatório. Para quem depende da cabeça do dono.</p>
+          <div class="text-xs text-neutral-500 border-t border-dark-600 pt-2">Kit: assistente interno, base de procedimentos, dashboard de status, alertas.</div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Cada pacote tem 4 elementos fixos</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-rose-400">1. Nome simples</strong> — em uma palavra que o dono entenda na primeira leitura.</li>
+          <li><strong class="text-rose-400">2. Escopo fechado</strong> — o que está e o que NÃO está incluído, por escrito.</li>
+          <li><strong class="text-rose-400">3. Kit técnico</strong> — peças prontas na biblioteca, prontas pra adaptar.</li>
+          <li><strong class="text-rose-400">4. Métrica de sucesso</strong> — número que define se entregou o que prometeu.</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Quando o cliente pedir algo fora do pacote, não diga "não". Diga: <strong>"isso é add-on, adiciono na próxima fase por R$ X"</strong>. Add-on protege margem e ainda vira venda futura.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Nome &gt; descrição técnica</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Escopo por contrato</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Add-on é venda futura</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚪 Onboarding do cliente em 5 passos</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Os primeiros 7 dias definem o resto do projeto. Cliente que vê algo funcionando em uma semana confia, paga em dia e indica. Cliente sem entrega visível começa a duvidar, atrasa pagamento e pede reunião extra. Onboarding rápido é proteção do projeto.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">D1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Kickoff de 45 minutos</h4>
+            <p class="text-neutral-300 text-sm">Apresenta cronograma, define ponto focal, alinha métrica de sucesso. Mostra a biblioteca de exemplos. Combina canal de comunicação único (Slack ou WhatsApp dedicado).</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">D2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Checklist de acessos</h4>
+            <p class="text-neutral-300 text-sm">Lista exata: número WhatsApp Business, login das ferramentas, exemplos de conversas, logotipo. Sem essa lista, projeto trava no D5.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">D3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Coleta de exemplos reais</h4>
+            <p class="text-neutral-300 text-sm">10-20 conversas com clientes finais, 5-10 propostas anteriores, FAQ informal. É a matéria-prima dos prompts. Sem exemplos reais, IA responde genérico.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">D5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Versão 1 funcionando</h4>
+            <p class="text-neutral-300 text-sm">Vitória rápida: assistente respondendo em ambiente controlado, painel mínimo configurado. Cliente vê algo funcional antes de uma semana. Confiança consolidada.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">D7</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Ajuste + início do treinamento</h4>
+            <p class="text-neutral-300 text-sm">Reunião de 30min: o que o cliente quer ajustar, o que ele precisa aprender pra continuar usando. Treinamento começa cedo, não no final.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Mande o checklist de acessos do D2 <strong>antes do kickoff</strong>, pra cliente já chegar com material em mãos. Cliente que precisa "procurar" depois do kickoff trava o projeto em 4-7 dias.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Vitória rápida em 5 dias</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Acessos antes de promessa</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Treinamento começa cedo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">✅ Checklist de qualidade pré-entrega</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sem checklist você esquece um item por projeto. Descobre na semana seguinte, refaz no fim de semana, queima reputação por bobagem. Checklist transforma qualidade em <strong class="text-rose-400">hábito</strong>, não em sorte. Cada bug encontrado vira novo item da lista.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Os 20 itens essenciais</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <div class="text-blue-400 font-semibold mb-2">Técnico (8)</div>
+            <ul class="space-y-1 text-neutral-300">
+              <li>☐ Prompt mestre revisado e versionado</li>
+              <li>☐ Casos-limite testados (10 cenários)</li>
+              <li>☐ Mensagem de erro tratada com clareza</li>
+              <li>☐ Handoff humano funcionando</li>
+              <li>☐ Backup do fluxo n8n exportado</li>
+              <li>☐ Custo de API estimado e comunicado</li>
+              <li>☐ Logs ativos pra debug futuro</li>
+              <li>☐ Acessos limitados ao mínimo</li>
+            </ul>
+          </div>
+          <div>
+            <div class="text-blue-400 font-semibold mb-2">Cliente (12)</div>
+            <ul class="space-y-1 text-neutral-300">
+              <li>☐ Métrica de sucesso configurada</li>
+              <li>☐ Painel simples acessível</li>
+              <li>☐ Treinamento agendado</li>
+              <li>☐ Documentação curta entregue (1 página)</li>
+              <li>☐ Vídeo de 5min gravado</li>
+              <li>☐ Contato de suporte definido</li>
+              <li>☐ SLA combinado por escrito</li>
+              <li>☐ Plano de continuidade proposto</li>
+              <li>☐ Termo de uso de imagem assinado</li>
+              <li>☐ Pagamento da etapa confirmado</li>
+              <li>☐ Próxima reunião marcada</li>
+              <li>☐ Pesquisa de NPS enviada</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">Cada bug que aparece em produção depois da entrega é convertido em novo item da checklist. Em 12 meses sua checklist tem 30-40 itens e seu produto fica praticamente livre de surpresa. Quem nunca cresce a checklist repete os mesmos erros nos próximos projetos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Mesmos 20 itens, todo projeto</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Cliente assina a entrega</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Bug vira item novo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🛡️ Evitar refazer tudo do zero</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Todo dono acha o negócio dele <strong class="text-rose-400">único</strong>. Em 90% das vezes, o que ele chama de "diferente" é só <strong class="text-rose-400">vocabulário próprio</strong>, não fluxo realmente diferente. Sua função é traduzir a versão pessoal pra dentro do template — não desmontar o template.</p>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 A tradução vocabulário → template</h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400">Cliente diz:</span> <span class="font-semibold">"Aqui chamamos de 'ficha do paciente', não 'lead'"</span> → <span class="text-rose-400 font-semibold">mantém o template, só renomeia campo.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400">Cliente diz:</span> <span class="font-semibold">"A gente não usa funil, é jornada"</span> → <span class="text-rose-400 font-semibold">mesma estrutura, palavra trocada.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400">Cliente diz:</span> <span class="font-semibold">"Não funciona com nossa empresa, somos diferentes"</span> → <span class="text-rose-400 font-semibold">pede 1 exemplo concreto antes de mudar nada.</span></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Como conduzir</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"No nosso método, o padrão é X. Funciona pra você assim?"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Mostra a peça pronta antes de discutir customização</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Customização real entra como add-on, com preço</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Aprende vocabulário do cliente, mantém arquitetura</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Armadilhas comuns</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Aceitar "nossa empresa é diferente" sem evidência</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Refazer fluxo do zero pra agradar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Customizar grátis pra "fechar a venda"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esconder que existe template (parece desvalorizar entrega)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Tenha uma frase pronta: <strong>"No nosso método já testamos isso com X clínicas e funciona assim. Vamos rodar o padrão por 30 dias e, se aparecer algo que realmente não encaixa, ajustamos como add-on."</strong> Funciona em 80% das objeções de "somos diferentes".</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Vocabulário muda, fluxo não</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Customização tem preço</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Método &gt; capricho</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você adotou a regra de ouro: <strong>personalizar diagnóstico, padronizar projeto</strong>.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você começou (ou começa hoje) a sua biblioteca pessoal de playbooks com pasta por nicho.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem 3 pacotes nomeados (Atende, Vende, Opera) com escopo, kit e métrica de sucesso.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem onboarding repetível em 5 passos que entrega vitória rápida em 5 dias.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você adotou checklist de qualidade com 20 itens — base do seu padrão de entrega.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você aprendeu a defender o template sem perder cliente.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Voltar à Trilha 6</a>
+        <a href="modulo-6-2.html" class="px-5 py-3 bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors text-center">Próximo: Precificação →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 6 — Módulo 6.1</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

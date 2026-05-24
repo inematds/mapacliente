@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trilha 5 — Capacitação &amp; Sustentação (C+A) | Mapa Cliente</title>
+  <title>Trilha 5 — Capacitação &amp; Sustentação | Mapa Cliente</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
   <style>
     body { font-family: 'Inter', sans-serif; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
     .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
     html:not(.dark) body { background-color: #f8fafc; }
     html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
     html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
@@ -20,24 +25,28 @@
     html:not(.dark) .text-neutral-400 { color: #6b7280; }
     html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
     html:not(.dark) .text-teal-400 { color: #0d9488; }
     html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,.12); }
     html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13,148,136,.08); }
     html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,.25); }
+    html:not(.dark) .hover\:bg-teal-500\/30:hover { background-color: rgba(13,148,136,.18); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
     html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
     html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
-    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
-    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
     html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
     html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
     html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
-    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
-    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
     html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
     html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
     html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
     html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; }
     html:not(.dark) .text-yellow-400 { color: #a16207; }
     html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
@@ -48,37 +57,39 @@
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
 
   <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
-      <div class="flex items-center space-x-4">
-        <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
-        <span class="text-neutral-600">|</span>
-        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
       </div>
-      <div class="flex items-center space-x-1 sm:space-x-2">
-        <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
-        <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
-        <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
-        <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
-        <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
-        <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
-        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-        </button>
-      </div>
-    </div></div>
+    </div>
   </nav>
 
   <header class="bg-gradient-to-br from-teal-900/30 via-dark-900 to-dark-800 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <span class="inline-flex px-4 py-2 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-400 text-sm font-semibold mb-6">TRILHA 5 · DICA — C+A</span>
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🎓 Capacitação &amp; Sustentação</h1>
-      <p class="text-neutral-300 max-w-3xl text-lg mb-8">Onde a maioria dos projetos morre — e onde está a sua diferenciação. Como treinar o cliente, escolher o responsável interno, criar rotina de uso, medir resultado e transformar o primeiro projeto em recorrência.</p>
+      <span class="inline-flex px-4 py-2 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-400 text-sm font-semibold mb-6">TRILHA 5 — C+A do DICA</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🌱 Capacitação &amp; Sustentação</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-8">Onde a maioria dos projetos morre — e onde está a sua diferenciação. O cliente comprou, você entregou, agora tem que fazer durar. Sem responsável interno, treinamento de verdade e acompanhamento semanal, em 30 dias o sistema vira história triste. Esta trilha é como você vira fornecedor permanente, não um boleto avulso.</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Módulos</div><div class="font-bold text-lg">4</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Tópicos</div><div class="font-bold text-lg">24</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Duração</div><div class="font-bold text-lg">~2h</div></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Nível</div><div class="font-bold text-lg">Aplicado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Nível</div><div class="font-bold text-lg">Decisivo</div></div>
       </div>
     </div>
   </header>
@@ -88,18 +99,309 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.1</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">👥 Treinar o cliente</h3><p class="text-sm text-neutral-400">Rotina, papéis, responsável interno.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.2</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">📚 Material de treinamento</h3><p class="text-sm text-neutral-400">Padrão reutilizável por nicho.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.3</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">📈 Acompanhamento semanal</h3><p class="text-sm text-neutral-400">Check-in, indicadores, ajustes.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.4</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">🔁 Expansão &amp; recorrência</h3><p class="text-sm text-neutral-400">Do primeiro projeto à mensalidade.</p></div>
+        <a href="#modulo-5-1" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.1</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">👥 Treinar o cliente</h3>
+          <p class="text-sm text-neutral-400">Sem campeão interno, morre.</p>
+        </a>
+        <a href="#modulo-5-2" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.2</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">📚 Material padrão</h3>
+          <p class="text-sm text-neutral-400">Treina uma vez, usa em todos.</p>
+        </a>
+        <a href="#modulo-5-3" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.3</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">📈 Check-in semanal</h3>
+          <p class="text-sm text-neutral-400">20 min que salvam o projeto.</p>
+        </a>
+        <a href="#modulo-5-4" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-teal-400 font-bold">5.4</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">🔁 Expansão &amp; recorrência</h3>
+          <p class="text-sm text-neutral-400">De projeto único a mensalidade.</p>
+        </a>
       </div>
     </section>
 
-    <div class="bg-teal-900/20 border border-teal-500/30 rounded-2xl p-8 text-center">
-      <div class="text-4xl mb-3">🚧</div>
-      <h2 class="text-2xl font-bold mb-3">Conteúdo detalhado em construção</h2>
-      <p class="text-neutral-300 mb-4">Esta trilha trará templates de treinamento, scripts de handover, modelo de check-in semanal e roteiro para a conversa de upsell que vira mensalidade.</p>
-      <p class="text-neutral-400 text-sm">Próxima publicação: módulo 5.1 com playbook de treinamento da equipe do cliente.</p>
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MÓDULO 5.1 -->
+    <div id="modulo-5-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.1</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">👥 Treinar o cliente — escolher o campeão interno</h3>
+        <p class="text-neutral-400 text-sm">Toda implementação que morre tem o mesmo enterro: ninguém dentro da empresa era dono da rotina. Esta é a aula de quem você precisa identificar antes mesmo de entregar.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">🏆 Quem é o campeão interno</div><div class="text-sm text-neutral-400">A pessoa que cuida do sistema todo dia.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">É o funcionário (ou o próprio dono em empresa de 1-3 pessoas) que abre o painel todo dia, lê o que a IA respondeu, ajusta o que ficou estranho e leva as dúvidas pra você. Sem essa pessoa, o sistema fica órfão.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Se você não definir junto com o cliente quem é, vira "alguém" — e "alguém" não faz. O projeto morre na semana 3. Identificar o campeão é parte do escopo, não cortesia.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Nome próprio, não cargo</li><li>Tempo alocado na agenda, não "quando der"</li><li>Autoridade pra mudar resposta padrão</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">⚠️ O campeão errado mata o projeto</div><div class="text-sm text-neutral-400">A dona da clínica que indicou a recepcionista que vai sair.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Dono escolhe pela conveniência: "a Júlia pode ser, ela mexe com computador". Júlia tem 6 outras funções, vai sair em 2 meses ou simplesmente não quer. Resultado: ninguém atualiza nada, atrofia.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Você precisa orientar a escolha com critérios objetivos, mesmo que o dono inicialmente queira "delegar pra qualquer um". A escolha errada é sua responsabilidade de antecipar.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Critérios &gt; conveniência</li><li>Permanência na empresa</li><li>Vontade real, não obrigação</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📋 Papéis claros, por escrito</div><div class="text-sm text-neutral-400">Quem aprova o quê, em qual prazo.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Documento curto (1 página) com 3 colunas: papel (dono, campeão, você), responsabilidade (decisão, operação diária, sustentação), e prazo de resposta (24h, 1 semana, ad hoc).</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem isso, todo problema vira "achei que era você". Com isso, o campeão sabe quando escalar pra você e quando pode resolver sozinho.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Papéis &gt; intenções</li><li>SLA simples, não contrato jurídico</li><li>Revisado mensalmente</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🎓 Primeiro treino de 90 minutos</div><div class="text-sm text-neutral-400">Presencial, no computador deles, com café.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Sessão de 90 min com o campeão e o dono. 30 min mostrando o sistema, 30 min ele fazendo na frente de você (você não toca no mouse), 30 min de perguntas e ajustes finais.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Treino remoto fracassa em PME. Estar lado a lado, ver a reação dele, perceber onde travou — é o que difere entrega de "te mandei um manual".</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Ele faz, você assiste</li><li>Anotar as 3 dúvidas reais</li><li>Sem jargão, vocabulário do negócio</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">📄 Manual rápido de 1 página</div><div class="text-sm text-neutral-400">PDF impresso, fica no balcão.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Uma página: 4-6 passos numerados com prints, telefone seu pra emergência, lista das 5 dúvidas mais comuns com resposta curta. Imprime, plastifica, fica no balcão.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">PDF de 20 páginas no Drive ninguém abre. Folha plastificada no balcão é consultada na hora da dúvida — e funciona como prova visível de que existe método.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Físico vence digital pra PME</li><li>Imagem &gt; texto longo</li><li>Atualizado a cada 2-3 meses</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">📝 Registro de dúvidas vivo</div><div class="text-sm text-neutral-400">Toda pergunta vira melhoria.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Planilha simples (ou bloco no WhatsApp) onde o campeão registra cada dúvida que aparece. Na sua reunião semanal, você revisa, ajusta o prompt do sistema, atualiza o manual.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a fonte de combustível de toda melhoria contínua. Sem registro, você vira reativo — só vê o problema quando o cliente reclama gritando.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Dúvida = matéria-prima</li><li>3 dúvidas iguais = ajuste no sistema</li><li>Padrão entre clientes vira playbook</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-1.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5.2 -->
+    <div id="modulo-5-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.2</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📚 Material de treinamento padrão</h3>
+        <p class="text-neutral-400 text-sm">Toda vez que você criar material do zero pra cada cliente, você perde dinheiro. Esta aula monta a biblioteca que serve 80% dos casos do seu nicho.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">🎬 Roteiro de aula curto</div><div class="text-sm text-neutral-400">Slide + vídeo de 5 min + cheat sheet.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Estrutura padrão: 8-10 slides, vídeo de 5 minutos gravado por você mostrando o sistema funcionando, e 1 página cheat sheet com os comandos/atalhos principais. Mesmo modelo, conteúdo trocado por nicho.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">PME não assiste curso de 1 hora. Assiste 5 min, lê 1 página, volta no print quando duvida. Curto + visual + repetível é o que cabe na rotina deles.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Vídeo &gt; texto pra mostrar uso</li><li>Cheat sheet &gt; vídeo pra consultar rápido</li><li>Slide só pra abrir contexto</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">❓ FAQ vivo por nicho</div><div class="text-sm text-neutral-400">Mesmas 20 dúvidas se repetem.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Documento com as 15-25 perguntas que aparecem em todo cliente do mesmo nicho ("a IA pode responder cliente sozinha?", "e se errar?", "quanto custa por mês?"). Resposta curta, em vocabulário do dono.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Você economiza 80% do tempo de treinamento. Quando o cliente pergunta, manda o link do FAQ. Quando vende, manda como prova de que você pensou nisso.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Atualiza com pergunta nova toda semana</li><li>Categorias: medo, técnica, comercial, ética</li><li>Tom didático, não corporativo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">📦 Repositório de exemplos reais</div><div class="text-sm text-neutral-400">Conversas, propostas, posts — anonimizados.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Pasta com 10-30 exemplos de uso bom (e alguns ruins explicados) por nicho: conversas que deram certo, propostas geradas, posts publicados. Anonimize sempre. Mostre como prova viva.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente novo desbloqueia ao ver outro do mesmo nicho usando. "Igual eu" é o gatilho de adoção mais forte que existe.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Pedir autorização sempre</li><li>Anonimizar nome e detalhes</li><li>Exemplo ruim ensina mais que só os bons</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">🎥 Microvídeos por dúvida</div><div class="text-sm text-neutral-400">90 segundos cada, 1 dúvida por vídeo.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Toda dúvida que aparece 3+ vezes vira microvídeo de 60-90 segundos, hospedado no YouTube unlisted ou Loom. Você manda o link e o campeão consulta sem te ligar.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o que diminui sua dependência operacional. Sem essa biblioteca, em 5 clientes você vira atendente. Com ela, vira consultor.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>1 vídeo = 1 dúvida</li><li>Loom serve mais que produção de qualidade</li><li>Atualiza quando a interface muda</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">📹 Gravação da primeira semana</div><div class="text-sm text-neutral-400">Material de ouro pra próximo cliente.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Combine com o cliente: a primeira semana de uso será gravada (com permissão) — tela, conversas, ajustes. Vira aula real anonimizada, depoimento e referência para o próximo cliente do nicho.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Material gravado é o ativo que cresce com você. Em 6 meses você tem biblioteca de evidências que ninguém mais tem no seu nicho local.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Autorização por escrito</li><li>Anonimização padrão</li><li>Cliente vira coautor — fica orgulhoso</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">🔄 Reutilização por nicho</div><div class="text-sm text-neutral-400">Mesmo kit, contexto trocado.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Você tem 1 kit por nicho (clínicas, imobiliárias, restaurantes). Cada cliente novo recebe o kit do nicho dele com 10% de personalização. Os outros 90% são reuso.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a diferença entre 2 clientes por mês e 8 clientes por mês com a mesma carga de trabalho. Sem reuso não tem escala — é serviço, não produto.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Padrão alto + customização cirúrgica</li><li>Versão do kit por trimestre</li><li>Cada cliente alimenta o próximo</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-2.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5.3 -->
+    <div id="modulo-5-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.3</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📈 Acompanhamento semanal — 20 min que salvam o projeto</h3>
+        <p class="text-neutral-400 text-sm">Sem check-in semanal nas primeiras 4-6 semanas, o cliente trava sozinho e silenciosamente abandona. Esta é a rotina mínima que mantém o sistema vivo e mostra ROI antes do contrato vencer.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">⏱️ Check-in de 20 min, semana fixa</div><div class="text-sm text-neutral-400">Quarta às 9h, toda quarta.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Reunião curta e gravada (Meet/Zoom), na mesma hora toda semana. 5 min números, 10 min dúvidas e ajustes, 5 min próxima semana. Dia e hora fixos viram hábito; "quando der" vira nunca.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o ritual que segura o cliente. Sem ele, ele te liga só quando algo quebra — quando já está bravo. Com ele, você vira fonte de tranquilidade semanal.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Ritual &gt; reatividade</li><li>Curto &gt; longo</li><li>Pauta fixa &gt; conversa aberta</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">📊 5 indicadores simples</div><div class="text-sm text-neutral-400">Respostas · tempo · leads · propostas · horas.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Cinco números que o campeão coleta toda semana: respostas que a IA deu, tempo médio de resposta, leads que não esfriaram, propostas que saíram, horas que o time recuperou. Tudo em planilha de 1 aba.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem número, percepção governa. E percepção em semana ruim é "não está funcionando". Com número, você prova: "subiu de 8 pra 24 respostas/dia".</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Simples &gt; preciso</li><li>5 &gt; 30 métricas</li><li>Tendência &gt; valor absoluto</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">📑 Template de relatório semanal</div><div class="text-sm text-neutral-400">1 página, mesmo formato, toda semana.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">PDF de 1 página gerado toda quarta: 5 números, 1 gráfico de tendência, 2-3 dúvidas resolvidas, 1 ajuste feito, 1 próximo passo. Enviado por WhatsApp ao dono mesmo que ele não tenha tempo de ler.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É evidência acumulada que justifica a mensalidade. Quando ele questionar "vale a pena continuar?", você manda os últimos 8 relatórios. Caso fechado.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Mesmo formato sempre</li><li>Visual &gt; texto corrido</li><li>Arquivo viva a história do projeto</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">🚦 Quando subir fase de aprovação</div><div class="text-sm text-neutral-400">Link direto com T4.3 — autonomia gradual.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Critério objetivo: depois de 50+ aprovações com erro &lt; 5%, sobe para Fase 2 (humano só aprova importante). Depois de mais 100 com erro &lt; 2%, Fase 3 (humano só vê exceção). Sem dado, não sobe fase.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É como você entrega autonomia gradual com segurança. Sem critério, a discussão é emocional. Com critério, é matemática — todo mundo sabe quando muda.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Critério numérico &gt; impressão</li><li>Reversível: pode voltar fase</li><li>Cliente decide, você recomenda</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">🔥 Sinais de cliente em risco</div><div class="text-sm text-neutral-400">Campeão sumiu, métrica caiu, dono reclamou.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Três sinais de alerta: (1) campeão deixou de responder duas semanas seguidas; (2) métrica de uso caiu &gt;40%; (3) dono escreveu "vou pensar se continuo". Cada sinal aciona protocolo seu específico.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">O caso do restaurante que abandonou na semana 3 era visível na semana 1 — você só não estava olhando. Detectar cedo permite salvar; tarde demais é só constatar.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Alerta &gt; reclamação</li><li>Visita presencial salva relação</li><li>Cliente em risco pede atenção, não desconto</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">📆 Cadência decrescente</div><div class="text-sm text-neutral-400">Semanal → quinzenal → mensal.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Semanas 1-6 = semanal. Semanas 7-12 = quinzenal. Mês 4 em diante = mensal. Frequência diminui conforme o cliente fica autônomo, mas o ritual nunca termina — é o que sustenta a mensalidade.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem cadência decrescente você fica preso no semanal. Com cadência clara, o cliente vê a maturação do projeto e você libera tempo pra novos clientes.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Maturidade do cliente define cadência</li><li>Mensal é o regime estável saudável</li><li>Volta pra semanal em crise — sem cobrar extra</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-3.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5.4 -->
+    <div id="modulo-5-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.4</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🔁 Expansão &amp; recorrência — do projeto único à mensalidade</h3>
+        <p class="text-neutral-400 text-sm">Projeto único é boleto. Mensalidade é negócio. Esta aula é como você transforma cada cliente entregue num relacionamento de 2-5 anos com expansão natural e indicação como ativo principal.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">🔍 Identificar nova área no mês 2-3</div><div class="text-sm text-neutral-400">O cliente já confia — só nesta janela.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Quando a primeira solução está rodando bem (mês 2-3), você já tem credenciais para propor a segunda. Volta às 5 áreas do diagnóstico inicial e aponta a próxima dor visível.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a janela de ouro: ele confia, você sabe a empresa, o atrito é baixo. Esperar até o mês 8 é jogar a oportunidade fora — outra prioridade vai entrar no lugar.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Confiança decai com tempo sem nova proposta</li><li>Conheço o negócio = velocidade dobrada</li><li>Mesmo nicho = baixo custo de execução</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">📜 Contrato de manutenção</div><div class="text-sm text-neutral-400">R$ 500-1.5k/mês conforme tamanho.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Pacote mensal com escopo claro: check-in mensal, ajustes de prompt, atualização de FAQ, 1 microvídeo novo, relatório consolidado, 1-2 horas de melhoria. Faixa R$ 500-1.5k conforme tamanho do cliente.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Mensalidade é o que estabiliza sua operação. Sem ela, você vive vendendo do zero todo mês. Com ela, base previsível libera energia pra crescer.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Escopo escrito &gt; "tudo que precisar"</li><li>Reajuste anual previsto</li><li>Saída fácil — cliente preso é cliente bravo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">⬆️ Upsell pra outras áreas</div><div class="text-sm text-neutral-400">Atendimento → vendas → financeiro.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Cliente começou com atendimento WhatsApp (Trilha 4). Mês 3 propõe vendas/propostas. Mês 6, financeiro consolidado. Mês 9, marketing. Cada projeto é uma nova venda — não pacote infinito.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o motor de crescimento sustentável. Um cliente que compra 3 áreas em 12 meses vale 5x um cliente único.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>1 área por trimestre, sem afobar</li><li>Sempre mostra ROI da anterior antes</li><li>Cada upsell renegocia a mensalidade</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">🤝 Indicação como ativo principal</div><div class="text-sm text-neutral-400">Cliente satisfeito vale por 3 prospects frios.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Pede indicação formalmente no mês 4-5 (depois do segundo projeto), com roteiro pronto pra ele copiar e mandar pros 3 pares dele. Bonifica em desconto na mensalidade ou em um microprojeto de cortesia.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o canal de venda mais barato e mais convertido que existe pra PME. Quem domina indicação não precisa de marketing pago no primeiro ano.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Pedido específico &gt; "indica aí"</li><li>Roteiro pronto baixa fricção</li><li>Indicado vem pré-vendido</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">🏛️ Virar fornecedor permanente</div><div class="text-sm text-neutral-400">De freelancer eventual a parte do negócio.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Depois de 6-12 meses, você é citado em reunião interna do cliente como "o cara da IA". Aparece em organograma informal. Recebe pedidos de coisa que nem é seu escopo — você decide o que aceitar.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o status que protege a sua carteira contra concorrência. Substituir você passa a ser caro pro cliente — relacional, não só técnico.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Presença regular &gt; resultado pontual</li><li>Saber recusar fortalece a relação</li><li>Carteira de 8-12 desses sustenta operação</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">📅 Mapa de 12 meses por cliente</div><div class="text-sm text-neutral-400">Onboarding → expansão → maturidade.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-teal-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Mês 1-2 onboarding intenso (semanal). Mês 3-4 primeiro upsell. Mês 5-6 pedido de indicação. Mês 7-9 segundo upsell. Mês 10-12 revisão anual + plano do ano seguinte. Mapa visível mantém intenção.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem mapa, você reage. Com mapa, você dirige a relação. Cada cliente vira projeto de longo prazo com marcos claros, não conta que vai e vem.</p></div>
+            <div><div class="text-teal-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Plano por cliente, no seu CRM simples</li><li>Revisão trimestral entre você e o dono</li><li>Saída prevista &gt; saída surpresa</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-4.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
     </div>
 
     <div class="flex justify-between items-center mt-12 pt-8 border-t border-dark-600">
@@ -109,9 +411,28 @@
 
   </main>
 
-  <footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 5</div></footer>
+  <!-- MODAIS -->
+  <div id="modal-5-1" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 5.1</h3><button onclick="closeModal('modal-5-1')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-5-1.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-5-2" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 5.2</h3><button onclick="closeModal('modal-5-2')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-5-2.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-5-3" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 5.3</h3><button onclick="closeModal('modal-5-3')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-5-3.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-5-4" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 5.4</h3><button onclick="closeModal('modal-5-4')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-5-4.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 5</div>
+  </footer>
 
   <script>
+    function toggleTopic(button) {
+      const current = button.parentElement;
+      const container = current.parentElement;
+      const explanation = current.querySelector('.topic-explanation');
+      const items = container.querySelectorAll('.topic-item .topic-explanation');
+      items.forEach((item) => { if (item !== explanation) item.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeModal(id) { const m = document.getElementById(id); if (m) m.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden')); document.body.style.overflow = ''; } });
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');

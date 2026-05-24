@@ -6,10 +6,15 @@
   <title>Trilha 3 — Diagnóstico DICA (D) | Mapa Cliente</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
   <style>
     body { font-family: 'Inter', sans-serif; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
     .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
     html:not(.dark) body { background-color: #f8fafc; }
     html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
     html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
@@ -20,16 +25,19 @@
     html:not(.dark) .text-neutral-400 { color: #6b7280; }
     html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
     html:not(.dark) .text-purple-400 { color: #7c3aed; }
     html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
     html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
     html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
-    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
-    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
-    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
-    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
     html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
     html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:border-purple-500\/30:hover { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
     html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
     html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
@@ -38,6 +46,8 @@
     html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
     html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
     html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; }
     html:not(.dark) .text-yellow-400 { color: #a16207; }
     html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
@@ -48,37 +58,39 @@
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
 
   <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
-      <div class="flex items-center space-x-4">
-        <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
-        <span class="text-neutral-600">|</span>
-        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
       </div>
-      <div class="flex items-center space-x-1 sm:space-x-2">
-        <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
-        <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
-        <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
-        <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
-        <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
-        <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
-        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-        </button>
-      </div>
-    </div></div>
+    </div>
   </nav>
 
   <header class="bg-gradient-to-br from-purple-900/30 via-dark-900 to-dark-800 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <span class="inline-flex px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-400 text-sm font-semibold mb-6">TRILHA 3 · DICA — D</span>
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🔍 Diagnóstico</h1>
-      <p class="text-neutral-300 max-w-3xl text-lg mb-8">O coração da metodologia. Como conduzir entrevista com o dono, mapear as 5 áreas, extrair o conhecimento implícito da operação, priorizar oportunidades e entregar um relatório que justifica a implementação.</p>
+      <span class="inline-flex px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-400 text-sm font-semibold mb-6">TRILHA 3 — D do DICA</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🩺 Diagnóstico DICA</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-8">O coração da metodologia. Como entrar na empresa do cliente, escutar o que ele não sabe explicar, mapear as 5 áreas que pagam e sair com um plano que ele assina. Sem diagnóstico afiado, todo o resto desmorona.</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Módulos</div><div class="font-bold text-lg">5</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Tópicos</div><div class="font-bold text-lg">30</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Duração</div><div class="font-bold text-lg">~3h</div></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Nível</div><div class="font-bold text-lg">Aplicado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Nível</div><div class="font-bold text-lg">Coração</div></div>
       </div>
     </div>
   </header>
@@ -88,31 +100,506 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.1</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">🎤 Roteiro de entrevista</h3><p class="text-sm text-neutral-400">Perguntas que destravam o dono.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.2</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">🗺️ Mapeamento das 5 áreas</h3><p class="text-sm text-neutral-400">Atendimento, vendas, marketing, gestão, financeiro.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.3</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">🧠 Conhecimento implícito</h3><p class="text-sm text-neutral-400">Tirar da cabeça do dono, organizar.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.4</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">⚖️ Mapa de oportunidades</h3><p class="text-sm text-neutral-400">Impacto × facilidade × risco.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.5</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">📄 Relatório &amp; plano 30 dias</h3><p class="text-sm text-neutral-400">Entrega vendável que abre o projeto.</p></div>
+        <a href="#modulo-3-1" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.1</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">🎤 Entrevista com o dono</h3>
+          <p class="text-sm text-neutral-400">15 perguntas que abrem o jogo.</p>
+        </a>
+        <a href="#modulo-3-2" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.2</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">🗺️ Mapeamento das 5 áreas</h3>
+          <p class="text-sm text-neutral-400">Onde mora o dinheiro.</p>
+        </a>
+        <a href="#modulo-3-3" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.3</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">🧠 Conhecimento implícito</h3>
+          <p class="text-sm text-neutral-400">Tirar da cabeça do dono.</p>
+        </a>
+        <a href="#modulo-3-4" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.4</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">⚖️ Mapa de oportunidades</h3>
+          <p class="text-sm text-neutral-400">Impacto × facilidade × risco.</p>
+        </a>
+        <a href="#modulo-3-5" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-purple-400 font-bold">3.5</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">📄 Relatório &amp; plano 30 dias</h3>
+          <p class="text-sm text-neutral-400">A página que ele assina.</p>
+        </a>
       </div>
     </section>
 
-    <div class="bg-purple-900/20 border border-purple-500/30 rounded-2xl p-8 text-center">
-      <div class="text-4xl mb-3">🚧</div>
-      <h2 class="text-2xl font-bold mb-3">Conteúdo detalhado em construção</h2>
-      <p class="text-neutral-300 mb-4">Esta trilha trará o roteiro de entrevista pronto, checklists das 5 áreas, técnicas de extração de conhecimento implícito e o template de relatório de diagnóstico.</p>
-      <p class="text-neutral-400 text-sm">Próxima publicação: módulo 3.1 com roteiro completo e exemplos de respostas reais.</p>
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MÓDULO 3.1 -->
+    <div id="modulo-3-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.1</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎤 Roteiro de entrevista com o dono</h3>
+        <p class="text-neutral-400 text-sm">A primeira conversa é tudo. Quem domina o roteiro sai com 80% do diagnóstico pronto e cliente confiante para fechar.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">📋 Preparação antes da reunião</div><div class="text-sm text-neutral-400">Site, Instagram, Google Maps, redes.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Antes da conversa, 20 minutos olhando site, Instagram, Google Maps, LinkedIn do dono. Anote 3 hipóteses de dor e 2 perguntas específicas do negócio dele.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente sente quem fez lição de casa. Pergunta genérica deprecia. Pergunta específica autoriza você a cobrar pelo diagnóstico.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>20 min de pesquisa = preço maior</li><li>Hipótese pronta acelera escuta</li><li>Mostrar lição de casa logo no início</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">📝 As 15 perguntas fixas em ordem</div><div class="text-sm text-neutral-400">Negócio → processo → gargalo → sonho → medo.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Roteiro fixo de 15 perguntas em 5 blocos: contexto do negócio, fluxo de operação, gargalo atual, sonho de 12 meses, medo de mudar. Sempre na mesma ordem.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Roteiro fixo libera sua cabeça pra escutar. Sem ele, você improvisa, perde sinal e sai com diagnóstico raso.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Ordem cria conforto progressivo</li><li>Fechada vira aberta</li><li>Sonho antes do medo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">👂 Escuta ativa &amp; silêncio que vende</div><div class="text-sm text-neutral-400">Falar 20%, escutar 80%.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Anotar palavras dele, repetir frase-chave, perguntar "me conta mais sobre isso", deixar 3 segundos de silêncio depois da resposta. O dono complementa sozinho.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">A informação mais valiosa vem depois do silêncio. Quem fala muito ensina o cliente; quem escuta muito descobre a venda.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Silêncio é técnica, não pausa</li><li>Espelhar a palavra dele</li><li>Não corrigir, registrar</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🎯 Dor real vs dor falsa</div><div class="text-sm text-neutral-400">Sinais que distinguem.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Dor real: ele cita exemplo concreto, mostra prejuízo, fala de noite mal dormida. Dor falsa: discurso de revista, "queria melhorar", sem caso recente.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Diagnosticar dor falsa = projeto que não fecha ou cliente arrependido. Recusar bem é mais lucrativo que aceitar mal.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Exemplo concreto valida dor</li><li>R$ ou horas quantifica</li><li>Sem exemplo = sem venda</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">🎙️ Gravação, notas &amp; consentimento</div><div class="text-sm text-neutral-400">Como registrar sem assustar.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Pedir gravação no início, justificar como "garantir que nada se perde", e tomar notas em papel ou tablet em paralelo. Anotar verbatim as frases-chave.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Frase do dono no relatório vale mais que sua paráfrase. E o áudio te salva quando você revisitar 3 semanas depois.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Consentimento explícito</li><li>Anotar verbatim, não resumido</li><li>Áudio + nota híbrida</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">🤝 Encerramento &amp; próximo passo</div><div class="text-sm text-neutral-400">Sair com data marcada.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Resumir em 3 frases o que ouviu, validar com ele ("é isso mesmo?"), prometer entrega ("te mando relatório em 5 dias úteis") e marcar a próxima call ali na hora.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Conversa sem próximo passo definido morre. A reunião de devolutiva vendida na própria entrevista é o que destrava o projeto.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Resumo &amp; validação no final</li><li>Data agendada antes de sair</li><li>Promessa específica de entrega</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-1.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.2 -->
+    <div id="modulo-3-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.2</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🗺️ Mapeamento das 5 áreas</h3>
+        <p class="text-neutral-400 text-sm">Atendimento · Vendas · Marketing · Gestão · Financeiro. Para cada uma: 3 perguntas-chave, sintomas comuns e tipo de assistente sugerido.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">📱 Atendimento — WhatsApp, email, telefone</div><div class="text-sm text-neutral-400">A porta da frente do negócio.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Quanto tempo demora pra responder? Quantos canais ativos? Quem responde fora de horário? Sintomas: lead frio, dono escravo do celular, mensagem perdida.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a área mais visível e a venda mais fácil. Resposta atrasada custa em moeda forte: cliente compra do concorrente que respondeu primeiro.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Assistente de qualificação + FAQ</li><li>Handoff humano para fechamento</li><li>Resposta em &lt; 5 min é a meta</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">💼 Vendas — Lead → proposta → fechamento</div><div class="text-sm text-neutral-400">O funil que vaza.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Quantos leads/mês? Quanto demora pra mandar proposta? Faz follow-up? Sintomas: proposta do zero, esquecimento, ninguém sabe origem do cliente.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Vendas é onde está o dinheiro mais perto. Pequena melhoria na velocidade da proposta gera caixa em semanas, não meses.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Gerador de proposta com template</li><li>Lembrete automático de follow-up</li><li>Origem do lead registrada</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📣 Marketing — Conteúdo, anúncio, site</div><div class="text-sm text-neutral-400">Onde o nome aparece (ou não).</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Posta quanto por semana? Tem calendário? Anuncia? Site converte? Sintomas: posta quando lembra, anúncio sem direção, site no zero do Google.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a área mais demandada e a mais cheia de marqueteiros ruins. Sua diferença: marketing acoplado ao processo, não desconectado.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Máquina de conteúdo com pauta</li><li>Variações por canal</li><li>Calendário automático</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">⚙️ Gestão — Tarefas repetitivas &amp; aprovações</div><div class="text-sm text-neutral-400">O retrabalho silencioso.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Equipe pergunta a mesma coisa? Tarefas voltam? Aprovação trava em alguém? Sintomas: dono é gargalo, procedimento na cabeça de um, retrabalho semanal.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Área menos visível pro dono, mais sustentável pro consultor. Assistente interno vira recorrência longa.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Assistente interno de procedimentos</li><li>Documento como conhecimento</li><li>Aprovação por níveis</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">💰 Financeiro — Cobrança, conciliação, relatório</div><div class="text-sm text-neutral-400">A área mais sensível e mais ignorada.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Sabe o lucro do mês passado? Concilia banco? Cobra inadimplente? Sintomas: relatório atrasado, conciliação no Excel, cobrança esquecida.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a dor que o dono não fala primeiro mas reconhece quando você toca. Relatório que aparece sozinho vale recorrência.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Extrato consolidado automático</li><li>Alerta de inadimplência</li><li>Relatório semanal de caixa</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">📊 Pontuação por área &amp; priorização</div><div class="text-sm text-neutral-400">Como sair com prioridade clara.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Para cada área: nota de 0-3 em dor, urgência e prontidão de dados. Soma define onde abrir o primeiro projeto.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem pontuação, sua sugestão parece opinião. Com nota, vira diagnóstico defendível.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>3 eixos: dor, urgência, prontidão</li><li>Soma simples, transparente</li><li>Cliente concorda com a nota</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-2.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.3 -->
+    <div id="modulo-3-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.3</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🧠 Extração de conhecimento implícito</h3>
+        <p class="text-neutral-400 text-sm">O dono não sabe explicar o que ele faz. Sua arte é tirar da cabeça dele e transformar em regra explícita que vira assistente.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">🤔 Por que o dono não sabe explicar</div><div class="text-sm text-neutral-400">Tácito vs explícito.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">O dono opera 80% no automático. Sabe fazer mas não sabe descrever. Conhecimento tácito é regra aprendida por repetição, não por documentação.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem entender isso você se frustra com a resposta vaga. Com isso, você muda a técnica: pergunta caso, não pergunta regra.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Tácito &gt; explícito no dia a dia</li><li>Caso &gt; pergunta abstrata</li><li>Regra emerge de exemplos</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">🎬 "Me conta um caso recente"</div><div class="text-sm text-neutral-400">A técnica que destrava tudo.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Em vez de "como você qualifica um lead?", peça "me conta o último lead que entrou. O que aconteceu passo a passo?". A regra vem narrada, não formulada.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Casos concretos quebram a barreira do "depende". O dono entra no automático, e você anota o automático dele.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Caso &gt; abstração</li><li>Última semana, último cliente</li><li>Passo a passo narrado</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📚 Documentação por exemplos</div><div class="text-sm text-neutral-400">3 casos = 1 regra confiável.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Colete 3-5 casos do mesmo tipo (3 leads qualificados, 3 propostas, 3 cobranças). A regra aparece na repetição. O que se repete vira critério.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Um caso é anedota. Três casos é padrão. Cinco casos é regra. Essa é a base do prompt confiável.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Repetição revela regra</li><li>3 a 5 casos por tipo</li><li>Casos servem de few-shot depois</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🧱 Transformar em regras explícitas</div><div class="text-sm text-neutral-400">Da narração ao critério.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">"Quando lead pede preço sem dizer projeto, eu sempre pergunto X antes de mandar valor" → vira regra do assistente. Frase do dono = regra do bot.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Regra explícita é a moeda que vira prompt. Sem ela, o assistente improvisa e o cliente percebe que "não é ele".</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Se X, então Y</li><li>Frase do dono = literal</li><li>Lista numerada, sem ambiguidade</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">✅ Validar com 3 casos novos</div><div class="text-sm text-neutral-400">O teste de fogo das regras.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Pegue 3 casos que o dono NÃO usou pra ensinar você. Rode as regras e mostre o resultado. Ele aponta o que está errado, você corrige, fecha o ciclo.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Validação separa intuição de regra. Cliente se vê no resultado e aprova; sem validação ele duvida do assistente depois.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Casos novos, não treinados</li><li>Dono aprova ou ajusta</li><li>Iteração curta, &lt; 30 min</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">🏗️ Estrutura ideal de prompt</div><div class="text-sm text-neutral-400">Contexto · objetivo · critérios · regras · exemplos · saída.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Todo assistente bem feito tem 6 blocos: contexto (quem somos), objetivo (o que faz), critérios (qualidade), regras (limites), exemplos (few-shot) e formato de saída.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem estrutura, o prompt vira sopa. Com ela, o assistente responde estável, e você cobra como engenharia, não como arte.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>6 blocos fixos</li><li>Exemplo &gt; instrução abstrata</li><li>Saída padronizada</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-3.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.4 -->
+    <div id="modulo-3-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.4</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">⚖️ Mapa de oportunidades</h3>
+        <p class="text-neutral-400 text-sm">Matriz impacto × facilidade × risco × urgência × potencial de venda × dependência humana. Como sair com priorização defendível.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">📐 Os 6 eixos da matriz</div><div class="text-sm text-neutral-400">Como pontuar cada oportunidade.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Impacto (R$/horas), facilidade técnica, risco operacional, urgência percebida, potencial de venda (cliente quer pagar) e dependência humana (precisa de validação?).</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Os 6 eixos cobrem 95% das decisões. Sem eles, você prioriza por intuição e cliente questiona. Com eles, decisão é defendível.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>6 eixos &gt; lista solta</li><li>Nota 0-3 em cada</li><li>Soma transparente</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">🎯 Alta impacto + alta facilidade</div><div class="text-sm text-neutral-400">O primeiro projeto sai daqui.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Quadrante superior direito: muito impacto, pouca complexidade. O primeiro projeto SEMPRE sai daqui. Esquecer impacto = projeto que não vende; esquecer facilidade = projeto que não entrega.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Tendência do consultor novato é escolher o problema mais interessante. Profissional escolhe o ganho mais rápido pra construir confiança.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Ganho rápido cria confiança</li><li>Confiança paga próximos projetos</li><li>Difícil fica pra Fase 2</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📊 Visualização em quadrantes</div><div class="text-sm text-neutral-400">A imagem que vende.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Eixo X facilidade, eixo Y impacto. Cada oportunidade vira ponto. Cliente vê o mapa, entende a priorização sem precisar ler texto.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Imagem reduz objeção. "Por que esse antes daquele?" responde com o gráfico, não com argumento.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Gráfico &gt; tabela</li><li>4 quadrantes nomeados</li><li>Pontos coloridos por área</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">⚠️ Risco &amp; dependência humana</div><div class="text-sm text-neutral-400">Onde frear automatização.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Tarefa com risco alto (dinheiro, contrato, dado sensível) ou alta dependência humana (julgamento, relação) fica com aprovação humana. Não automatizar tudo é parte do diagnóstico.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente teme perder controle. Mapa que mostra onde humano fica vence essa objeção antes dela aparecer.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Risco alto = aprovação humana</li><li>Julgamento permanece humano</li><li>IA prepara, humano decide</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">🎤 Apresentar ao dono</div><div class="text-sm text-neutral-400">Roteiro de devolutiva.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Apresente o mapa em 10 min: contexto (3 frases dele), as 5 oportunidades, a recomendação. Pause em cada uma e pergunte "faz sentido?". Devolutiva é diálogo, não palestra.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Devolutiva bem feita transforma diagnóstico em contrato no mesmo dia. Mal feita, o cliente "vai pensar" e some.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Pausa pra validar</li><li>Frases dele no relatório</li><li>Recomendação clara, uma só</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">🚫 O que NÃO recomendar</div><div class="text-sm text-neutral-400">Coragem de cortar.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Toda apresentação inclui 1-2 oportunidades que você NÃO vai atacar agora — e o porquê. Mostra critério, não preguiça.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente confia em quem recusa. Lista cheia de "vamos fazer tudo" parece vendedor. Lista com cortes parece consultor.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Recusar valida critério</li><li>"Não agora" &gt; "nunca"</li><li>Justificativa em uma linha</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-4.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.5 -->
+    <div id="modulo-3-5" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.5</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📄 Relatório de diagnóstico &amp; plano 30 dias</h3>
+        <p class="text-neutral-400 text-sm">A página única que o dono lê em 5 minutos e assina em 10. Estrutura, linguagem e como transformar diagnóstico em contrato.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">📑 Estrutura de 1 página</div><div class="text-sm text-neutral-400">Os 5 blocos obrigatórios.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Situação atual · 3-5 oportunidades priorizadas · recomendação de primeiro assistente · plano 30 dias · investimento. Uma página, máximo duas.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Relatório longo não é lido. O dono quer decisão, não dissertação. 1 página força foco e mostra que você sabe priorizar.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>1 página é meta, não limite</li><li>5 blocos fixos</li><li>Anexo opcional pra detalhe</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">🗣️ Linguagem de dono</div><div class="text-sm text-neutral-400">Zero jargão técnico.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Trocar "implementar agente conversacional via LLM" por "atendimento que responde igual você". Usar palavras dele no relatório (verbatim das notas).</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Jargão vira parede. Linguagem dele vira ponte. Ele lê e pensa "esse cara me entendeu".</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Resultado &gt; tecnologia</li><li>Verbatim do dono</li><li>Teste do avô antes de mandar</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📅 Plano de 30 dias</div><div class="text-sm text-neutral-400">Semana 1, 2, 3, 4.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">S1 coletar dados &amp; casos · S2 montar v1 do assistente · S3 piloto com aprovação humana · S4 ajuste fino + treinamento da equipe. Cada semana com entregável claro.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Plano em semanas tira ansiedade. Cliente vê quando vai usar, não promessa abstrata. Marco semanal vira ritmo de pagamento.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Entregável por semana</li><li>Marco visível</li><li>30 dias é horizonte mental do dono</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">💵 Investimento estimado</div><div class="text-sm text-neutral-400">Faixa, não número exato.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Apresente faixa (R$ X-Y) com 2-3 condições (setup + recorrência, projeto fechado, mensal). Inclua o que ESTÁ e o que NÃO está no escopo.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Número exato no diagnóstico te trava. Faixa abre conversa. Escopo explícito evita "achei que tinha".</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Faixa &gt; número fechado</li><li>Setup + mensalidade clara</li><li>"Não inclui" explicitado</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">🎬 Call de 30 min de apresentação</div><div class="text-sm text-neutral-400">Como conduzir o fechamento.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">10 min apresentação · 10 min objeções &amp; ajuste · 10 min próximo passo &amp; agenda. Tela compartilhada, relatório aberto, ele opina junto.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Mandar PDF e esperar fechar é o pior caminho. Apresentar ao vivo elimina dúvida, ajusta na hora e fecha mais.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>30 min &gt; 1h</li><li>Tela compartilhada</li><li>Próximo passo agendado na call</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">📝 Abrir o contrato de projeto</div><div class="text-sm text-neutral-400">Da apresentação ao "vamos".</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-purple-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">No fim da call: "Posso te mandar o contrato pra começar semana que vem?". Contrato curto (1-2 páginas) com escopo, prazo, valor, garantia. Assinatura digital.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">A janela quente fecha em 48h. Pedir contrato na call enquanto a empolgação está alta destrava muito mais do que mandar depois.</p></div>
+            <div><div class="text-purple-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Pedir contrato dentro da call</li><li>Modelo curto, pronto</li><li>Janela quente = 48h</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-5.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
     </div>
 
     <div class="flex justify-between items-center mt-12 pt-8 border-t border-dark-600">
-      <a href="../trilha2/index.html" class="text-neutral-400 hover:text-neutral-100 transition-colors">← Trilha 2: Venda</a>
+      <a href="../trilha2/index.html" class="text-neutral-400 hover:text-neutral-100 transition-colors">← Trilha anterior</a>
       <a href="../trilha4/index.html" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Próxima trilha: Implementação →</a>
     </div>
 
   </main>
 
-  <footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 3</div></footer>
+  <!-- MODAIS -->
+  <div id="modal-3-1" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 3.1</h3><button onclick="closeModal('modal-3-1')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-3-1.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-3-2" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 3.2</h3><button onclick="closeModal('modal-3-2')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-3-2.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-3-3" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 3.3</h3><button onclick="closeModal('modal-3-3')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-3-3.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-3-4" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 3.4</h3><button onclick="closeModal('modal-3-4')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-3-4.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-3-5" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 3.5</h3><button onclick="closeModal('modal-3-5')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-3-5.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 3</div>
+  </footer>
 
   <script>
+    function toggleTopic(button) {
+      const current = button.parentElement;
+      const container = current.parentElement;
+      const explanation = current.querySelector('.topic-explanation');
+      const items = container.querySelectorAll('.topic-item .topic-explanation');
+      items.forEach((item) => { if (item !== explanation) item.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeModal(id) { const m = document.getElementById(id); if (m) m.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden')); document.body.style.overflow = ''; } });
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');

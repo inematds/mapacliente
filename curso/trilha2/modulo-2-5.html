@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.5 — Vender o diagnóstico | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(29,78,216,.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(29,78,216,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 2</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 2.5</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-4">MÓDULO 2.5</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🎁 Vender o diagnóstico</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Diagnóstico é o produto que abre toda carreira. Baixo ticket, entrega clara, decisão rápida do cliente, e conversão ~60% pro projeto. É a única coisa vendável sem caso anterior. Aqui o preço, o escopo, o que entregar, o contrato de 1 página e como amarrar o próximo passo no fechamento.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Receita</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Oferta</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🚪 Por que diagnóstico é mais fácil</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">No início da carreira, você não tem caso. Diagnóstico é <strong class="text-blue-400">a única coisa vendável sem prova</strong>. Baixo ticket, entrega clara, decisão rápida — e ainda prepara a venda do projeto depois.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">💡 Diagnóstico vs. Projeto — comparação</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-left border-b border-dark-600">
+                <th class="py-2 text-neutral-400">Dimensão</th>
+                <th class="py-2 text-blue-400">Diagnóstico</th>
+                <th class="py-2 text-neutral-400">Projeto</th>
+              </tr>
+            </thead>
+            <tbody class="text-neutral-300">
+              <tr class="border-b border-dark-700"><td class="py-2">Ticket</td><td class="py-2">R$ 500-2.500</td><td class="py-2">R$ 5.000-15.000</td></tr>
+              <tr class="border-b border-dark-700"><td class="py-2">Prazo</td><td class="py-2">1-2 semanas</td><td class="py-2">4-12 semanas</td></tr>
+              <tr class="border-b border-dark-700"><td class="py-2">Risco percebido</td><td class="py-2">Baixo</td><td class="py-2">Médio-alto</td></tr>
+              <tr class="border-b border-dark-700"><td class="py-2">Exige caso anterior?</td><td class="py-2">Não</td><td class="py-2">Sim (ou referência)</td></tr>
+              <tr><td class="py-2">Decisão do cliente</td><td class="py-2">Rápida (dias)</td><td class="py-2">Devagar (semanas)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Baixo ticket = decisão rápida</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Entrega clara = baixa ansiedade</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Diagnóstico vira porta da implementação</div></div>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💰 Preço — R$ 500 a R$ 2.500</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A faixa que o dono assina sem pedir esposa. Preço baixo demais desvaloriza; alto demais trava decisão. A regra: <strong class="text-blue-400">subir preço a cada 3 entregas bem feitas</strong>.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">A</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Sem caso (mês 1-3): R$ 500-900</h4>
+            <p class="text-neutral-300 text-sm">Entrega em 1 semana. Você compra experiência mais do que vende serviço. Não desça mais que isso.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">B</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Com 3 casos (mês 4-6): R$ 1.200-1.500</h4>
+            <p class="text-neutral-300 text-sm">Entrega em 1-2 semanas. Já cita casos no pitch. Confiança maior, preço maior.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">C</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Com 5+ casos no nicho (mês 7+): R$ 2.000-2.500</h4>
+            <p class="text-neutral-300 text-sm">Entrega em 2 semanas, com benchmark do nicho incluído. Acima disso, embuta a 1ª implementação.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Regra de ouro</h4>
+        <p class="text-neutral-300 text-sm">Pagamento <strong>100% adiantado</strong>, sempre. Sem exceção. Quem não paga adiantado raramente paga depois. Pix ou boleto antes da reunião de kick-off.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">R$ 500 abre porta, R$ 2.500 valoriza método</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Pagamento adiantado total</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Subir preço a cada 3 entregas</div></div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📦 O que entrega</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Tangível justifica o preço. Sem entregável visível, parece consultoria de conversa. Com PDF na mão, ele se sente <strong class="text-blue-400">comprando algo</strong>.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">📍 1. Mapa do fluxo atual</div><p class="text-neutral-300 text-sm">Desenho visual das 5 áreas (atendimento, vendas, marketing, gestão, financeiro) com gargalos marcados. PDF de 2-3 páginas.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">🎯 2. Lista de oportunidades</div><p class="text-neutral-300 text-sm">5-10 oportunidades priorizadas com estimativa de ganho (horas economizadas ou leads recuperados) e esforço de implementação.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">🗓️ 3. Plano 30 dias</div><p class="text-neutral-300 text-sm">A primeira ação concreta, semana a semana. Mesmo que ele não te contrate, ele sai com algo pra começar.</p></div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Como organizar a entrega</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• <strong>1 PDF único</strong> de 8-12 páginas, com capa, mapa, oportunidades e plano</li>
+          <li>• <strong>Reunião de devolutiva</strong> de 1 hora — você apresenta página por página</li>
+          <li>• <strong>Walkthrough gravado</strong> opcional — vídeo de 5-10 minutos pra ele rever</li>
+          <li>• <strong>Resumo executivo</strong> de 1 página pra ele mostrar ao sócio/esposa</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Mapa visual &gt; texto corrido</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Prioridade &gt; lista exaustiva</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Plano de 30 dias &gt; "vou pensar"</div></div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📈 Conversão diagnóstico → projeto</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Em diagnóstico bem entregue, <strong class="text-blue-400">6 a cada 10 clientes</strong> contratam ao menos a 1ª implementação. Outros 2 voltam meses depois. Apenas 2 não convertem nunca.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 A esteira de receita</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div>10 diagnósticos/mês × R$ 1.500 = <strong class="text-blue-400">R$ 15.000</strong> (receita imediata)</div>
+          <div>↓ conversão ~60%</div>
+          <div>6 projetos × R$ 6.000 = <strong class="text-blue-400">R$ 36.000</strong> (em 1-3 meses)</div>
+          <div>↓ aderência ~50%</div>
+          <div>3 mensalidades × R$ 800 = <strong class="text-blue-400">R$ 2.400/mês recorrentes</strong></div>
+          <div class="border-t border-dark-600 pt-2 mt-2">Total acumulado em 6 meses: <strong class="text-blue-400">~R$ 60k + recorrência crescente</strong></div>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Atenção</h4>
+        <p class="text-neutral-300 text-sm">Esses números são <strong>plausíveis</strong>, não promessa. Dependem de qualidade da entrega, fit do nicho e ritmo de prospecção. Mas a esteira mental funciona: <strong>diagnóstico é máquina de qualificar</strong>, não fim em si.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Diagnóstico = máquina de qualificar</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Quem paga R$ 1.500 paga R$ 6.000</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Conversão segue qualidade da entrega</div></div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📄 Contrato em uma página</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Contrato gigante assusta dono. <strong class="text-blue-400">Uma página</strong> ele lê, entende, assina. E protege os dois lados o suficiente pra faixa de preço do diagnóstico.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Estrutura do contrato</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed space-y-2">
+          <div><strong class="text-blue-400">Contratante:</strong> [empresa, CNPJ]</div>
+          <div><strong class="text-blue-400">Prestador:</strong> [seu nome, CPF/CNPJ]</div>
+          <div><strong class="text-blue-400">Escopo:</strong> diagnóstico em 5 áreas, 1 reunião de descoberta (60min), 1 análise técnica (interna), 1 entrega (PDF + reunião de devolutiva 60min).</div>
+          <div><strong class="text-blue-400">Prazo:</strong> 10 dias úteis após pagamento.</div>
+          <div><strong class="text-blue-400">Valor:</strong> R$ X — 100% adiantado via Pix/boleto.</div>
+          <div><strong class="text-blue-400">Garantia:</strong> se não entregar no prazo, devolução integral.</div>
+          <div><strong class="text-blue-400">Confidencialidade:</strong> informações da contratante são sigilosas.</div>
+          <div><strong class="text-blue-400">Aceite:</strong> assinatura digital pelo Clicksign/Autentique vale para todos os efeitos.</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Inclui sempre</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Escopo objetivo (3-4 bullets)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Prazo numérico</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Garantia explícita</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Confidencialidade básica</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Assinatura digital</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Evite</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>15 cláusulas em juridiquês</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Foro de comarca complicado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>SLA detalhado pra diagnóstico</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cobertura de seguro</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Multa de rescisão pesada</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">1 página, linguagem simples</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Garantia = trava do medo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Adiantado = compromisso real</div></div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🪜 Como amarrar o próximo passo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Diagnóstico que termina sem próximo passo perde <strong class="text-blue-400">40% da conversão</strong> pro projeto. Amarrar a venda do projeto no <strong>clímax do diagnóstico</strong> é o movimento mais lucrativo da carreira.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script da devolutiva</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Carlos, das 7 oportunidades, a #1 é onde a dor é maior — você perde 5 leads/semana por demora no WhatsApp.</div>
+          <div class="mt-2">Se essa fizer sentido pra você, eu consigo começar a implementar daqui <strong class="text-blue-400">10 dias</strong>.</div>
+          <div class="mt-2">A janela na minha agenda é entre 25 de março e 15 de abril.</div>
+          <div class="mt-2">Quer que eu reserve essa janela enquanto você decide? Sem cobrança agora — só pra não cair em outro cliente."</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Termine pela oportunidade mais quente</h4>
+            <p class="text-neutral-300 text-sm">A última coisa que ele ouve é a que mais lembra. Reforce a #1.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Ofereça reserva, não pressão</h4>
+            <p class="text-neutral-300 text-sm">"Reservar janela sem cobrar" é compromisso emocional sem custo financeiro. Quase ninguém recusa.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Janela curta (10-15 dias)</h4>
+            <p class="text-neutral-300 text-sm">Prazo abrange decisão sem pressionar e cria sensação de fila. Não deixe pra "qualquer hora".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Sair com data, mesmo que tentativa</h4>
+            <p class="text-neutral-300 text-sm">"Te ligo na sexta às 14h pra confirmar." Sem data, lead esfria em 7 dias.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Reserva &gt; pressão</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Janela curta cria urgência leve</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Sempre sair com data</div></div>
+      </div>
+    </section>
+
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você entende por que diagnóstico fecha 10x mais fácil que projeto no início.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você tem faixa de preço por estágio (R$ 500 → R$ 2.500) e regra de subida.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você sabe os 3 entregáveis (mapa, oportunidades, plano 30 dias) e como organizá-los.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você entende a esteira: 10 diagnósticos → 6 projetos → 3 mensalidades.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você tem contrato de 1 página com escopo, prazo, garantia e assinatura digital.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você sabe amarrar o próximo passo no clímax da devolutiva — reserva, não pressão.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-2-4.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: As 6 objeções</a>
+        <a href="modulo-2-6.html" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors text-center">Próximo: Proposta &amp; ROI simples →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 2 — Módulo 2.5</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

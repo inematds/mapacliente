@@ -1,18 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 1.2 — A nova profissão | Mapa Cliente</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
-<style>body{font-family:'Inter',sans-serif}.dark .border-dark-600{border-color:#374151}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#047857}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,.08)}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,.06)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.2 — A nova profissão | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
 </head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T2</a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T4</a><a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T5</a><a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T6</a></div></div></div></nav>
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6"><nav class="text-sm text-neutral-400"><a href="../../index.html">Início</a> / <a href="index.html">Trilha 1</a> / <span class="text-neutral-100">Módulo 1.2</span></nav></div>
-<header class="bg-gradient-to-br from-emerald-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><span class="inline-flex px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">MÓDULO 1.2</span><h1 class="text-2xl sm:text-4xl font-bold mb-4">👤 A nova profissão</h1><p class="text-neutral-300 max-w-3xl text-lg mb-6">Consultor de soluções de IA — o perfil híbrido entre consultor, vendedor, analista e implementador.</p></div></header>
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><div class="bg-emerald-900/20 border border-emerald-500/30 rounded-2xl p-10 text-center"><div class="text-5xl mb-4">🚧</div><h2 class="text-2xl font-bold mb-3">Página completa em construção</h2><p class="text-neutral-300 mb-2">Os 6 tópicos detalhados deste módulo estão sendo escritos com a mesma profundidade do <a href="modulo-1-1.html" class="text-emerald-400 underline">Módulo 1.1</a>.</p><p class="text-neutral-400 text-sm">Por enquanto, o resumo dos tópicos está no <a href="index.html#modulo-1-2" class="text-emerald-400 underline">índice da trilha</a> (tópicos expansíveis com 3 seções cada).</p></div><div class="flex flex-col sm:flex-row gap-3 mt-8"><a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg text-center">← Voltar à Trilha 1</a></div></main>
-<footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 1 — Módulo 1.2</div></footer>
-<script>const t=document.documentElement;const s=localStorage.getItem('theme');if(s==='light')t.classList.remove('dark');if(s==='dark')t.classList.add('dark');</script>
-</body></html>
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+        <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+        <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+        <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+        <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+        <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div></div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 1</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 1.2</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">MÓDULO 1.2</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">👤 A nova profissão — Consultor de soluções de IA</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Não é programador. Não é prompt engineer. Não é vendedor de SaaS. É o profissional híbrido que traduz problema de negócio em solução de IA aplicada — e cobra por isso.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Essencial</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Identidade</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🧩 O perfil híbrido</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O profissional que vai dominar esse mercado é uma <strong class="text-emerald-400">mistura de quatro perfis</strong>: consultor de processo, analista de dados leve, vendedor consultivo e implementador técnico básico. Nenhum em profundidade extrema — todos em nível bom o suficiente pra resolver o problema do dono.</p>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 border border-emerald-500/30 rounded-xl p-6 mb-6"><h3 class="text-lg font-bold text-emerald-400 mb-3">💡 Os 4 chapéus</h3><div class="grid md:grid-cols-2 gap-4 text-sm"><div class="bg-dark-700/50 rounded p-4"><div class="font-semibold text-white mb-1">🎯 Consultor de processo</div><div class="text-neutral-300">Entende como uma operação funciona, mapeia fluxos, identifica gargalos.</div></div><div class="bg-dark-700/50 rounded p-4"><div class="font-semibold text-white mb-1">📊 Analista de dados leve</div><div class="text-neutral-300">Lê planilha, identifica padrão simples, propõe métrica útil.</div></div><div class="bg-dark-700/50 rounded p-4"><div class="font-semibold text-white mb-1">💼 Vendedor consultivo</div><div class="text-neutral-300">Conversa com dono, traduz dor em oferta, fecha contrato em página única.</div></div><div class="bg-dark-700/50 rounded p-4"><div class="font-semibold text-white mb-1">🛠️ Implementador no-code</div><div class="text-neutral-300">Monta fluxo em n8n, configura prompt, integra Sheets e WhatsApp.</div></div></div></div>
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-primary mb-2">💡 Dica prática</h4><p class="text-neutral-300 text-sm">Identifique em qual chapéu você está mais fraco e dedique <strong>60% do estudo</strong> a esse. Os outros três você já tem em algum nível — o desequilibrado é o que te trava.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Polivalência &gt; especialização extrema</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Comunicação clara &gt; jargão técnico</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Saber recusar fora de escopo</div></div></div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🆚 O que você NÃO é</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Saber o que <strong class="text-emerald-400">não é</strong> alivia a síndrome do impostor e libera você pra vender com confiança no que de fato entrega. Você não precisa virar engenheiro de ML pra ganhar bem com IA em PME.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ O que VOCÊ É</h4><ul class="space-y-2 text-neutral-300 text-sm"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tradutor de problema → solução</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Implementador de soluções práticas</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Coach do uso pela equipe do cliente</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Curador de ferramentas pro caso dele</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ O que NÃO precisa ser</h4><ul class="space-y-2 text-neutral-300 text-sm"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Programador full-stack</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Prompt engineer" decorando 200 técnicas</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cientista de dados / engenheiro de ML</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Especialista que segue TODA novidade</span></li></ul></div>
+      </div>
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6"><h3 class="text-lg font-bold text-blue-400 mb-3">📊 Conhecer 3 bem &gt; conhecer 30 mal</h3><p class="text-neutral-300 text-sm">Domine profundamente: <strong>(1)</strong> um LLM (Claude ou ChatGPT), <strong>(2)</strong> uma ferramenta de automação (n8n ou Make), <strong>(3)</strong> uma base de dados simples (Sheets ou Airtable). Esse trio resolve 80% dos casos de PME. Os outros 20% você aprende sob demanda quando aparecer cliente que precisa.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Ferramenta é meio</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">3 dominadas &gt; 30 vistas</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Tradução &gt; técnica</div></div></div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">💵 Como esse profissional ganha</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Receita vem de <strong class="text-emerald-400">três camadas</strong> que se alimentam: diagnóstico abre porta, projeto entrega volume, mensalidade estabiliza. Cada uma resolve uma fase do relacionamento com o cliente.</p>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Diagnóstico avulso — R$ 1.000-2.500</h4><p class="text-neutral-400 text-xs mb-2">Porta de entrada · entrega em 1-2 semanas</p><p class="text-neutral-300 text-sm">Conversa estruturada com o dono, mapa das 5 áreas, lista de 3-5 oportunidades priorizadas, plano de 30 dias. Vende fácil porque o risco é baixo.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Projeto de implementação — R$ 5.000-15.000</h4><p class="text-neutral-400 text-xs mb-2">Construção do 1º assistente · 3-6 semanas</p><p class="text-neutral-300 text-sm">Ticket maior, vem depois do diagnóstico (conversão típica 50-70%). Você já entrou na operação, ganhou confiança e tem mapa pra propor.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Mensalidade — R$ 500-1.500/mês</h4><p class="text-neutral-400 text-xs mb-2">Sustentação + expansão · recorrente</p><p class="text-neutral-300 text-sm">Manutenção do assistente, ajustes mensais, novos prompts conforme o negócio muda. Difícil vender no início, mas é o que estabiliza sua operação.</p></div></div>
+      </div>
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-primary mb-2">💡 Dica prática</h4><p class="text-neutral-300 text-sm">Não venda mensalidade na primeira reunião. Venda diagnóstico. Só ofereça mensalidade depois do projeto entregue e funcionando há 2-3 semanas — quando o cliente já viu valor.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Camada 1</div><div class="text-neutral-300 text-sm">Diagnóstico fácil de vender</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Camada 2</div><div class="text-neutral-300 text-sm">Projeto fácil de entregar</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Camada 3</div><div class="text-neutral-300 text-sm">Recorrência difícil mas valiosa</div></div></div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🛠️ Stack mínimo</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Definir o stack reduz <strong class="text-emerald-400">custo cognitivo</strong>. Toda implementação cai em algum subconjunto desse kit. Você não recomeça do zero a cada cliente — só ajusta os parâmetros.</p>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 font-mono text-sm"><div class="text-emerald-400 font-semibold mb-3"># Stack mínimo do consultor DICA</div><div class="text-neutral-300 space-y-1"><div><span class="text-primary">LLM:</span>        Claude (Anthropic) ou ChatGPT (OpenAI)</div><div><span class="text-primary">Dados:</span>      Google Sheets ou Airtable</div><div><span class="text-primary">Automação:</span>  n8n (self-hosted) ou Make.com</div><div><span class="text-primary">Canal:</span>      WhatsApp Business API ou ManyChat</div><div><span class="text-primary">Playbook:</span>   Notion ou Google Docs</div><div><span class="text-primary">CRM mini:</span>   Sheets + view filtrada (basta no início)</div><div class="border-t border-dark-600 pt-2 mt-2"><span class="text-emerald-400">Custo típico cliente:</span> R$ 50-200 / mês de ferramentas</div></div></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Por que esse stack</h4><ul class="space-y-2 text-neutral-300 text-sm"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Custo baixo viável pra ticket de PME</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Trocar ferramenta &gt; trocar processo</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>No-code primeiro, código só se necessário</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Documentação farta e comunidade ativa</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Armadilhas</h4><ul class="space-y-2 text-neutral-300 text-sm"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Querer testar 10 LLMs antes de vender</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Construir do zero quando no-code resolve</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Indicar SaaS caro que PME não sustenta</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Trocar stack a cada cliente novo</span></li></ul></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">No-code primeiro</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Trocar tool &gt; trocar processo</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Custo baixo viabiliza ticket</div></div></div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">📚 Conhecimento que paga</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Pra onde investir suas horas de estudo. As habilidades abaixo <strong class="text-emerald-400">envelhecem devagar</strong> — o modelo de IA muda em meses, mas o método de extrair processo do dono não muda.</p>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 border border-emerald-500/30 rounded-xl p-6 mb-6"><h3 class="text-lg font-bold text-emerald-400 mb-3">💡 As 4 habilidades centrais</h3><ol class="space-y-3 text-neutral-300 text-sm list-decimal list-inside"><li><strong class="text-white">Mapeamento de processo</strong> — desenhar fluxo de "como funciona hoje" e "como deveria funcionar".</li><li><strong class="text-white">Escrita de prompt estruturado</strong> — contexto / objetivo / critérios / regras / exemplos / formato de saída.</li><li><strong class="text-white">Gestão de aprovação humana</strong> — definir quem aprova o que, em qual fase, com que critério.</li><li><strong class="text-white">Conversa comercial com dono pequeno</strong> — escutar, traduzir, propor sem assustar.</li></ol></div>
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-primary mb-2">💡 Dica prática</h4><p class="text-neutral-300 text-sm">Não confunda <strong>aprender</strong> com <strong>aplicar</strong>. Ler sobre prompt todo dia sem rodar um agente real é procrastinação disfarçada. Regra: cada 2h de estudo = 1h de implementação concreta em projeto seu ou simulado.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Processo &gt; ferramenta</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Linguagem do dono &gt; jargão</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Implícito→explícito é o ofício</div></div></div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🔭 Trajetória de 12 meses</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mapa visível tira ansiedade. Cada quadrimestre tem foco diferente. Pular etapa custa caro — querer mensalidade no Q1 é o erro mais comum.</p>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">Q1</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Mês 1-2 · Oferta + primeiros 3 diagnósticos</h4><p class="text-neutral-300 text-sm">Definir nicho, escrever pitch, montar página simples, listar 50 prospects, prospectar 20, fechar 3 diagnósticos. Foco: volume e aprendizado, não margem.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">Q2</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Mês 3-4 · Primeira implementação</h4><p class="text-neutral-300 text-sm">Converter 1-2 diagnósticos em projetos. Entregar o primeiro assistente. Aprender com erros do projeto real. Caso público começa a se formar.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">Q3</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Mês 5-8 · 3-5 clientes simultâneos</h4><p class="text-neutral-300 text-sm">Carteira começa a formar. Aparece o problema de gestão de tempo. Hora de padronizar entrega. Primeiras mensalidades começam.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">Q4</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Mês 9-12 · Carteira recorrente + portfólio + autoridade</h4><p class="text-neutral-300 text-sm">3-5 mensalidades ativas, 5-8 casos públicos, indicação como canal principal. Decisão: continuar solo, montar equipe pequena ou licenciar método.</p></div></div>
+      </div>
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-red-400 mb-2">⚠️ Erros de pular etapa</h4><ul class="space-y-1 text-neutral-300 text-sm"><li>• Tentar vender mensalidade no Q1 (não tem caso pra mostrar)</li><li>• Querer montar equipe no Q2 (sem padrão ainda)</li><li>• Trocar de nicho no Q3 (perde a vantagem acumulada)</li><li>• Esperar ter "tudo pronto" pra prospectar no Q1</li></ul></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Volume antes de margem</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Caso antes de marca</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Recorrência depois do volume</div></div></div>
+    </section>
+
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você entende o perfil híbrido — consultor + analista + vendedor + implementador.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você sabe o que NÃO precisa ser pra ganhar dinheiro com IA em PME.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você conhece as 3 camadas de receita — diagnóstico, projeto, mensalidade.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você definiu seu stack mínimo (5 ferramentas que cobrem 80% dos casos).</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você sabe onde investir estudo e tem o mapa de 12 meses.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-1-1.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Por que PME</a>
+        <a href="modulo-1-3.html" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors text-center">Próximo: A virada mental →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 1 — Módulo 1.2</div></footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

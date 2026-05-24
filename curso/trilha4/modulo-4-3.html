@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.3 — Aprovação humana por níveis | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' }, fontFamily: { mono: ['JetBrains Mono','monospace'] } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(180,83,9,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(180,83,9,.06); }
+    html:not(.dark) .bg-amber-900\/30 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(180,83,9,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(180,83,9,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+    .codebox { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.55; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 4</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 4.3</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-4">MÓDULO 4.3</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🚦 Aprovação humana por níveis</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">A IA não chega autônoma na PME — ela sobe escalada em 3 fases. Cada fase tira controle do humano só onde os dados provam que pode tirar. É o que separa projeto que dura de projeto que cancela em 90 dias.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~35 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Governança</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Método</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Visão geral das 3 fases -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">🗺️ As 3 fases em uma vista</h2>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 font-bold">F1</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-semibold">Fase 1 — IA prepara, humano aprova tudo</h4>
+              <span class="text-xs text-neutral-500">Semana 1-2</span>
+            </div>
+            <p class="text-neutral-300 text-sm">100% das saídas passam pela fila de aprovação humana. Fase de calibração.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold">F2</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-semibold">Fase 2 — IA executa simples, humano aprova importante</h4>
+              <span class="text-xs text-neutral-500">Semana 3-6</span>
+            </div>
+            <p class="text-neutral-300 text-sm">Mensagens triviais saem direto. Casos marcados como "importante" vão para fila.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">F3</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-semibold">Fase 3 — IA roda, humano só vê exceção</h4>
+              <span class="text-xs text-neutral-500">Semana 7+</span>
+            </div>
+            <p class="text-neutral-300 text-sm">Autonomia operacional. Humano só é chamado para risco alto ou caso fora do escopo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🔒 Fase 1 — IA prepara, humano aprova tudo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A IA gera o rascunho — resposta de WhatsApp, proposta, post. <strong class="text-amber-400">Nada sai sem o humano clicar "aprovar"</strong>. Parece trabalhoso, mas é onde a confiança nasce.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-amber-400 mb-3">💡 Por que começar com 100% aprovação</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Cliente novo precisa <strong>ver a IA acertando</strong> antes de soltar.</li>
+          <li>• Você coleta dados de aprovação para defender o upgrade depois.</li>
+          <li>• Erros caros são interceptados antes de virarem caso.</li>
+          <li>• Dono se sente no comando — não terceirizou poder, terceirizou trabalho.</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Fluxo Fase 1 no n8n</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">[Mensagem chega] → [IA gera rascunho] → [Notion/Sheets: linha criada]
+                       → [WhatsApp pro dono: "tem rascunho pra aprovar"]
+                       → [Dono clica APROVAR ou EDITAR no Notion]
+                       → [Se aprovado: envia ao cliente]
+                       → [Se editado: envia versão editada + grava diff]</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-3">✓ O que faz Fase 1 funcionar</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Fila visível em UMA tela (Notion ou WhatsApp)</li>
+            <li>• Tempo de aprovação rastreado</li>
+            <li>• "Aprovar com 1 clique" — sem fricção</li>
+            <li>• Diff entre rascunho e edição salvo</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Erros que matam Fase 1</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Fila em 3 lugares diferentes</li>
+            <li>• Não medir taxa de aprovação</li>
+            <li>• Aprovação que exige 5 cliques</li>
+            <li>• Ficar em Fase 1 mais de 3 semanas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">100% aprovação humana</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Fila visível ao dono</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">2 semanas para colher dados</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚖️ Fase 2 — IA executa simples, humano aprova importante</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mensagens triviais (saudação, FAQ, agendamento) saem direto. Casos com palavra-chave de risco ("orçamento", "reclamação", "cancelar") vão para a fila. É a <strong class="text-amber-400">fase que descarrega o dono</strong>.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Lógica de roteamento Fase 2 (pseudo)</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">se contem(["urgente","reclamação","cancelar","reembolso"]):
+    marca PARA_HUMANO
+senao se valor_mencionado &gt; 5000:
+    marca PARA_HUMANO
+senao se primeira_interacao_cliente_novo:
+    marca PARA_HUMANO
+senao:
+    envia resposta direto
+    grava log</div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 O que sai automático na Fase 2</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Saudação e identificação ("Olá! Sou o assistente da ACME")</li>
+          <li>• Resposta a FAQ catalogada (horário, endereço, formas de pagamento)</li>
+          <li>• Coleta de dados de qualificação (nome, interesse, telefone)</li>
+          <li>• Confirmação de agendamento sem mexer em valor</li>
+          <li>• Mensagem de "estamos fora do horário"</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-3">🟢 Vai automático</h4>
+          <ul class="space-y-1 text-neutral-300 text-sm">
+            <li>"oi, vcs ainda estão abertos?"</li>
+            <li>"qual o endereço?"</li>
+            <li>"queria saber sobre 2 quartos"</li>
+            <li>"posso ir amanhã às 10h?"</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">🔴 Vai para fila humana</h4>
+          <ul class="space-y-1 text-neutral-300 text-sm">
+            <li>"queria desconto, posso pagar à vista"</li>
+            <li>"meu advogado pediu pra esclarecer..."</li>
+            <li>"cliente seu de 5 anos, lembra de mim?"</li>
+            <li>"o atendimento foi pior do que eu esperava"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Pegue 50 conversas reais dos últimos 30 dias do cliente e classifique uma a uma como "automático" ou "fila". Esse dataset é seu <strong>treinamento manual</strong> da Fase 2 e a prova social do upgrade.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Lista clara do "importante"</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Auto-resposta nos triviais</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Fila menor, mais útil</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌊 Fase 3 — IA roda, humano só vê exceção</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A IA roda em fluxo contínuo. Humano só é chamado para <strong class="text-amber-400">risco</strong> (valor alto, cliente VIP, sentimento negativo, dúvida fora do escopo). Todo o resto é log para auditoria semanal.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-amber-400 mb-3">🎯 Por que esta fase decide a renovação</h3>
+        <p class="text-neutral-300">Em Fase 1 e 2 o dono ainda trabalha. Em Fase 3 o dono <strong>recebe valor sem trabalhar</strong>. Sem essa percepção, a mensalidade vira luxo cortável no próximo aperto.</p>
+      </div>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Triggers de exceção na Fase 3</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">EXCEÇÃO_HUMANO = qualquer um dos:
+  - valor_mencionado &gt; LIMIAR (definido com dono)
+  - palavra_em ["advogado","procon","reclame_aqui","cancelar"]
+  - sentimento &lt; -0.5 (frustração detectada)
+  - cliente_em LISTA_VIP
+  - mensagem_não_classificada (confiança IA &lt; 70%)
+  - segunda repetição da MESMA pergunta sem resolver
+
+EXCEÇÃO → grava em FILA_HUMANO
+        → notifica dono no WhatsApp
+        → aguarda resposta antes de continuar</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-5"><div class="text-amber-400 font-bold mb-2">📊 Métrica F3</div><p class="text-neutral-300 text-sm">% conversas tratadas sem humano. Meta: 70-85%.</p></div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-5"><div class="text-amber-400 font-bold mb-2">⏱ Métrica F3</div><p class="text-neutral-300 text-sm">Tempo médio do dono na revisão semanal. Meta: &lt; 30 min.</p></div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-5"><div class="text-amber-400 font-bold mb-2">🚨 Métrica F3</div><p class="text-neutral-300 text-sm">Erros graves identificados. Meta: 0/mês.</p></div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Toda sexta-feira, o n8n manda um resumo no WhatsApp do dono: <strong>"Semana: 287 conversas, 24 levaram para humano, 0 erros, 12 leads novos qualificados"</strong>. Essa mensagem segura a percepção de valor sem ele precisar abrir nada.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Lista de exceções é a chave</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Log obrigatório</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Revisão semanal de amostras</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🏷️ Classificando o que é "importante"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">"Importante" não é universal. É da empresa. <strong class="text-amber-400">Defina junto com o dono</strong> antes de ligar a Fase 2 — caso contrário, a IA vai acertar no padrão e errar exatamente no caso que mais dói.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Tabela de "importante" — co-criada com o dono</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">REGRA                                          MARCA_IMPORTANTE
+valor citado &gt; R$ 5.000                        sim
+palavras [urgente, advogado, procon, reembolso] sim
+cliente recorrente (já comprou 2x+)             sim
+fora de horário (após 22h, antes de 8h)         sim
+primeira interação com lead novo                sim
+mensagem com áudio &gt; 30s ou imagem              sim
+solicitação de desconto explícita               sim
+reclamação de prazo                             sim</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-3">📋 Como conduzir essa conversa com o dono</h4>
+          <ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+            <li>Mostre 20 mensagens reais dos últimos 30 dias</li>
+            <li>Peça para ele marcar "eu queria ver isso" ou "podia ter respondido sozinho"</li>
+            <li>Tire o padrão (palavras, valores, perfis)</li>
+            <li>Escreva a tabela junto com ele</li>
+            <li>Ele assina/aprova (verbal vale, no e-mail vale mais)</li>
+          </ol>
+        </div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-3">🔁 Revisão da tabela</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Toda mudança de fase, revisa</li>
+            <li>• A cada 30 dias, analisa falsos positivos</li>
+            <li>• Se "importante" virou 50% do fluxo, recalibrar</li>
+            <li>• Se "importante" virou &lt;5%, o dono perde percepção</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Critério em lista, não na cabeça</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Co-criado com o dono</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Revisado a cada upgrade</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎚️ Classificando risco</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">3 níveis bastam — <strong class="text-amber-400">baixo, médio, alto</strong> — decididos antes da implementação. Mais que isso vira teoria; menos que isso vira aposta cega.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold">BAIXO</span>
+            <h4 class="font-bold">Erro custa nada ou minutos</h4>
+          </div>
+          <p class="text-neutral-300 text-sm">Saudação, FAQ, sugestão de pauta de conteúdo, classificação interna de lead. <strong>Pode subir para Fase 3 já na semana 3.</strong></p>
+        </div>
+        <div class="bg-amber-900/20 border border-amber-500/30 rounded-xl p-5">
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold">MÉDIO</span>
+            <h4 class="font-bold">Erro custa correção em minutos a horas</h4>
+          </div>
+          <p class="text-neutral-300 text-sm">Resposta a cliente, follow-up automático, geração de proposta (não enviada ainda). <strong>Sobe a Fase 2/3 com revisão amostral semanal.</strong></p>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold">ALTO</span>
+            <h4 class="font-bold">Erro move dinheiro, contrato ou cliente</h4>
+          </div>
+          <p class="text-neutral-300 text-sm">Envio de proposta, geração de boleto, alteração de preço, comunicação de cancelamento. <strong>Fica para sempre em Fase 1 — humano sempre aprova.</strong></p>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">🎯 Regra de ouro</h4>
+        <p class="text-neutral-300 text-sm">Cada ação do agente é etiquetada como <strong>baixo / médio / alto</strong> no playbook. Só ações de risco BAIXO podem chegar à Fase 3. Risco ALTO nunca sai da Fase 1 — mesmo depois de 1 ano de operação perfeita.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">3 níveis, não 7</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Risco alto sempre Fase 1</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Decidido na proposta</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">💬 Conversa de upgrade de fase</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Upgrade sem ritual gera medo. Upgrade <strong class="text-amber-400">com dado + porta de volta</strong> gera confiança. Não decida sozinho — apresente e deixe o cliente assinar.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Roteiro da reunião de 30 min — F1 → F2</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">1. Dados (10 min):
+   "Nas últimas 2 semanas: 142 mensagens entraram.
+    Você aprovou 138 sem editar (97%).
+    Editou 4. As 4 eram do mesmo padrão: pergunta
+    sobre disponibilidade de unidade específica."
+
+2. Proposta (5 min):
+   "Proponho passar pra Fase 2 essa semana. O que muda:
+    - saudação e FAQ saem direto (já 97% aprovado)
+    - perguntas sobre unidade vão pra você
+    - reclamação ou advogado, vai pra você
+    O que continua igual: log do que saiu, revisão sexta."
+
+3. Porta de volta (5 min):
+   "Se em 1 semana você não estiver confortável, voltamos
+    pra Fase 1 com 1 clique. Sem culpa, sem renegociar."
+
+4. Combinado (10 min):
+   "Combinado? Vou ligar a Fase 2 na quinta às 10h.
+    Te mando mensagem assim que ligar."</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-3">✓ Gatilhos para propor upgrade</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• &gt; 85% das saídas aprovadas sem edição</li>
+            <li>• Tempo de aprovação do dono caindo</li>
+            <li>• Dono dizendo "nem leio mais, só aprovo"</li>
+            <li>• Pelo menos 100 amostras na fase atual</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Sinais para NÃO subir</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Taxa de aprovação &lt; 85%</li>
+            <li>• Erro grave nos últimos 7 dias</li>
+            <li>• Dono inseguro (perceba o tom)</li>
+            <li>• Volume baixo demais para amostra</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Sempre <strong>deixe a porta de volta</strong> explícita: "se não estiver confortável em 1 semana, voltamos com 1 clique." Cliente que sabe que pode voltar topa o avanço. Cliente preso no upgrade volta a desconfiar.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Dado &gt; opinião</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Porta de volta sempre</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Cliente decide, não você</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você entrega projeto começando obrigatoriamente em Fase 1 — sem exceção.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você sobe para Fase 2 quando &gt;85% das saídas estão sendo aprovadas sem edição.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você define junto com o dono o que é "importante" — em tabela escrita, não verbal.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você classifica cada ação como baixo/médio/alto risco; risco alto nunca sai da Fase 1.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você apresenta upgrade com dado e porta de volta — cliente assina, não você impõe.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-4-2.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Playbooks</a>
+        <a href="modulo-4-4.html" class="px-5 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors text-center">Próximo: Construção no-code →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 4 — Módulo 4.3</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

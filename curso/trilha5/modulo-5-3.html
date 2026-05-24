@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5.3 — Acompanhamento semanal | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13,148,136,.06); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,.25); }
+    html:not(.dark) .hover\:bg-teal-500\/30:hover { background-color: rgba(13,148,136,.18); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 5</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 5.3</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-400 text-xs font-semibold mb-4">MÓDULO 5.3</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">📈 Acompanhamento semanal — 20 min que salvam o projeto</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Sem check-in semanal nas primeiras 4-6 semanas, o cliente trava sozinho e silenciosamente abandona. Esta é a rotina mínima — 20 minutos, hora fixa, 5 indicadores, 1 relatório padrão — que mantém o sistema vivo e mostra ROI antes do contrato vencer.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Decisivo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Sustentação</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">⏱️ Check-in de 20 min, semana fixa</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Reunião curta e gravada, na <strong class="text-teal-400">mesma hora toda semana</strong> (quarta às 9h, por exemplo). 5 min números, 10 min dúvidas e ajustes, 5 min próxima semana. Dia e hora fixos viram hábito; "quando der" vira nunca. É o ritual que segura o cliente.</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">⏱️ Pauta padrão dos 20 min</h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-teal-400 font-bold">0-5 min</span> · <span class="text-neutral-300">Números da semana: 5 indicadores (próximo tópico). Você lê, ele confirma.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-teal-400 font-bold">5-15 min</span> · <span class="text-neutral-300">Dúvidas do registro vivo + ajustes feitos na hora no sistema. Você compartilha tela.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-teal-400 font-bold">15-20 min</span> · <span class="text-neutral-300">Próxima semana: 1 melhoria proposta, 1 risco a monitorar, confirmação da próxima reunião.</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Marque a reunião na <strong>mesma hora toda semana, com convite recorrente no Google Calendar</strong>. Não negocie horário a cada semana. Cliente que cancela 3 vezes seguidas vai pra protocolo de "cliente em risco" (tópico 5).</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">✓ Ritual que funciona</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Mesma hora, mesma plataforma</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Pauta fixa que ninguém precisa lembrar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Gravada e arquivada</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Resumo em 3 bullets no WhatsApp depois</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Reatividade que afunda</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Te chamo quando precisar"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Conversa aberta sem pauta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Reunião só quando algo quebra</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem registro depois</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Ritual &gt; reatividade</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Curto &gt; longo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Pauta fixa &gt; conversa aberta</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📊 5 indicadores simples</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cinco números que o campeão coleta toda semana, em planilha de 1 aba. <strong class="text-teal-400">Cinco — não trinta</strong>. Sem número, percepção governa, e percepção em semana ruim é "não está funcionando". Com número, você prova: "subiu de 8 pra 24 respostas/dia".</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">📊 Os 5 indicadores</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div class="text-teal-400 font-bold">INDICADOR              | UNIDADE          | META PRIMEIROS 60 DIAS</div>
+          <div>──────────────────────────────────────────────────────────────</div>
+          <div>1. Respostas/dia       | conversas        | crescente</div>
+          <div>2. Tempo médio resposta| minutos          | &lt; 5 min úteis</div>
+          <div>3. Leads não perdidos  | contatos quentes | &gt; 80% recontatados</div>
+          <div>4. Propostas que saem  | propostas/sem    | &gt; 3/semana</div>
+          <div>5. Horas economizadas  | h/semana time   | &gt; 6h/semana</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Por que esses 5</h4>
+        <p class="text-neutral-300 text-sm">Cada um responde a uma promessa de venda: <strong>respostas/dia</strong> = capacidade · <strong>tempo médio</strong> = velocidade · <strong>leads não perdidos</strong> = receita protegida · <strong>propostas</strong> = receita gerada · <strong>horas</strong> = ROI tangível. Cobre os 5 ângulos que o dono se importa.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">✓ Medição saudável</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>5 números — coletáveis em 5 min</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Tendência mais importante que valor</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Coletado pelo campeão, validado por você</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Histórico fica visível em planilha viva</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Métrica que afoga</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>30 métricas — ninguém olha</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Taxa de conversão de funil" pra PME</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dashboard bonito sem narrativa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Coletado manual sem rotina</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Simples &gt; preciso</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">5 &gt; 30 métricas</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Tendência &gt; valor absoluto</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📑 Template de relatório semanal</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">PDF de 1 página gerado toda quarta. Enviado pelo WhatsApp do dono mesmo que ele não leia. <strong class="text-teal-400">É evidência acumulada</strong> que justifica a mensalidade. Quando ele questionar "vale a pena continuar?", você manda os últimos 8 relatórios. Caso fechado.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Template do relatório (1 página)</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div class="text-blue-400 font-bold">┌── RELATÓRIO SEMANAL — Clínica Belas Mãos — 13/05/26 ──┐</div>
+          <div>│                                                          │</div>
+          <div>│ 📊 NÚMEROS DA SEMANA                                     │</div>
+          <div>│   Respostas IA:        128  (semana passada: 96  ↑33%)   │</div>
+          <div>│   Tempo médio:         3.2 min  (era 4.1)                │</div>
+          <div>│   Leads recontatados:  41 / 43  (95%)                    │</div>
+          <div>│   Propostas geradas:   8                                 │</div>
+          <div>│   Horas time:          ~8h economizadas                  │</div>
+          <div>│                                                          │</div>
+          <div>│ ✅ FEITO ESTA SEMANA                                     │</div>
+          <div>│   - Ajustado tom de resposta no sábado                   │</div>
+          <div>│   - Novo microvídeo: remarcação                          │</div>
+          <div>│                                                          │</div>
+          <div>│ 🎯 PRÓXIMA SEMANA                                        │</div>
+          <div>│   - Avaliar subir fase de aprovação                      │</div>
+          <div class="text-blue-400 font-bold">└──────────────────────────────────────────────────────────┘</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Toda semana <strong>na mesma hora</strong>, com o mesmo formato, mesmo PDF. Dono pode nem ler nas primeiras 6 semanas — não importa. O efeito psicológico de receber relatório toda quarta é maior que o efeito de ele ler. É a <strong>presença visível do método</strong>.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Mesmo formato sempre</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Visual &gt; texto corrido</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Arquivo viva história do projeto</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚦 Quando subir fase de aprovação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Conexão direta com a Trilha 4.3 — autonomia gradual. <strong class="text-teal-400">Critério objetivo</strong>, não emocional. Sem dado consolidado, não sobe fase. Com dado consolidado, sobe. É como você entrega autonomia com segurança e protege a relação contra o "tenho medo da IA errar".</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">📊 Critérios numéricos por fase</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div class="text-teal-400 font-bold">FASE 1 → FASE 2 (humano aprova só importante)</div>
+          <div>  Requer: 50+ aprovações com taxa de erro &lt; 5%</div>
+          <div>          + dono pediu/concordou</div>
+          <div></div>
+          <div class="text-teal-400 font-bold">FASE 2 → FASE 3 (humano vê só exceção)</div>
+          <div>  Requer: +100 aprovações com taxa de erro &lt; 2%</div>
+          <div>          + nenhum incidente grave em 8 semanas</div>
+          <div></div>
+          <div class="text-red-400">FASE 3 → FASE 2 (regressão)</div>
+          <div>  Dispara em: 3 erros graves no mês ou queixa do cliente final</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 A conversa de subir fase</h4>
+        <p class="text-neutral-300 text-sm">No check-in da semana, você abre o painel: "olha, nos últimos 50 atendimentos a IA acertou 49. Acho que está na hora de eu propor subir pra Fase 2 — você aprova só os casos importantes. Quer experimentar 2 semanas e a gente avalia?"</p>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Você acompanha o número, não o cliente</h4>
+            <p class="text-neutral-300 text-sm">Cliente não sabe quando seria seguro subir. Você sim — é seu papel monitorar e propor.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Cliente decide, você recomenda</h4>
+            <p class="text-neutral-300 text-sm">Nunca sobe fase sem confirmação do dono. Mesmo com número impecável. Autonomia é dele.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Regressão é normal, não fracasso</h4>
+            <p class="text-neutral-300 text-sm">Voltar pra Fase 2 depois de algo dar errado na Fase 3 é parte do método. Trate como ajuste, não como derrota.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Critério numérico &gt; impressão</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Reversível: pode voltar fase</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Cliente decide, você recomenda</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔥 Sinais de cliente em risco</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O caso do <strong class="text-red-400">restaurante que abandonou na semana 3</strong> era visível na semana 1 — você só não estava olhando. Detectar cedo permite salvar; tarde demais é só constatar. Três sinais — qualquer um aciona protocolo de visita presencial dentro de 48h.</p>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-red-400 mb-3">🚨 Os 3 alertas vermelhos</h3>
+        <div class="space-y-3 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-red-400 font-bold">Sinal 1 — Campeão sumiu</span> <span class="text-neutral-300">· Não respondeu o WhatsApp por 2 semanas, cancelou 2 check-ins seguidos, não preencheu o registro de dúvidas. Mesmo que diga "tudo bem".</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-red-400 font-bold">Sinal 2 — Métrica caiu &gt; 40%</span> <span class="text-neutral-300">· Respostas/dia ou propostas/semana despencaram sem explicação razoável. Cliente está usando menos — começo silencioso do abandono.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-red-400 font-bold">Sinal 3 — Dono pediu "tempo pra pensar"</span> <span class="text-neutral-300">· "Estou avaliando se continuo", "tá puxando no caixa", "vou ver com a equipe". Quando vira frase do dono, falta 2 semanas pro cancelamento.</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Protocolo: visita presencial em 48h</h4>
+        <p class="text-neutral-300 text-sm">Qualquer sinal aciona o mesmo protocolo: agende visita presencial em 48h, gratuita, 1 hora. Vá ao local. Sente com o dono. Pergunte direto: "está tudo bem? Tem algo te incomodando que eu não estou vendo?" Em 80% dos casos, é salvável presencialmente; em 100% dos casos remotos, perde.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">✓ Reação certa</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Visita presencial em 48h</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Sem oferecer desconto de cara</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Escutar primeiro, propor depois</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Plano de 2 semanas de recuperação</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Reação que afunda</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Te chamo semana que vem pra conversar"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Oferecer 50% off pra "salvar"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Defender o sistema antes de escutar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ignorar — "vou esperar mais um pouco"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Alerta &gt; reclamação</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Presencial salva relação</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Atenção, não desconto</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📆 Cadência decrescente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A intensidade do acompanhamento muda conforme o cliente amadurece. <strong class="text-teal-400">Semanal nas primeiras 6 semanas, quinzenal nas seguintes 6, mensal a partir do mês 4</strong>. Cadência decrescente é o que libera seu tempo pra crescer sem perder cliente antigo.</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">📅 Timeline da cadência</h3>
+        <div class="space-y-3 text-sm">
+          <div class="bg-dark-700/50 rounded p-3 border-l-4 border-teal-400"><span class="text-teal-400 font-bold">Semanas 1-6 — Semanal</span> <span class="text-neutral-300">· Onboarding intenso. Cliente ainda inseguro, sistema ainda calibrando. Frequência alta segura a relação.</span></div>
+          <div class="bg-dark-700/50 rounded p-3 border-l-4 border-blue-400"><span class="text-blue-400 font-bold">Semanas 7-12 — Quinzenal</span> <span class="text-neutral-300">· Cliente já tem rotina. Você se afasta 1 nível. Mensagem no WhatsApp na semana sem reunião.</span></div>
+          <div class="bg-dark-700/50 rounded p-3 border-l-4 border-purple-400"><span class="text-purple-400 font-bold">Mês 4 em diante — Mensal</span> <span class="text-neutral-300">· Regime estável. 1 hora por mês. Relatório consolidado mensal substitui semanal. Aqui mora a mensalidade saudável.</span></div>
+          <div class="bg-dark-700/50 rounded p-3 border-l-4 border-red-400"><span class="text-red-400 font-bold">Crise — volta pra semanal</span> <span class="text-neutral-300">· Mudança importante, equipe nova, métrica caindo. Você volta pra semanal sem cobrar extra. Reset da relação.</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Por que decrescente</h4>
+        <p class="text-neutral-300 text-sm">Se você fica preso no semanal pra sempre, em 8 clientes você é só atendente — sem tempo de prospectar nem evoluir. Cadência decrescente é o que permite sua carteira crescer linearmente enquanto seu tempo cresce menos que linearmente.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Maturidade define cadência</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Mensal é o regime estável</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Volta pra semanal em crise — grátis</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você roda check-in de 20 minutos toda semana com pauta fixa de 3 blocos.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você acompanha 5 indicadores simples — não 30 — que cobrem os 5 ângulos que importam pro dono.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você manda relatório padronizado de 1 página toda quarta como presença visível do método.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você sobe fase de aprovação por critério numérico, não emocional — e regride sem drama quando precisa.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você detecta cliente em risco por 3 sinais e aciona visita presencial em 48h.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você opera com cadência decrescente: semanal → quinzenal → mensal — para liberar tempo conforme o cliente amadurece.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-5-2.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Material padrão</a>
+        <a href="modulo-5-4.html" class="px-5 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors text-center">Próximo: Expansão &amp; recorrência →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 5 — Módulo 5.3</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

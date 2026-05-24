@@ -1,18 +1,214 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 1.4 — Posicionamento e oferta pessoal | Mapa Cliente</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
-<style>body{font-family:'Inter',sans-serif}.dark .border-dark-600{border-color:#374151}html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .text-emerald-400{color:#047857}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,.08)}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,.06)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,.25)}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,.95)}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.4 — Posicionamento e oferta pessoal | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
 </head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
-<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">T1</a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T2</a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T3</a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T4</a><a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T5</a><a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm text-neutral-400">T6</a></div></div></div></nav>
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6"><nav class="text-sm text-neutral-400"><a href="../../index.html">Início</a> / <a href="index.html">Trilha 1</a> / <span class="text-neutral-100">Módulo 1.4</span></nav></div>
-<header class="bg-gradient-to-br from-emerald-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><span class="inline-flex px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">MÓDULO 1.4</span><h1 class="text-2xl sm:text-4xl font-bold mb-4">🎯 Posicionamento e oferta pessoal</h1><p class="text-neutral-300 max-w-3xl text-lg mb-6">Como se apresentar, o que vender como porta de entrada e por que isso muda a conversão.</p></div></header>
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><div class="bg-emerald-900/20 border border-emerald-500/30 rounded-2xl p-10 text-center"><div class="text-5xl mb-4">🚧</div><h2 class="text-2xl font-bold mb-3">Página completa em construção</h2><p class="text-neutral-300 mb-2">Os 6 tópicos detalhados deste módulo estão sendo escritos com a mesma profundidade do <a href="modulo-1-1.html" class="text-emerald-400 underline">Módulo 1.1</a>.</p><p class="text-neutral-400 text-sm">Por enquanto, o resumo dos tópicos está no <a href="index.html#modulo-1-4" class="text-emerald-400 underline">índice da trilha</a> (tópicos expansíveis com 3 seções cada).</p></div><div class="flex flex-col sm:flex-row gap-3 mt-8"><a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg text-center">← Voltar à Trilha 1</a></div></main>
-<footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 1 — Módulo 1.4</div></footer>
-<script>const t=document.documentElement;const s=localStorage.getItem('theme');if(s==='light')t.classList.remove('dark');if(s==='dark')t.classList.add('dark');</script>
-</body></html>
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+      <div class="flex items-center space-x-4">
+        <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+        <span class="text-neutral-600">|</span>
+        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+      </div>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+        <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+        <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+        <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+        <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+        <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div></div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 1</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 1.4</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">MÓDULO 1.4</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🎯 Posicionamento e oferta pessoal</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Como você se chama, o que vende como porta de entrada, qual nicho escolhe e qual pitch usa. Decisões pequenas com efeito enorme na conversão. Sai da trilha com agenda marcada, não com mais anotação.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Essencial</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Ação</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🏷️ Como se chamar</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O título <strong class="text-emerald-400">filtra cliente</strong>. Se o seu nome assusta o dono de PME, ele não retorna a mensagem. Se familiariza, ele pergunta o preço. Escolha um nome que descreve o RESULTADO, não a tecnologia.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6"><h4 class="font-bold text-emerald-400 mb-4">✓ Títulos que abrem porta</h4><ul class="space-y-2 text-neutral-300 text-sm"><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Consultor de IA aplicada para [nicho]</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Implementador de soluções de IA para pequenos negócios</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Designer de soluções de IA para PMEs</span></li><li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Especialista em diagnóstico de IA para [nicho]</span></li></ul></div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6"><h4 class="font-bold text-red-400 mb-4">✗ Títulos que afastam dono</h4><ul class="space-y-2 text-neutral-300 text-sm"><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Prompt Engineer</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>AI Hacker / AI Builder</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Especialista em LLMs</span></li><li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Mago da IA" (excesso de marketing)</span></li></ul></div>
+      </div>
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-primary mb-2">💡 Dica prática</h4><p class="text-neutral-300 text-sm">Combine palavra-âncora <strong>"consultor"</strong> ou <strong>"implementador"</strong> + resultado + nicho. Ex: "Implementador de IA para clínicas odontológicas em Curitiba".</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">"Consultor" abre porta</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Resultado &gt; tecnologia</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Local + nicho amplifica</div></div></div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🧲 Sua oferta de entrada</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Vender diagnóstico (R$ 500-2.5k) é <strong class="text-emerald-400">muito mais fácil</strong> que vender projeto (R$ 5-15k). Diagnóstico é commodity de baixo risco; projeto exige confiança que ainda não existe na primeira reunião.</p>
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6"><h3 class="text-lg font-bold text-blue-400 mb-3">📊 Por que diagnóstico vende</h3><div class="text-sm text-neutral-300 space-y-2"><div><strong class="text-white">Baixo risco:</strong> R$ 500-2.5k em 1-2 semanas — perda mínima se não der certo</div><div><strong class="text-white">Entrega clara:</strong> relatório de 5-10 páginas + reunião de apresentação de 30min</div><div><strong class="text-white">Conversão alta:</strong> 50-70% dos diagnósticos viram projetos</div><div><strong class="text-white">Aprendizado:</strong> cada diagnóstico é treino real do método</div></div></div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 font-mono text-sm"><div class="text-emerald-400 font-semibold mb-3"># O que cabe num diagnóstico</div><div class="text-neutral-300 space-y-1"><div>1. Conversa com o dono (60-90min)</div><div>2. Mapa das 5 áreas (atendimento, vendas, mkt, gestão, fin)</div><div>3. Lista de 3-5 oportunidades priorizadas</div><div>4. Recomendação de 1 assistente como primeiro projeto</div><div>5. Plano de 30 dias com investimento estimado</div><div class="border-t border-dark-600 pt-2 mt-2"><span class="text-primary">Prazo:</span> 1-2 semanas</div><div><span class="text-primary">Investimento:</span> R$ 1.500 (referência)</div></div></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Baixo ticket = volume e aprendizado</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Diagnóstico abre porta do projeto</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Entrega clara em 1-2 semanas</div></div></div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">📍 Escolher um nicho</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Geral demais = ninguém te lembra. Nicho dobra eficiência: <strong class="text-emerald-400">mesmo roteiro de diagnóstico, mesmo playbook, mesmo discurso comercial</strong>. Cada cliente alimenta o próximo do mesmo segmento.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">🏥 Clínicas (odonto/derma/estética)</div><p class="text-neutral-300 text-sm">Dor de agendamento, lead WhatsApp, follow-up de retorno, conteúdo educativo.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">🏠 Imobiliárias (locação/venda)</div><p class="text-neutral-300 text-sm">Lead de captação, propostas, visita agendada, follow-up longo.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">🍽️ Restaurantes locais</div><p class="text-neutral-300 text-sm">Pedidos por WhatsApp, fidelização, conteúdo regular, gestão de equipe.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">🏋️ Academias / estúdios</div><p class="text-neutral-300 text-sm">Conversão de lead em matrícula, retenção, calendário de aulas, conteúdo.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">🛒 E-commerces nichados</div><p class="text-neutral-300 text-sm">Atendimento pós-venda, recomendação, recuperação de carrinho, conteúdo.</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-emerald-400 font-bold mb-2">⚖️ Escritórios pequenos (advocacia/contábil)</div><p class="text-neutral-300 text-sm">Triagem inicial, organização documental, propostas, follow-up.</p></div>
+      </div>
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-primary mb-2">💡 Dica prática</h4><p class="text-neutral-300 text-sm">Escolha 1-2 nichos que você <strong>(a)</strong> entende ou consegue entender rápido, <strong>(b)</strong> mora perto ou tem rede e <strong>(c)</strong> tem ticket que sustenta seu preço.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Profundidade &gt; amplitude</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Indicação vira ativo</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Caso público no nicho fecha venda</div></div></div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">💬 Pitch de 30 segundos</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sem pitch curto, você gagueja na hora errada. Treinar o pitch é treinar a <strong class="text-emerald-400">venda mínima</strong>. Estrutura: nicho + resultado + método + chamada à ação.</p>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 border border-emerald-500/30 rounded-xl p-6 mb-6"><h3 class="text-lg font-bold text-emerald-400 mb-3">💡 Template do pitch</h3><div class="bg-dark-700/50 rounded p-4 text-sm text-neutral-200 font-mono italic">"Ajudo [nicho] a [resultado concreto] usando IA aplicada ao processo deles. Começo com um diagnóstico de [duração] que entrega [resultado claro]. Posso te mostrar como funciona em uma conversa de 20 minutos?"</div></div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6"><div class="text-emerald-400 font-semibold mb-3">Exemplos concretos</div><div class="space-y-3 text-sm">
+        <div class="bg-dark-700 rounded p-3 text-neutral-200">"Ajudo <strong>clínicas odontológicas</strong> a <strong>recuperar leads parados no WhatsApp</strong> usando IA aplicada ao processo de atendimento. Começo com um diagnóstico de <strong>1 semana</strong> que entrega <strong>3 oportunidades priorizadas e um plano de 30 dias</strong>. Posso te mostrar como funciona?"</div>
+        <div class="bg-dark-700 rounded p-3 text-neutral-200">"Ajudo <strong>imobiliárias pequenas</strong> a <strong>fazer follow-up automático de leads frios</strong> com IA. Começo com diagnóstico de <strong>R$ 1.500</strong>, entrego mapa e plano em <strong>2 semanas</strong>. Topa uma conversa de 20min?"</div>
+      </div></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Nicho + resultado + método</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Sem jargão</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Termina com CTA</div></div></div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🗂️ Materiais mínimos</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Vender sem material gera <strong class="text-emerald-400">fricção</strong>. Cinco peças resolvem 90% das conversas. Tudo simples — não precisa site completo.</p>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Página única (1 página)</h4><p class="text-neutral-300 text-sm">Quem você é · pra quem · o diagnóstico · CTA pra agendar. Pode ser Notion público, Carrd, página simples.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Descrição detalhada do diagnóstico</h4><p class="text-neutral-300 text-sm">PDF de 1 página: o que cobre, prazo, entregáveis, investimento. Você manda antes da reunião.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">1-2 casos (mesmo iniciais ou simulados)</h4><p class="text-neutral-300 text-sm">Caso real do nicho ou caso simulado bem feito. No início, vale "case fictício baseado em padrões reais" com transparência.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Roteiro de diagnóstico</h4><p class="text-neutral-300 text-sm">Documento interno: as 15-20 perguntas que você faz no diagnóstico, em ordem. Não é mostrado ao cliente, é seu guia.</p></div></div>
+        <div class="flex items-start space-x-4"><div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">5</span></div><div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Proposta-modelo de 1 página</h4><p class="text-neutral-300 text-sm">Template em Docs que você adapta em 15min. Inclui escopo, prazo, investimento, condição de pagamento, próximo passo.</p></div></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Página &gt; site completo</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Caso simulado é OK no início</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Tudo em PDF ou link único</div></div></div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🎬 Plano de ação — Semana 1</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sair desta trilha já tendo feito algo. Conhecimento sem ação cria <strong class="text-emerald-400">sensação de progresso falso</strong>. Você termina aqui com agenda marcada, não com mais anotações no caderno.</p>
+      <div class="space-y-3 mb-6">
+        <div class="flex items-start space-x-3 bg-dark-800 rounded-xl border border-dark-600 p-4"><span class="text-emerald-400 font-bold mt-1">D1</span><div class="flex-1"><div class="font-semibold">Escolher 1 nicho</div><div class="text-sm text-neutral-400">Critério: você entende + mora perto/tem rede + ticket sustenta. Decida em 90min, não em 1 semana.</div></div></div>
+        <div class="flex items-start space-x-3 bg-dark-800 rounded-xl border border-dark-600 p-4"><span class="text-emerald-400 font-bold mt-1">D2</span><div class="flex-1"><div class="font-semibold">Escrever o pitch de 30s</div><div class="text-sm text-neutral-400">Usa o template. Treine em voz alta 10 vezes. Grave-se no celular. Ajuste o que ficou esquisito.</div></div></div>
+        <div class="flex items-start space-x-3 bg-dark-800 rounded-xl border border-dark-600 p-4"><span class="text-emerald-400 font-bold mt-1">D3</span><div class="flex-1"><div class="font-semibold">Montar a página única</div><div class="text-sm text-neutral-400">Notion público ou Carrd. 1 hora. Não fique perfeccionista — versão 1 já serve.</div></div></div>
+        <div class="flex items-start space-x-3 bg-dark-800 rounded-xl border border-dark-600 p-4"><span class="text-emerald-400 font-bold mt-1">D4</span><div class="flex-1"><div class="font-semibold">Listar 20 prospects</div><div class="text-sm text-neutral-400">Google Maps + Instagram + LinkedIn. Salve em planilha: nome, dono, contato, ponto de entrada.</div></div></div>
+        <div class="flex items-start space-x-3 bg-dark-800 rounded-xl border border-dark-600 p-4"><span class="text-emerald-400 font-bold mt-1">D5</span><div class="flex-1"><div class="font-semibold">Enviar 5 mensagens</div><div class="text-sm text-neutral-400">Use o pitch adaptado. Não venda diagnóstico no primeiro contato — peça conversa de 20min.</div></div></div>
+        <div class="flex items-start space-x-3 bg-dark-800 rounded-xl border border-dark-600 p-4"><span class="text-emerald-400 font-bold mt-1">D6-7</span><div class="flex-1"><div class="font-semibold">Agendar 3 conversas</div><div class="text-sm text-neutral-400">Follow-up dos que viram, novo lote pros que não responderam. Meta: 3 reuniões marcadas pra próxima semana.</div></div></div>
+      </div>
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6"><h4 class="font-bold text-red-400 mb-2">⚠️ Atenção</h4><p class="text-neutral-300 text-sm">Se você terminar a semana 1 sem nenhuma conversa marcada, o problema NÃO é estudo. É medo de prospectar. Volte ao módulo 1.3 (armadilha do colecionador) e identifique a fuga.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Ação curta semanal</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Conversa &gt; conteúdo</div></div><div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-emerald-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Primeira reunião destrava</div></div></div>
+    </section>
+
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você sabe como se chamar — título que abre porta com dono de PME.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você tem a oferta de entrada (diagnóstico) com escopo e investimento claros.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você escolheu 1-2 nichos pra começar.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você tem o pitch de 30s ensaiado.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você tem os 5 materiais mínimos prontos (ou em construção esta semana).</span></div>
+        <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><span class="text-neutral-300">Você tem o plano de 7 dias com 3 conversas marcadas como meta.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-1-3.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: A virada mental</a>
+        <a href="../trilha2/index.html" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors text-center">Próxima trilha: Venda Consultiva →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 1 — Módulo 1.4</div></footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

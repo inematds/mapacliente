@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 6.4 — Projeto final | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .bg-dark-700\/30 { background-color: rgba(243,244,246,.5); }
+    html:not(.dark) .bg-dark-700\/50 { background-color: rgba(243,244,246,.7); }
+    html:not(.dark) .bg-dark-900\/50 { background-color: rgba(255,255,255,.7); }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-rose-400 { color: #be123c; }
+    html:not(.dark) .bg-rose-500\/20 { background-color: rgba(190,18,60,.12); }
+    html:not(.dark) .bg-rose-500\/10 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .bg-rose-900\/20 { background-color: rgba(190,18,60,.06); }
+    html:not(.dark) .bg-rose-900\/30 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .border-rose-500\/30 { border-color: rgba(190,18,60,.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 6</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 6.4</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-rose-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-4">MÓDULO 6.4</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🎓 Projeto final — DICA do início ao fim</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Sem projeto final, a formação fica teórica. Aqui você pega 1 cliente (real ou simulado), aplica DICA completo em 4 semanas + 30 dias de acompanhamento, e sai da formação com prova viva: o primeiro caso do seu portfólio.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Aplicação</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Final</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📋 Briefing do projeto final</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Escolha 1 cliente. Real é melhor, mas simulado realista vale. Aplique DICA completo: <strong class="text-rose-400">Diagnóstico</strong> (semana 1) → <strong class="text-rose-400">Implementação</strong> (semanas 2-3) → <strong class="text-rose-400">Capacitação</strong> do cliente (semana 4) → <strong class="text-rose-400">Acompanhamento</strong> (30 dias).</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">🗓️ Cronograma de 4 semanas + 30 dias</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-2 bg-dark-900/50 rounded p-4">
+          <div class="grid grid-cols-2 gap-2 border-b border-dark-600 pb-2 mb-2 font-bold text-rose-400">
+            <div>Período</div><div>Entrega</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2"><div>Semana 1 — Diagnóstico</div><div>Relatório com mapa de dor + proposta</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Semana 2 — Implementação inicial</div><div>V1 do assistente funcionando</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Semana 3 — Ajustes</div><div>V2 testada em produção</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Semana 4 — Capacitação</div><div>Cliente usa sozinho + vídeo de 5min</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Dia 30 — Check-in</div><div>Métrica antes/depois registrada</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Dia 60 — Plano de continuidade</div><div>Proposta de mensalidade ou Fase 2</div></div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">📦 Os 4 entregáveis fechados</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-rose-400">1. Relatório de diagnóstico</strong> — 6-10 páginas, em PDF, com dor mapeada e proposta priorizada.</li>
+          <li><strong class="text-rose-400">2. Assistente funcionando</strong> — uma solução real rodando: WhatsApp, e-mail, ou painel interno.</li>
+          <li><strong class="text-rose-400">3. Vídeo de treinamento</strong> — 5-10min mostrando ao cliente como operar e ajustar.</li>
+          <li><strong class="text-rose-400">4. Plano de continuidade</strong> — proposta clara de mensalidade ou nova fase, com preço.</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Se não tiver cliente real, escolha alguém da sua rede que você conheça (sócio de amigo, prima dona de clínica) e proponha como "projeto piloto sem custo". Você ganha caso real, ele ganha entrega gratuita. Ambos ganham.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">4 semanas + 30 dias</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">4 entregáveis fechados</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Real &gt; simulado, mas simulado vale</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎯 Critérios de avaliação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cinco critérios objetivos. Cada um é checkpoint da formação. Se algum falhar, o projeto inteiro perde força — e o caso público não nasce. Critério é proteção contra projeto "bonito mas vazio".</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Diagnóstico mostra dor real quantificada</h4>
+            <p class="text-neutral-300 text-sm">Não é "atendimento ruim" — é "lead leva 4h pra ser respondido, perde 20% no fim de semana". Sem número, não tem caso.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Implementação resolve uma das 5 áreas</h4>
+            <p class="text-neutral-300 text-sm">Atendimento, vendas, marketing, gestão ou financeiro. Não tentar resolver as 5 ao mesmo tempo. Foco em uma área e entrega visível.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Cliente recebe treinamento e usa sem você</h4>
+            <p class="text-neutral-300 text-sm">O teste real é dia 14: o cliente usa o assistente sem te chamar? Se sim, projeto entregue. Se não, treinamento ainda não terminou.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Métrica antes/depois registrada</h4>
+            <p class="text-neutral-300 text-sm">Mede uma coisa antes (tempo de resposta, leads perdidos, propostas/semana). Mede depois de 30 dias. Salva os dois números. É o que vira o caso.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Plano de continuidade combinado</h4>
+            <p class="text-neutral-300 text-sm">No dia 60, você apresenta proposta de Fase 2 ou mensalidade. Aceita ou recusa — mas combinou. Sem isso, o cliente some e sua mensalidade não decola.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">Os 5 critérios não são burocracia. São <strong>filtros de qualidade</strong> que garantem que o projeto final vire caso publicável + cliente recorrente + prova social ao mesmo tempo. Quem ignora critério entrega tarefa, não consultoria.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Cliente usa sem você = teste real</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Métrica registrada = caso publicável</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Continuidade = oportunidade de mensalidade</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎤 Apresentação final</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">15 minutos. Estrutura fixa. <strong class="text-rose-400">Demo viva</strong> em vez de slide. Cada minuto investido aqui paga juros nas próximas 50 conversas comerciais — porque vira o seu pitch padrão de venda.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">⏱️ Os 15 minutos quebrados</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-2 bg-dark-900/50 rounded p-4">
+          <div class="grid grid-cols-3 gap-2 border-b border-dark-600 pb-2 mb-2 font-bold text-rose-400">
+            <div>Tempo</div><div>Bloco</div><div>Fechamento</div>
+          </div>
+          <div class="grid grid-cols-3 gap-2"><div>2 min</div><div>Contexto do cliente</div><div>"Era assim antes."</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>3 min</div><div>Diagnóstico</div><div>"A dor estava aqui."</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>5 min</div><div>Demo viva da implementação</div><div>"Funciona assim."</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>3 min</div><div>Números antes/depois</div><div>"O resultado foi esse."</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>2 min</div><div>Plano de continuidade</div><div>"Próximo passo é esse."</div></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Apresentação que vende</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Demo do produto rodando ao vivo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada bloco fecha com 1 número</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Linguagem do dono, não do consultor</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Grava em vídeo e reaproveita</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Apresentação que cansa</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>40 slides com texto miúdo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Jargão técnico no meio da fala</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>20 min explicando ferramenta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem demo, só promessa</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm"><strong>Grave a apresentação em vídeo</strong> (Loom, OBS) e edite uma versão de 5 minutos. Vira material de venda imediato: você manda nas DMs frias, no LinkedIn, no e-mail de prospecção. 5 min de vídeo = 50 reuniões evitadas em 12 meses.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Demo viva &gt; slide bonito</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Número fecha cada bloco</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Grava pra reaproveitar</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🗺️ Pós-formação: virar referência local</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sem plano de 90 dias depois da formação, o impulso evapora. Com plano claro de <strong class="text-rose-400">30 / 30 / 30</strong>, o certificado vira receita real. O caso final vira chamariz pros próximos clientes.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">30d</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Dias 1-30 — Publicar</h4>
+            <p class="text-neutral-300 text-sm">Transforma o projeto final em caso público completo. Publica nos 3 canais (LinkedIn, site, Instagram). Ajusta site/perfil com o caso destacado. Pede 2-3 indicações pro cliente do projeto.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">30d</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Dias 31-60 — Prospectar</h4>
+            <p class="text-neutral-300 text-sm">Lista 30 contatos no mesmo nicho. Envia mensagem personalizada com link do caso. Marca 10 conversas comerciais. Faz 5 diagnósticos pagos. Mensagem: "Acabei de entregar caso de [nicho], dá pra mostrar como funcionou?".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">30d</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Dias 61-90 — Fechar</h4>
+            <p class="text-neutral-300 text-sm">Converte 2-3 diagnósticos em projeto. Negocia 1-2 mensalidades. Configura carteira inicial. Publica 2º caso público. Meta: 3 clientes pagantes em 90 dias.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">Plano de 90 dias é o que separa <strong>formação de consultor</strong> de <strong>certificado na gaveta</strong>. Mesmo aluno, mesmas aulas, mesmo projeto final — quem executa o plano fatura, quem espera não.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">30 / 30 / 30 — publicar, prospectar, fechar</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Caso final vira chamariz</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Meta: 3 clientes em 90 dias</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⚠️ Riscos que travam o projeto</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Saber o risco antes vira anticorpo. Quem antecipa o desvio combina prazo, escopo e SLA logo no kickoff e protege a entrega. Quem improvisa enfrenta o mesmo problema toda vez.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Os 6 desvios mais comuns</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cliente some no meio do projeto</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Escopo infla por pedido de favor</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Acesso a sistemas demora 2 semanas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você quer "perfeito" e não entrega</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ferramenta nova lançou no meio</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Medo de cobrar e adiar entrega</span></li>
+          </ul>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Anticorpos contratuais</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>SLA de resposta: 48h pra liberar próxima etapa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Escopo fechado, add-on é Fase 2</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Acessos no D2 ou multa de prorrogação</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>V1 funcional em 5 dias, sempre</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Stack fechada antes do kickoff</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cobrança parcelada na entrega</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 A frase que protege o projeto</h3>
+        <p class="text-neutral-300"><strong>"Pronto o suficiente em 4 semanas &gt; perfeito em 4 meses."</strong> Cliente não compra perfeição. Compra entrega visível, em prazo, que reduz dor mensurável. Tudo além disso é capricho que come margem.</p>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Coloque uma cláusula de <strong>"silêncio do cliente"</strong>: "Se o CONTRATANTE não responder solicitações por mais de 10 dias úteis, o cronograma é estendido proporcionalmente e a entrega pode ser remarcada". Cliente que some agora tem custo, não desconto.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Escopo fechado por escrito</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Acessos no D2 com SLA</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">"Pronto o suficiente" &gt; "perfeito"</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🎯 Encerramento da formação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Não é diploma. É <strong class="text-rose-400">estrutura de negócio</strong>. O valor da formação aparece nos 6-12 meses seguintes, conforme cada peça aprendida começa a render carteira, indicação e marca local.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📦 O kit completo que você leva</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <ul class="space-y-1 text-neutral-300">
+            <li>☐ Método DICA aplicado em 1 cliente real</li>
+            <li>☐ 1 caso público publicado nos 3 canais</li>
+            <li>☐ 3 pacotes nomeados (Atende, Vende, Opera)</li>
+            <li>☐ Tabela de preços com fator por nicho</li>
+          </ul>
+          <ul class="space-y-1 text-neutral-300">
+            <li>☐ Biblioteca pessoal de playbooks iniciada</li>
+            <li>☐ Plano de 90 dias com meta de 3 clientes</li>
+            <li>☐ Pitch de 15min ensaiado e gravado</li>
+            <li>☐ Primeira mensalidade no horizonte</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Conceito final</h3>
+        <p class="text-neutral-300">Você termina a formação com <strong>negócio em curso</strong>, não certificado em PDF. A carteira é a métrica real. Os próximos 12 meses definem se você vai ser referência local no nicho — ou só mais um nome em uma planilha de ex-alunos.</p>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">🎯</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Meta de 6 meses</h4>
+            <p class="text-neutral-300 text-sm">3-5 clientes ativos, 2 deles em mensalidade, 3 casos públicos publicados, faturamento mensal de R$ 10-15k.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">🚀</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Meta de 12 meses</h4>
+            <p class="text-neutral-300 text-sm">10-15 mensalidades, 6-10 casos públicos, reconhecimento local no nicho, faturamento de R$ 25-40k/mês, biblioteca consolidada.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Termina com negócio, não certificado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Carteira é a métrica real</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">12 meses definem tudo</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem o briefing do projeto final: <strong>4 semanas + 30 dias</strong>, com 4 entregáveis fechados.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você conhece os 5 critérios objetivos de avaliação — proteção contra projeto vazio.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem a apresentação final de 15 minutos com demo viva — vira seu pitch padrão.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem o plano de 30 / 30 / 30 pra 90 dias pós-formação, com meta de 3 clientes.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você sabe os 6 riscos mais comuns e os anticorpos contratuais correspondentes.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você termina a formação com <strong>kit completo de negócio</strong> — pacotes, preços, casos, plano e mentalidade de carteira.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-6-3.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Portfólio &amp; casos</a>
+        <a href="../../index.html" class="px-5 py-3 bg-primary hover:bg-yellow-400 text-dark-900 font-semibold rounded-lg transition-colors text-center">Voltar ao início do curso →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 6 — Módulo 6.4</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

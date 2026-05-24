@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.1 — O primeiro assistente | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' }, fontFamily: { mono: ['JetBrains Mono','monospace'] } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(180,83,9,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(180,83,9,.06); }
+    html:not(.dark) .bg-amber-900\/30 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(180,83,9,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(180,83,9,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+    .codebox { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.55; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 4</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 4.1</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-4">MÓDULO 4.1</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🎯 O primeiro assistente</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">A escolha do primeiro caso é o ato mais decisivo da implementação. Ela define se o cliente volta com um segundo cheque ou some por seis meses. Critério: alta dor + baixo risco + escopo claro.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~35 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Prático</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Decisão</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">⚖️ Os 3 critérios de escolha</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Três filtros aplicados na ordem, sem pular: <strong class="text-amber-400">alta dor</strong>, <strong class="text-amber-400">baixo risco</strong>, <strong class="text-amber-400">escopo claro</strong>. Se algum falha, descarta. Não negocie. O primeiro caso não é o mais empolgante — é o que entrega vitória rápida e abre porta para os outros.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-amber-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">O primeiro assistente é um <strong>argumento de venda</strong> para o segundo. Sua função não é resolver o maior problema da empresa — é provar que IA aplicada funciona naquela operação específica.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-5"><div class="font-bold text-amber-400 mb-2">1. Alta dor</div><p class="text-neutral-300 text-sm">O dono cita a dor sem precisar lembrar. Aparece em toda conversa. Custa dinheiro ou tempo visível.</p></div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-5"><div class="font-bold text-amber-400 mb-2">2. Baixo risco</div><p class="text-neutral-300 text-sm">Erro da IA é reversível em segundos. Não toca dinheiro, contrato ou cliente VIP sem revisão.</p></div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-5"><div class="font-bold text-amber-400 mb-2">3. Escopo claro</div><p class="text-neutral-300 text-sm">Entrada e saída cabem em uma frase. "Mensagem entra → resposta sai." Sem ramificações ocultas.</p></div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Escreva os 3 critérios em uma folha, sente com o dono e <strong>marque ✓ ou ✗</strong> para cada candidato. Não tente convencer — só pontue. O caso vencedor aparece sozinho.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Dor visível para o dono</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Erro reversível em segundos</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Escopo em 1 frase</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📱 WhatsApp como primeiro caso</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Em 8 de cada 10 PMEs, o WhatsApp é a porta natural: <strong class="text-amber-400">dor diária, dado simples, erro corrigível</strong>. O dono não precisa ser convencido — ele já paga o preço todo fim de semana.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Por que WhatsApp ganha como primeiro caso</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>O dono já recebe mensagem na hora errada — dor diária e auto-evidente.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Entrada estruturada (texto curto), saída estruturada (texto curto).</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Erro = uma mensagem que o cliente corrige em 30 segundos.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Resultado visível em 48-72h depois do go-live.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Métrica óbvia: tempo de resposta + leads não respondidos.</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Faça primeiro</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Saudação automática + qualificação (nome, interesse, urgência)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>FAQ — top 10 perguntas que se repetem</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Agendamento ou direcionamento para humano</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Log em planilha de tudo que passou pelo bot</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Deixe para depois</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fechamento de venda direto pelo bot</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Geração de boleto, pagamento ou contrato</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Respostas a reclamações com vocabulário aberto</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mais de 3 ramificações no fluxo inicial</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Escopo de primeira versão — escreva assim na proposta</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap">Assistente WhatsApp v1
+Entrada: mensagem nova no número da empresa
+Faz: identifica intenção (compra / dúvida / agendamento / reclamação)
+       responde se for FAQ
+       coleta nome + interesse + telefone se for novo lead
+       grava em planilha
+       passa para humano se for reclamação ou valor &gt; R$ X
+Não faz: cotação, contrato, pagamento, atendimento técnico
+Métrica: 100% das mensagens respondidas em &lt; 5 min entre 8h e 22h</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Resposta padrão antes de bot inteligente</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Triagem &gt; resolução total</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Handoff humano sempre disponível</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📝 Outros casos seguros para começar</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Nem toda PME atende pelo WhatsApp. Quando esse caso não cabe, tenha dois outros casos de baixo risco no bolso: <strong class="text-amber-400">gerador de proposta</strong> e <strong class="text-amber-400">follow-up de lead</strong>. Ambos com entrada clara e saída revisável.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xl">📄</div>
+            <div class="flex-1">
+              <h4 class="font-bold mb-2">Gerador de proposta</h4>
+              <p class="text-neutral-300 text-sm mb-3">Entrada: form ou conversa curta com cliente. Saída: documento PDF padronizado para revisão do dono.</p>
+              <div class="grid grid-cols-3 gap-2 text-xs">
+                <div class="bg-dark-700 rounded p-2"><span class="text-amber-400 font-semibold">Dor:</span> dono perde fim de semana</div>
+                <div class="bg-dark-700 rounded p-2"><span class="text-amber-400 font-semibold">Risco:</span> baixo — sempre revisada</div>
+                <div class="bg-dark-700 rounded p-2"><span class="text-amber-400 font-semibold">Escopo:</span> 1 template + variáveis</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xl">🔁</div>
+            <div class="flex-1">
+              <h4 class="font-bold mb-2">Follow-up automático de lead</h4>
+              <p class="text-neutral-300 text-sm mb-3">A IA olha o pipeline e dispara mensagem em 24h/3d/7d/15d se o lead não respondeu. Para a sequência quando há resposta.</p>
+              <div class="grid grid-cols-3 gap-2 text-xs">
+                <div class="bg-dark-700 rounded p-2"><span class="text-amber-400 font-semibold">Dor:</span> lead esquecido = venda perdida</div>
+                <div class="bg-dark-700 rounded p-2"><span class="text-amber-400 font-semibold">Risco:</span> baixo — só mensagem extra</div>
+                <div class="bg-dark-700 rounded p-2"><span class="text-amber-400 font-semibold">Escopo:</span> cadência fixa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Mantenha esses 3 casos (WhatsApp, Proposta, Follow-up) memorizados com preço, prazo e demo curta. <strong>É seu trio de abertura</strong> em qualquer reunião — não improvise.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Proposta = template + dados</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Follow-up = lembrete + sugestão</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Sempre revisável pelo dono</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚫 Anti-padrões — o que NÃO escolher</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Os primeiros projetos morrem em padrões previsíveis. Memorize o que <strong class="text-red-400">nunca</strong> deve ser o primeiro caso da carteira.</p>
+
+      <div class="space-y-3 mb-6">
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 flex items-start space-x-3">
+          <span class="text-red-400 text-xl flex-shrink-0">🚫</span>
+          <div>
+            <h4 class="font-semibold text-red-400 mb-1">Integração com ERP no primeiro mês</h4>
+            <p class="text-neutral-300 text-sm">Cada ERP é uma religião. Integração leva semanas, depende de TI de terceiros, e qualquer falha vira culpa sua.</p>
+          </div>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 flex items-start space-x-3">
+          <span class="text-red-400 text-xl flex-shrink-0">🚫</span>
+          <div>
+            <h4 class="font-semibold text-red-400 mb-1">Área que o dono não usa</h4>
+            <p class="text-neutral-300 text-sm">Se o dono não acompanha aquela área no dia, ele não vai sentir o ganho. Sem percepção de ganho, não há renovação.</p>
+          </div>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 flex items-start space-x-3">
+          <span class="text-red-400 text-xl flex-shrink-0">🚫</span>
+          <div>
+            <h4 class="font-semibold text-red-400 mb-1">Automação que toca dinheiro</h4>
+            <p class="text-neutral-300 text-sm">Boleto, pagamento, descontos automáticos. Um centavo errado vira ação trabalhista, perda de cliente ou multa.</p>
+          </div>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 flex items-start space-x-3">
+          <span class="text-red-400 text-xl flex-shrink-0">🚫</span>
+          <div>
+            <h4 class="font-semibold text-red-400 mb-1">"Agente que faz tudo"</h4>
+            <p class="text-neutral-300 text-sm">O dono pede um assistente "completo" porque imagina que IA resolve sozinha. Escopo aberto é morte garantida.</p>
+          </div>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 flex items-start space-x-3">
+          <span class="text-red-400 text-xl flex-shrink-0">🚫</span>
+          <div>
+            <h4 class="font-semibold text-red-400 mb-1">Demanda do funcionário sem patrocínio do dono</h4>
+            <p class="text-neutral-300 text-sm">Funcionário entusiasmado, dono cético. Você implementa, dono não vê, cliente cancela.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">🎯 Regra dos 3 nãos</h4>
+        <p class="text-neutral-300 text-sm">Sem patrocínio do dono = não começa. Sem dado estruturado = não começa. Sem reversibilidade = não começa. Se algum dos três falha, devolva o projeto.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Sem patrocínio = não começa</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Sem dado = não começa</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Sem reversibilidade = não começa</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📏 Definição de sucesso em 30 dias</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Combine 2-3 métricas observáveis <strong class="text-amber-400">antes de começar</strong>. Sem critério, o cliente julga pelo humor. Com critério, você defende o resultado mesmo no dia ruim.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-amber-400 mb-3">📋 Exemplos de métrica observável</h3>
+        <div class="space-y-2 codebox text-sm text-neutral-300">
+          <div class="bg-dark-700/50 rounded p-3">"Todo lead respondido em &lt; 5 min entre 8h-22h, 7 dias por semana"</div>
+          <div class="bg-dark-700/50 rounded p-3">"30 propostas geradas no mês a partir de briefing curto"</div>
+          <div class="bg-dark-700/50 rounded p-3">"70% dos follow-ups disparados na hora certa, sem esquecimento"</div>
+          <div class="bg-dark-700/50 rounded p-3">"100% das mensagens registradas em planilha auditável"</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Métricas válidas</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Tempo de resposta &lt; X min</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>% mensagens respondidas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Volume de saídas geradas/mês</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Horas economizadas do dono/semana</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Métricas armadilha</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Aumentar vendas em X%" (multifatorial)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Cliente mais satisfeito" (subjetivo)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Funcionários mais produtivos" (não mensura)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Empresa mais moderna" (não acionável)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Escreva as métricas no <strong>contrato/proposta</strong> e no playbook. Reapresente na reunião do dia 30. Cliente não esquece, mas você esquece — e quando esquece, perde a renovação.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Métrica observável &gt; sentimento</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Acordada antes, não depois</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">30 dias é o prazo justo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🗂️ Roteiro de priorização</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Saindo do diagnóstico você terá 5-7 candidatos a primeiro caso. Use uma matriz simples para decidir — sem instinto, sem favoritismo.</p>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl overflow-hidden mb-6">
+        <div class="grid grid-cols-5 gap-0 codebox text-sm">
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600">Candidato</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600 text-center">Impacto (1-5)</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600 text-center">Risco (1-5)</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600 text-center">Prontidão (1-5)</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600 text-center">Score</div>
+
+          <div class="p-3 border-b border-dark-600">WhatsApp atend.</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">5</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">2</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">5</div>
+          <div class="p-3 border-b border-dark-600 text-center font-bold">8</div>
+
+          <div class="p-3 border-b border-dark-600">Follow-up lead</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">4</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">1</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">4</div>
+          <div class="p-3 border-b border-dark-600 text-center font-bold">7</div>
+
+          <div class="p-3 border-b border-dark-600">Gerador proposta</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">4</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">2</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">3</div>
+          <div class="p-3 border-b border-dark-600 text-center font-bold">5</div>
+
+          <div class="p-3 border-b border-dark-600">Integração ERP</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">5</div>
+          <div class="p-3 border-b border-dark-600 text-center text-red-400">5</div>
+          <div class="p-3 border-b border-dark-600 text-center text-red-400">1</div>
+          <div class="p-3 border-b border-dark-600 text-center font-bold text-red-400">-1</div>
+
+          <div class="p-3">Conteúdo Insta</div>
+          <div class="p-3 text-center text-amber-400">3</div>
+          <div class="p-3 text-center text-amber-400">2</div>
+          <div class="p-3 text-center text-amber-400">4</div>
+          <div class="p-3 text-center font-bold">5</div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">📐 Fórmula simples</h4>
+        <p class="text-neutral-300 text-sm font-mono">Score = Impacto + Prontidão − Risco</p>
+        <p class="text-neutral-300 text-sm mt-2">Pegue o de maior Score com Prontidão ≥ 3 e Risco ≤ 3. Decisão em 1 página, defendível para o cliente.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Decisão escrita &gt; intuição</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">3 eixos resolvem 90% dos casos</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Defesa em 1 página</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você aplica os 3 critérios — alta dor, baixo risco, escopo claro — sem negociar.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você reconhece WhatsApp como porta principal e tem proposta e follow-up no bolso.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você sabe identificar e descartar anti-padrões antes de assinar projeto.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você escreve métricas de sucesso de 30 dias antes de começar.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você usa matriz impacto × risco × prontidão para decidir e defender.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Voltar à Trilha 4</a>
+        <a href="modulo-4-2.html" class="px-5 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors text-center">Próximo: Playbooks operacionais →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 4 — Módulo 4.1</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

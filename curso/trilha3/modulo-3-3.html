@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.3 — Extração de conhecimento implícito | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124,58,237,.06); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 3</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 3.3</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold mb-4">MÓDULO 3.3</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🧠 Extração de conhecimento implícito</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">O dono não sabe explicar o que ele faz. Sua arte é tirar da cabeça dele, transformar em regra explícita e validar com casos novos. Essa é a habilidade que envelhece devagar: o modelo de IA muda, o método não.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~35 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Coração</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Técnica</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🤔 Por que o dono não sabe explicar</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O dono opera <strong class="text-purple-400">80% no automático</strong>. Sabe fazer mas não sabe descrever. Conhecimento <strong>tácito</strong> é regra aprendida por repetição, não por documentação. Frustrante? Não. É a natureza humana — você muda a técnica e a informação aparece.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 border border-purple-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-purple-400 mb-3">💡 Tácito vs explícito</h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-purple-400 font-semibold">Tácito:</span> <span class="text-neutral-300">"Sei quando o lead é sério, dá pra sentir." → o dono não articula.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-purple-400 font-semibold">Explícito:</span> <span class="text-neutral-300">"Quando ele pergunta prazo de entrega ANTES de pedir desconto, é sério." → regra utilizável.</span></div>
+        </div>
+        <p class="text-neutral-300 text-sm mt-3">Seu trabalho é mover a coluna esquerda para a direita.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Mudança de técnica</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Pergunta caso, não pergunta regra</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>"Última semana, último cliente"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Repetição revela padrão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Você formula a regra, ele aprova</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que não funciona</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Como você qualifica um lead?" (abstrato)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Me explica seu processo de vendas"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Quais critérios você usa?"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esperar que ele formule regra sozinho</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Tácito domina o dia a dia</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Caso &gt; abstração</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Regra emerge de exemplos</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎬 "Me conta um caso recente"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A técnica que <strong class="text-purple-400">destrava tudo</strong>. Em vez de "como você qualifica um lead?", peça "me conta o último lead que entrou. O que aconteceu passo a passo?". A regra vem narrada, não formulada.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-2"># Estrutura da pergunta-narrativa</div>
+        <div class="mt-3"><span class="text-purple-400">→ Âncora temporal:</span> "esta semana", "último mês"</div>
+        <div><span class="text-purple-400">→ Objeto concreto:</span> "o último cliente que pagou"</div>
+        <div><span class="text-purple-400">→ Convite a narrar:</span> "me conta passo a passo"</div>
+        <div><span class="text-purple-400">→ Pergunta de profundidade:</span> "e aí, como você decidiu X?"</div>
+
+        <div class="text-purple-400 font-bold mt-5 mb-2"># Exemplos prontos</div>
+        <div>• "Me conta a última proposta que você fechou. Do primeiro contato ao fechamento."</div>
+        <div>• "Pensa no último cliente que reclamou. Como foi essa conversa?"</div>
+        <div>• "Última segunda-feira de manhã: descreve o que você fez."</div>
+        <div>• "O cliente mais difícil do mês — me conta como você lidou."</div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Você pede o caso</h4>
+            <p class="text-neutral-300 text-sm">"Me conta a última cobrança que você fez esta semana."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Ele entra no automático</h4>
+            <p class="text-neutral-300 text-sm">Esquece que está sendo entrevistado. Narra com detalhes que jamais formularia em abstrato.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Você anota o automático dele</h4>
+            <p class="text-neutral-300 text-sm">Cada decisão narrada é candidata a virar regra do assistente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Se ele responder genérico ("ah, depende"), <strong>insista no caso</strong>: "mas pensa num específico, da semana passada". Não solte. A primeira resposta genérica é resistência; o caso vem na segunda tentativa.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Âncora temporal recente</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Objeto concreto</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Narração &gt; formulação</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📚 Documentação por exemplos</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Um caso é <strong>anedota</strong>. Três casos é <strong>padrão</strong>. Cinco casos é <strong class="text-purple-400">regra</strong>. Essa é a base do prompt confiável. Colete 3-5 casos do mesmo tipo — o que se repete vira critério.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 A regra do 3</h3>
+        <p class="text-neutral-300 text-sm mb-3">Para qualquer processo que você quer transformar em assistente:</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• <strong>3 leads qualificados</strong> recentes — para regra de qualificação</li>
+          <li>• <strong>3 propostas fechadas</strong> recentes — para template de proposta</li>
+          <li>• <strong>3 reclamações</strong> recentes — para script de resposta</li>
+          <li>• <strong>3 cobranças bem-sucedidas</strong> — para tom de cobrança</li>
+        </ul>
+        <p class="text-neutral-300 text-sm mt-3">Os casos viram <strong>few-shot examples</strong> no prompt depois.</p>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="font-bold mb-4 text-purple-400">📋 Template de coleta de caso</h3>
+        <div class="space-y-2 text-sm text-neutral-300">
+          <div><span class="text-purple-400 font-semibold">Contexto:</span> Quem é o cliente? Como chegou?</div>
+          <div><span class="text-purple-400 font-semibold">Entrada:</span> O que ele disse/pediu literal?</div>
+          <div><span class="text-purple-400 font-semibold">Análise interna:</span> O que o dono pensou? Em que se baseou?</div>
+          <div><span class="text-purple-400 font-semibold">Ação:</span> O que ele respondeu/fez?</div>
+          <div><span class="text-purple-400 font-semibold">Resultado:</span> O que aconteceu depois?</div>
+          <div><span class="text-purple-400 font-semibold">Observação:</span> O que ele faria diferente?</div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 border border-purple-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-purple-400 mb-3">💡 Padrão emergindo (exemplo: clínica)</h3>
+        <p class="text-neutral-300 text-sm mb-2">Coletei 5 casos de "primeiro atendimento no WhatsApp". Padrão encontrado:</p>
+        <div class="bg-dark-900/50 rounded p-4 font-mono text-sm text-neutral-300 space-y-1">
+          <div>• Em 4 de 5 casos, a dona pergunta convênio ANTES de procedimento</div>
+          <div>• Em 5 de 5, oferece "horário de avaliação gratuita" se for primeira vez</div>
+          <div>• Em 3 de 5, sugere dia da semana específico (terça/quinta)</div>
+          <div>→ Regras emergentes para o bot</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">3-5 casos por tipo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Repetição revela regra</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Casos viram few-shot</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🧱 Transformar em regras explícitas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">"Quando lead pede preço sem dizer projeto, eu sempre pergunto X antes de mandar valor" → vira <strong class="text-purple-400">regra do assistente</strong>. <strong>Frase do dono = regra do bot.</strong> Sem ambiguidade, com SE/ENTÃO.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-2"># Conversão narrativa → regra (atendimento clínica)</div>
+        <div class="mt-2 text-neutral-400">Narrativa do dono:</div>
+        <div class="italic">"Quando a pessoa pergunta preço de implante de cara, eu nunca mando valor. Pergunto primeiro se ela já tirou raio-X, porque sem isso o preço varia muito."</div>
+
+        <div class="mt-4 text-purple-400">→ Regra:</div>
+        <div>SE: usuário pergunta preço de implante</div>
+        <div>E: não há menção a raio-X na conversa</div>
+        <div>ENTÃO: responder pedindo se já tem raio-X recente (&lt; 6 meses)</div>
+        <div>NÃO ENVIAR valor.</div>
+
+        <div class="mt-4 text-purple-400"># Outra:</div>
+        <div class="italic text-neutral-400">"Convênio Bradesco não cobre cirurgia, então quando vejo Bradesco, já aviso isso."</div>
+        <div class="mt-2 text-purple-400">→ Regra:</div>
+        <div>SE: usuário cita "Bradesco" como convênio</div>
+        <div>E: pede informação sobre cirurgia</div>
+        <div>ENTÃO: informar que Bradesco não cobre cirurgia + listar opções de pagamento</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Boa regra</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Estrutura SE/ENTÃO clara</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Condição verificável no texto</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Ação específica, sem "depende"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Linguagem literal do dono</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Regra ruim</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Atender bem o cliente" (vago)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Depende do caso" (sem critério)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Múltiplas condições não claras</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Paráfrase tirando o tom dele</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Quando escrever a regra, leia para o dono no formato SE/ENTÃO. Pergunte: "É exatamente assim que você faria?". 50% das vezes ele ajusta um detalhe — esse ajuste é ouro. Ele revela a regra real.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Se X, então Y</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Frase do dono = literal</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Lista numerada, sem ambiguidade</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">✅ Validar com 3 casos novos</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Pegue <strong class="text-purple-400">3 casos que o dono NÃO usou pra ensinar você</strong>. Rode as regras e mostre o resultado. Ele aponta o que está errado, você corrige, fecha o ciclo. Sem validação, o cliente duvida do assistente depois.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Selecione 3 casos novos</h4>
+            <p class="text-neutral-300 text-sm">Pegue do histórico do WhatsApp/email casos que NÃO foram usados para criar as regras. Idealmente recentes.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Rode as regras manualmente</h4>
+            <p class="text-neutral-300 text-sm">Antes de montar o bot, simule no papel: dado este input, a regra dá este output? Compare com o que o dono fez realmente.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Mostre os 3 resultados ao dono</h4>
+            <p class="text-neutral-300 text-sm">"Olha, nesse caso a regra dá X. Você faria assim mesmo?" Ele aprova ou aponta o que está faltando.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Ajuste &amp; repita</h4>
+            <p class="text-neutral-300 text-sm">Quando os 3 baterem, as regras estão maduras. Aí sim viraram prompt no assistente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Sinal de regra madura</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Dono aprova 3 de 3 casos sem ajuste</li>
+          <li>• Quando ele ajusta, a mudança é pequena (palavra, não estrutura)</li>
+          <li>• Ele consegue prever o que a regra vai fazer antes de você mostrar</li>
+          <li>• Equipe da empresa também concorda quando você consulta</li>
+        </ul>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Não pule esta etapa</h4>
+        <p class="text-neutral-300 text-sm">Bot que vai pro ar sem validação prévia gera frustração. Cliente percebe na primeira semana, perde confiança, e você vira ladrão de dinheiro na cabeça dele. <strong>15 minutos de validação economizam um mês de retrabalho.</strong></p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Casos novos, não treinados</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Dono aprova ou ajusta</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Iteração curta, &lt; 30 min</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🏗️ Estrutura ideal de prompt</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Todo assistente bem feito tem <strong class="text-purple-400">6 blocos fixos</strong>: contexto · objetivo · critérios · regras · exemplos · formato de saída. Sem estrutura, o prompt vira sopa. Com ela, o assistente responde estável.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-2"># Template — Assistente de qualificação (clínica)</div>
+
+        <div class="mt-3 text-purple-400"># 1. CONTEXTO</div>
+        <div>Você é o assistente de primeiro atendimento da Clínica Sorriso.</div>
+        <div>Atende WhatsApp, fala como a Dra. Marina: educada, direta, calorosa.</div>
+
+        <div class="mt-3 text-purple-400"># 2. OBJETIVO</div>
+        <div>Qualificar leads novos (convênio? primeira vez? procedimento de interesse?)</div>
+        <div>e agendar avaliação gratuita quando for primeira vez.</div>
+
+        <div class="mt-3 text-purple-400"># 3. CRITÉRIOS DE QUALIDADE</div>
+        <div>- Máximo 2 frases por resposta</div>
+        <div>- Sempre confirmar entendimento antes de avançar</div>
+        <div>- Nunca prometer preço sem avaliação</div>
+
+        <div class="mt-3 text-purple-400"># 4. REGRAS</div>
+        <div>SE perguntar preço SEM dizer convênio → perguntar convênio antes</div>
+        <div>SE convênio = Bradesco → avisar que não cobre cirurgia</div>
+        <div>SE pedir urgência (dor) → encaminhar humano imediatamente</div>
+
+        <div class="mt-3 text-purple-400"># 5. EXEMPLOS</div>
+        <div>User: "quanto custa implante?"</div>
+        <div>Bot:  "Pra te dar valor certo, você tem convênio ou é particular?"</div>
+
+        <div class="mt-3 text-purple-400"># 6. FORMATO DE SAÍDA</div>
+        <div>Texto direto, sem markdown, sem emoji (a Dra. não usa).</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-purple-400 font-bold mb-2">1. Contexto</div>
+          <p class="text-neutral-300 text-sm">Quem é o assistente? De qual empresa? Que tom usa?</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-purple-400 font-bold mb-2">2. Objetivo</div>
+          <p class="text-neutral-300 text-sm">O que ele tem que fazer? Em uma frase clara.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-purple-400 font-bold mb-2">3. Critérios</div>
+          <p class="text-neutral-300 text-sm">O que define resposta boa? Tamanho, tom, limites.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-purple-400 font-bold mb-2">4. Regras</div>
+          <p class="text-neutral-300 text-sm">SE/ENTÃO específicos. As regras extraídas do dono.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-purple-400 font-bold mb-2">5. Exemplos (few-shot)</div>
+          <p class="text-neutral-300 text-sm">Casos reais. Mostrar input + output esperado.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <div class="text-purple-400 font-bold mb-2">6. Formato de saída</div>
+          <p class="text-neutral-300 text-sm">Texto? JSON? Lista? Padronização final.</p>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Documente todo prompt novo nesse formato. Com 6 meses de carteira, você terá biblioteca reaproveitável: troca o contexto/objetivo/regras e o esqueleto se mantém. Velocidade composta.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">6 blocos fixos</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Exemplo &gt; instrução abstrata</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Saída padronizada</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você entende por que o dono não articula regra abstrata — tudo opera no automático tácito.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você usa "me conta um caso recente" para destravar a narrativa real do processo.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você coleta 3-5 casos por tipo e extrai padrão por repetição.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você transforma narrativa em regra SE/ENTÃO com palavras literais do dono.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você valida com 3 casos novos antes de montar o bot — e monta o prompt em 6 blocos.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-3-2.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Módulo anterior</a>
+        <a href="modulo-3-4.html" class="px-5 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors text-center">Próximo: Mapa de oportunidades →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 3 — Módulo 3.3</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

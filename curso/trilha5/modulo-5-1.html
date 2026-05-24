@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5.1 — Treinar o cliente | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13,148,136,.06); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,.25); }
+    html:not(.dark) .hover\:bg-teal-500\/30:hover { background-color: rgba(13,148,136,.18); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 5</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 5.1</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-400 text-xs font-semibold mb-4">MÓDULO 5.1</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">👥 Treinar o cliente — escolher o campeão interno</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">A diferença entre projeto que sobrevive e projeto que morre tem nome próprio. Sem um responsável interno bem escolhido, treinado e com agenda real, qualquer implementação de IA em PME atrofia em 4-6 semanas. Esta aula é como você protege a entrega antes mesmo dela acontecer.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Decisivo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Operacional</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏆 Quem é o campeão interno</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-teal-400">campeão</strong> é a pessoa dentro da empresa que abre o painel todo dia, olha o que a IA respondeu, ajusta uma frase ou outra, e leva pra você no check-in semanal o que viu de estranho. Em empresas de 1-3 pessoas geralmente é o próprio dono. De 4+ pessoas, é alguém de confiança com agenda alocada formalmente.</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">Sistema de IA sem dono interno é orquídea sem regador. Tudo está lá — bonito, montado, configurado — mas nada sustenta. Definir o campeão é parte do escopo de entrega, não delicadeza extra.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">✓ Campeão certo</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Funcionário fixo, &gt; 1 ano de casa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Confiança do dono pra mexer em resposta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Tempo formal na agenda (30 min/dia)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Curiosidade básica por tecnologia</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Vontade dita por ela mesma, não imposta</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Campeão errado</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Estagiária que sai em 3 meses</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Recepcionista já com 6 funções</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pessoa escalada porque "é nova"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Quem reclamou "isso vai me substituir"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Vê depois com fulano" — ninguém é dono</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Nome próprio, não cargo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Agenda formal, não "quando der"</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Autoridade pra ajustar resposta</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚠️ O campeão errado mata o projeto</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A dona da clínica Belas Mãos contratou implementação completa de atendimento via WhatsApp. Indicou a Júlia — recepcionista de 4 meses de casa, simpática, "mexia com computador". Júlia recebeu o sistema com sorriso e ouviu o treinamento de boa vontade. <strong class="text-red-400">Saiu 6 semanas depois</strong>, levando todo o conhecimento operacional. A clínica desistiu da IA dizendo "não funcionou".</p>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-red-400 mb-3">📉 O que aconteceu de fato</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Semana 1: Júlia usa, dá retorno, ajusta — tudo lindo.</li>
+          <li>• Semana 3: Júlia avisa que vai sair em 3 semanas. A dona não comunica.</li>
+          <li>• Semana 5: Júlia se desliga. Sistema fica órfão.</li>
+          <li>• Semana 6: respostas começam a ficar desatualizadas. Cliente reclama.</li>
+          <li>• Semana 7: dona chama, brava: "essa IA está estragando minha clínica".</li>
+          <li>• Semana 8: contrato cancelado. "Não funcionou."</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Como evitar — protocolo de seleção</h4>
+        <p class="text-neutral-300 text-sm mb-3">Antes de fechar contrato, faça <strong>3 perguntas obrigatórias</strong> ao dono:</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>1. "Quem nesta empresa vai ser responsável diário por esse sistema, com nome?"</li>
+          <li>2. "Quanto tempo essa pessoa está aqui e qual a chance de continuar nos próximos 12 meses?"</li>
+          <li>3. "Ela sabe que vai ser responsável e topou?"</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Risco 1</div><div class="text-neutral-300 text-sm">Pessoa que vai sair em &lt; 6 meses</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Risco 2</div><div class="text-neutral-300 text-sm">Já tem 5+ funções</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Risco 3</div><div class="text-neutral-300 text-sm">Foi escolhida sem consultar</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📋 Papéis claros, por escrito</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Sem papéis escritos, todo problema vira "achei que era você". Você precisa de um documento de 1 página, gerado e assinado junto com o cliente na entrega, dividindo responsabilidades em 3 papéis e 3 colunas: <strong class="text-teal-400">papel · responsabilidade · prazo de resposta</strong>.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Modelo de matriz RACI simplificada</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div class="font-bold text-blue-400 mb-2">PAPEL          | RESPONSABILIDADE              | PRAZO</div>
+          <div>──────────────────────────────────────────────────────</div>
+          <div>Dono           | Decisão estratégica, orçamento | 1 semana</div>
+          <div>Campeão        | Operação diária, ajustes      | Diário</div>
+          <div>Você (consult.)| Sustentação, problema técnico | 24h úteis</div>
+          <div>Equipe         | Uso conforme manual           | Imediato</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Documento gerado na semana de entrega</h4>
+            <p class="text-neutral-300 text-sm">Você prepara o modelo, preenche junto com o dono na reunião de entrega. 15 minutos no máximo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Assinatura digital ou impressa</h4>
+            <p class="text-neutral-300 text-sm">Dono, campeão e você assinam. Vale como compromisso, não como contrato jurídico. O peso é simbólico, e funciona.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Revisão mensal de 5 min</h4>
+            <p class="text-neutral-300 text-sm">No check-in do mês, você abre o documento e pergunta: "ainda faz sentido assim?". Ajusta se algo mudou.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Substituição do campeão</h4>
+            <p class="text-neutral-300 text-sm">Quando o campeão sair ou trocar, o documento dispara novo treinamento de 90 min com o substituto. Sem isso, fica órfão.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Papéis &gt; intenções</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">SLA simples, não jurídico</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Revisado mensalmente</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎓 Primeiro treino de 90 minutos</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Treino remoto fracassa em PME. O dono nunca aprende remotamente. O campeão finge que entendeu. O sistema vira "complicado". A solução é simples: <strong class="text-teal-400">presencial, no computador deles, com café</strong>, dividido em três terços de 30 min.</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">⏱️ Estrutura do treino de 90 min</h3>
+        <div class="space-y-3 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-teal-400 font-bold">0-30 min</span> · <span class="text-neutral-300">Você mostra: abre o painel, explica cada parte com palavras do negócio (sem jargão técnico). Mostra um caso real ponta a ponta.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-teal-400 font-bold">30-60 min</span> · <span class="text-neutral-300">Ele faz, você assiste. Você não toca no mouse. Mesmo que ele erre, deixa errar. Anota as 3 dúvidas reais que aparecerem.</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-teal-400 font-bold">60-90 min</span> · <span class="text-neutral-300">Perguntas livres, ajustes finais do sistema na frente dele, definição do horário do primeiro check-in. Termina com manual em mãos.</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">A regra de ouro do segundo terço: <strong>mãos no bolso</strong>. Se você toca no mouse pra "agilizar", o campeão aprende a olhar você fazer, não a fazer. Em 1 semana ele te liga pra coisas que ele deveria resolver sozinho. Resista.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">✓ Sinais de treino bom</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Ele fez tudo sozinho no segundo terço</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Apareceram 2-3 dúvidas reais</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Ele anotou em caderno próprio</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Marcou o primeiro check-in com horário fixo</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sinais de treino ruim</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Tá tudo certo" sem fazer pergunta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você fez tudo pra "agilizar"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Telefone tocando, café apressado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Depois eu vejo melhor"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Regra 1</div><div class="text-neutral-300 text-sm">Mãos no bolso</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Regra 2</div><div class="text-neutral-300 text-sm">Vocabulário do negócio</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Regra 3</div><div class="text-neutral-300 text-sm">Marcar próximo check-in</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📄 Manual rápido de 1 página</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Manual de 20 páginas no Drive ninguém abre. Em PME, o que funciona é <strong class="text-teal-400">papel plastificado no balcão</strong>: 1 página, 4-6 passos com prints, telefone seu pra emergência, 5 dúvidas comuns com resposta curta. Custa R$ 2 imprimir e salva R$ 2.000 de retrabalho mensal.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Estrutura do manual de 1 página</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div class="text-blue-400 font-bold">┌─ COMO USAR O SISTEMA — Clínica Belas Mãos ─┐</div>
+          <div>│                                              │</div>
+          <div>│ 1. Abrir [link] toda manhã às 8h            │</div>
+          <div>│ 2. Conferir mensagens da noite (5 min)      │</div>
+          <div>│ 3. Aprovar com ✓ ou ajustar com ✎           │</div>
+          <div>│ 4. Marcar dúvida na planilha [link]         │</div>
+          <div>│ 5. Quarta às 9h — check-in semanal         │</div>
+          <div>│                                              │</div>
+          <div>│ EMERGÊNCIA: (51) 9XXXX-XXXX (Nei)           │</div>
+          <div>│                                              │</div>
+          <div>│ DÚVIDAS COMUNS: [ver verso]                  │</div>
+          <div class="text-blue-400 font-bold">└──────────────────────────────────────────────┘</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Por que físico vence digital</h4>
+        <p class="text-neutral-300 text-sm">PME tem dezenas de PDFs perdidos em Drives, emails, WhatsApp. Folha plastificada no balcão da recepção é <strong>artefato físico</strong>: visto todo dia, consultado no momento da dúvida, prova de que existe método. Vira parte do mobiliário do trabalho.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Físico &gt; digital pra PME</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Imagem &gt; texto longo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Atualizar a cada 2-3 meses</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📝 Registro de dúvidas vivo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Toda dúvida que o campeão tiver, todo erro estranho da IA, toda situação que ele não soube responder — tudo vai num <strong class="text-teal-400">registro vivo</strong>. Planilha simples (1 aba, 4 colunas), ou bloco do WhatsApp se for o canal mais natural. Sua próxima reunião semanal trabalha em cima disso.</p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 border border-teal-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-teal-400 mb-3">📊 Estrutura do registro</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div class="text-teal-400 font-bold">DATA       | DÚVIDA / OCORRÊNCIA          | CONTEXTO      | RESOLUÇÃO</div>
+          <div>───────────────────────────────────────────────────────────────────</div>
+          <div>11/05      | IA respondeu preço errado    | Pacote básico | Ajustar prompt</div>
+          <div>13/05      | Cliente perguntou Pix        | Forma pagto   | Adicionar ao FAQ</div>
+          <div>14/05      | Sistema travou 20 min        | Manhã, 9h     | Resolvido — Nei</div>
+          <div>17/05      | Como mudar resposta sábado?  | Horário       | Treino extra</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Regra do "3 iguais"</h4>
+        <p class="text-neutral-300 text-sm">Quando a mesma dúvida aparece <strong>3 vezes em clientes diferentes</strong>, vira ajuste no sistema padrão (não no específico daquele cliente). É o que faz seu playbook evoluir. Sem isso você fica reativo cliente a cliente, sem virar produto.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">✓ Registro vivo</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Atualizado dia a dia</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Revisado por você toda quarta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Dúvidas viram melhorias visíveis</span></li>
+            <li class="flex items-start space-x-2"><span class="text-teal-400">✓</span><span>Campeão sente que é ouvido</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Registro morto</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ninguém preenche</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dúvidas resolvidas por mensagem solta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você não revisa formalmente</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Nada virou ajuste — só apaga fogo</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Dúvida = matéria-prima</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">3 iguais = ajuste no sistema</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-teal-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Padrão entre clientes vira playbook</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você identifica o campeão certo antes de entregar — por critério, não por conveniência do dono.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você reconhece os sinais do campeão errado e sabe a conversa pra evitar o caso da Júlia.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você entrega um documento de papéis em 1 página, assinado, revisado mensalmente.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você conduz o treino de 90 min presencial com a regra das mãos no bolso.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><span class="text-neutral-300">Você deixa manual de 1 página plastificado no balcão e mantém o registro de dúvidas vivo.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Voltar à Trilha 5</a>
+        <a href="modulo-5-2.html" class="px-5 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors text-center">Próximo: Material de treinamento →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 5 — Módulo 5.1</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

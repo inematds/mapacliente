@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.5 — Os 5 pacotes prontos | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' }, fontFamily: { mono: ['JetBrains Mono','monospace'] } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(180,83,9,.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(180,83,9,.06); }
+    html:not(.dark) .bg-amber-900\/30 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(180,83,9,.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(180,83,9,.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+    .codebox { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.55; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 4</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 4.5</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-4">MÓDULO 4.5</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">📦 Os 5 pacotes prontos</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Cinco soluções com nome, preço, prazo e demo curta. É o cardápio que você apresenta na primeira reunião — não improvise, não invente novo a cada cliente.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~35 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Comercial</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Cardápio</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📱 Pacote 1 — Atendimento + Vendas WhatsApp</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O pacote de entrada. Curto, claro, mensurável. <strong class="text-amber-400">Conversão alta na primeira reunião</strong> porque o dono já sente a dor todos os dias.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div><div class="text-amber-400 font-bold mb-1">💰 Preço</div><div class="text-neutral-300">R$ 4.000 - R$ 8.000 setup<br>+ R$ 600 - R$ 1.200/mês</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">⏱ Prazo</div><div class="text-neutral-300">2-3 semanas até go-live</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">🎯 Cliente ideal</div><div class="text-neutral-300">Atende WhatsApp e perde lead por demora</div></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6">
+        <h3 class="font-bold mb-3 text-amber-400">📋 O que vende</h3>
+        <p class="text-neutral-300 text-sm mb-3">"Todo lead respondido em &lt; 5 min, 7 dias por semana, mesmo de madrugada. Nada cai. Você decide o que assume."</p>
+        <h3 class="font-bold mb-3 text-amber-400">📦 O que entrega</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Assistente WhatsApp com qualificação (nome, interesse, urgência)</li>
+          <li>• FAQ automatizada (top 10 perguntas)</li>
+          <li>• Agendamento ou direcionamento para humano</li>
+          <li>• Planilha de leads atualizada em tempo real</li>
+          <li>• Fila de aprovação para casos importantes (Fase 1 → 2 → 3)</li>
+          <li>• Relatório semanal automático no WhatsApp do dono</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">🚀 Por que é o pacote nº 1</h4>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Dor reconhecida sem você explicar</li>
+          <li>• Setup razoável (2-3 semanas é vendável)</li>
+          <li>• Resultado visível em 48-72h após go-live</li>
+          <li>• Mensalidade segura recorrência</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Preço de entrada acessível</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Resultado visível em dias</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Mensalidade segura recorrência</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📄 Pacote 2 — Agente de Proposta</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A partir de briefing curto (form ou conversa), a IA gera a proposta em PDF padronizada, pronta para revisão. Excelente como <strong class="text-amber-400">segundo projeto</strong> na mesma empresa.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div><div class="text-amber-400 font-bold mb-1">💰 Preço</div><div class="text-neutral-300">R$ 3.000 - R$ 6.000 setup<br>+ R$ 400 - R$ 800/mês</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">⏱ Prazo</div><div class="text-neutral-300">1-2 semanas até go-live</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">🎯 Cliente ideal</div><div class="text-neutral-300">Dono perde fim de semana fazendo proposta</div></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6">
+        <h3 class="font-bold mb-3 text-amber-400">📋 O que vende</h3>
+        <p class="text-neutral-300 text-sm mb-3">"Toda proposta sai no mesmo dia, padronizada, sem você abrir o computador no sábado."</p>
+        <h3 class="font-bold mb-3 text-amber-400">📦 O que entrega</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Formulário online ou conversa-padrão para coletar briefing</li>
+          <li>• Template de proposta em PDF customizado com a marca</li>
+          <li>• IA preenche dados, ajusta texto, calcula investimento</li>
+          <li>• Saída em PDF + cópia no Google Drive do cliente</li>
+          <li>• Fila de revisão no Notion (dono aprova/edita antes de enviar)</li>
+          <li>• Log de cada proposta com versão e responsável</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Fluxo simplificado</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">[Form preenchido] → [n8n recebe briefing]
+                  → [IA gera texto com template]
+                  → [Gera PDF (Google Docs API ou PDFGen)]
+                  → [Cria card no Notion: aguardando revisão]
+                  → [Avisa dono via WhatsApp]
+                  → [Dono aprova: envia ao cliente]</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Template + dados + revisão</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Saída em PDF</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">ROI = horas do dono</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📣 Pacote 3 — Máquina de Conteúdo Local</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Calendário editorial mensal + pauta + variações (Insta, Facebook, WhatsApp Status) gerados em lote. <strong class="text-amber-400">Mensalidade mais alta, fidelização forte.</strong></p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div><div class="text-amber-400 font-bold mb-1">💰 Preço</div><div class="text-neutral-300">R$ 4.000 - R$ 7.000 setup<br>+ R$ 800 - R$ 1.500/mês</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">⏱ Prazo</div><div class="text-neutral-300">2-3 semanas até primeira pauta</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">🎯 Cliente ideal</div><div class="text-neutral-300">"Não tenho tempo de postar"</div></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6">
+        <h3 class="font-bold mb-3 text-amber-400">📋 O que vende</h3>
+        <p class="text-neutral-300 text-sm mb-3">"30 posts no mês — Instagram, Facebook, WhatsApp Status — sem você travar pensando no que postar."</p>
+        <h3 class="font-bold mb-3 text-amber-400">📦 O que entrega</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Calendário editorial mensal alinhado a datas locais e do nicho</li>
+          <li>• Pauta semanal com 5-8 ideias variadas (educativo, prova social, promo, bastidor)</li>
+          <li>• Geração em lote: 1 ideia → 3 variações (Insta feed, Stories/Status, Facebook)</li>
+          <li>• Aprovação no Notion (1 clique por post)</li>
+          <li>• Agenda automática no Buffer ou Metricool</li>
+          <li>• Relatório mensal de engajamento</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">🎯 Onde vende bem</h4>
+        <p class="text-neutral-300 text-sm">Clínicas (odonto, estética, fisio), imobiliárias, restaurantes locais, academias, lojas de roupa. <strong>Toda PME local quer "estar nas redes"</strong> e não consegue manter ritmo. Esse pacote resolve o ritmo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Pauta antes do post</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Aprovação no Notion</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Agenda automática</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔁 Pacote 4 — Assistente de Follow-up</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O pacote <strong class="text-amber-400">mais barato de implementar</strong> e o que mais gera "uau" no cliente — porque ele já tinha desistido daquele lead. Excelente upsell do Pacote 1.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div><div class="text-amber-400 font-bold mb-1">💰 Preço</div><div class="text-neutral-300">R$ 2.000 - R$ 5.000 setup<br>+ R$ 400 - R$ 700/mês</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">⏱ Prazo</div><div class="text-neutral-300">1-2 semanas até go-live</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">🎯 Cliente ideal</div><div class="text-neutral-300">Pipeline com leads parados</div></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6">
+        <h3 class="font-bold mb-3 text-amber-400">📋 O que vende</h3>
+        <p class="text-neutral-300 text-sm mb-3">"Nenhum lead esquecido. Cada um recebe acompanhamento personalizado por até 30 dias, automático, sem você lembrar."</p>
+        <h3 class="font-bold mb-3 text-amber-400">📦 O que entrega</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• IA monitora pipeline (Sheets/CRM) em tempo real</li>
+          <li>• Dispara mensagens personalizadas em 24h / 3d / 7d / 15d / 30d</li>
+          <li>• Personalização: nome, contexto da última conversa, oferta relevante</li>
+          <li>• Para a sequência automaticamente se lead responde</li>
+          <li>• Registra cada mensagem disparada no histórico do lead</li>
+          <li>• Relatório semanal: leads reativados, conversões recuperadas</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6">
+        <div class="text-xs text-neutral-500 mb-2 codebox">// Cadência típica de follow-up</div>
+        <div class="codebox text-neutral-300 whitespace-pre-wrap text-sm">+24h: "Oi {nome}, ainda tem interesse no {item}?"
++3d:  "{nome}, separei 2 opções parecidas. Quer ver?"
++7d:  "{nome}, vou pegar feedback rápido: encontrou em outro lugar?"
++15d: "{nome}, surgiu condição especial pro perfil que você procurava."
++30d: "{nome}, vou arquivar seu cadastro. Quer manter na lista?"
+
+REGRA: ao primeiro "sim/responde", PARA TUDO e manda pra humano.</div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática de venda</h4>
+        <p class="text-neutral-300 text-sm">Peça o pipeline atual do cliente. Conte os leads "perdidos" dos últimos 60 dias. Diga: <strong>"Se eu reativar 5% destes, paga 6 meses do serviço."</strong> Conta sempre fecha.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Cadência fixa, conteúdo variável</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Para se lead responde</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Excelente upsell do Pacote 1</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏢 Pacote 5 — Assistente Operacional Interno</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O pacote de <strong class="text-amber-400">maior ticket e maior fidelização</strong>. Mas exige cliente maduro — não tente vender como primeiro projeto.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 border border-amber-500/30 rounded-xl p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div><div class="text-amber-400 font-bold mb-1">💰 Preço</div><div class="text-neutral-300">R$ 5.000 - R$ 9.000 setup<br>+ R$ 800 - R$ 1.500/mês</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">⏱ Prazo</div><div class="text-neutral-300">3-4 semanas até go-live</div></div>
+          <div><div class="text-amber-400 font-bold mb-1">🎯 Cliente ideal</div><div class="text-neutral-300">Equipe pergunta a mesma coisa 3x/dia</div></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6">
+        <h3 class="font-bold mb-3 text-amber-400">📋 O que vende</h3>
+        <p class="text-neutral-300 text-sm mb-3">"Sua equipe para de te perguntar a mesma coisa. Procedimento, prazo, relatório — tudo respondido sozinho. Você só vê o resumo."</p>
+        <h3 class="font-bold mb-3 text-amber-400">📦 O que entrega</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Bot interno (Slack, WhatsApp ou Notion AI) com base de procedimentos</li>
+          <li>• Respostas instantâneas: "como cadastrar?", "qual prazo de retorno?", "onde está esse contrato?"</li>
+          <li>• Geração de relatório semanal automático (vendas, atendimento, pipeline)</li>
+          <li>• Lembrete de prazo: contas, contratos, retornos</li>
+          <li>• Treinamento da base com documentos da empresa</li>
+          <li>• Manutenção quinzenal da base de conhecimento</li>
+        </ul>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Quando NÃO vender este pacote</h4>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• Cliente que nunca usou IA antes</li>
+          <li>• Empresa sem nenhum procedimento escrito ("tudo na cabeça do dono")</li>
+          <li>• Time pequeno (&lt; 5 pessoas) — ROI não fecha</li>
+          <li>• Dono sem patrocínio claro à mudança de cultura</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Base de conhecimento da empresa</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Relatório automático semanal</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Ticket alto, recorrência alta</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🗺️ Como sequenciar os pacotes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Conquistar cliente novo custa caro. Esteira de upsell na carteira que você já tem <strong class="text-amber-400">multiplica receita sem multiplicar prospecção</strong>.</p>
+
+      <div class="bg-dark-800 border border-dark-600 rounded-xl overflow-hidden mb-6">
+        <div class="grid grid-cols-4 gap-0 codebox text-sm">
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600">Mês</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600">Pacote</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600">Por quê</div>
+          <div class="bg-dark-700 p-3 font-bold border-b border-dark-600 text-center">Ticket acumulado</div>
+
+          <div class="p-3 border-b border-dark-600">Mês 1</div>
+          <div class="p-3 border-b border-dark-600 font-semibold text-amber-400">P1 — WhatsApp</div>
+          <div class="p-3 border-b border-dark-600 text-neutral-300">Resolve dor mais visível</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">R$ 6k + R$ 900/mês</div>
+
+          <div class="p-3 border-b border-dark-600">Mês 2-3</div>
+          <div class="p-3 border-b border-dark-600 font-semibold text-amber-400">+ P4 — Follow-up</div>
+          <div class="p-3 border-b border-dark-600 text-neutral-300">Captura leads parados (ROI fácil)</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">+R$ 3k + R$ 500/mês</div>
+
+          <div class="p-3 border-b border-dark-600">Mês 4-5</div>
+          <div class="p-3 border-b border-dark-600 font-semibold text-amber-400">+ P2 ou P3</div>
+          <div class="p-3 border-b border-dark-600 text-neutral-300">Propostas ou conteúdo, conforme dor</div>
+          <div class="p-3 border-b border-dark-600 text-center text-amber-400">+R$ 4k + R$ 600/mês</div>
+
+          <div class="p-3">Mês 6+</div>
+          <div class="p-3 font-semibold text-amber-400">+ P5 — Interno</div>
+          <div class="p-3 text-neutral-300">Cliente maduro, escala interna</div>
+          <div class="p-3 text-center text-amber-400">+R$ 7k + R$ 1.000/mês</div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Conta no fim de 12 meses (1 cliente bem trabalhado)</h3>
+        <div class="codebox text-neutral-300 text-sm whitespace-pre-wrap">Setups acumulados: R$ 20.000 (P1+P4+P2/P3+P5)
+Mensalidade no mês 12: R$ 3.000/mês (todos pacotes ativos)
+Receita do cliente em 12 meses: ~R$ 38.000
+
+Comparado a vender só P1: ~R$ 16.800/ano.
+Esteira de upsell &gt;2x receita por cliente, com mesmo custo de aquisição.</div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Na reunião de fim do mês 1 (P1 entregue), <strong>já apresente P4</strong>. Não venda no dia 1 todos os pacotes — vira preço alto e medo. Venda <strong>na ordem certa, no momento certo</strong>, com prova social do anterior.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Pacote 1 abre porta</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Pacote 4 mostra escala</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-amber-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Pacote 5 fideliza por anos</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Você tem 5 pacotes com nome, preço, prazo e demo curta — cardápio claro.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">P1 (WhatsApp) é seu pacote de entrada em qualquer carteira nova.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">P4 (Follow-up) é o upsell mais barato e impactante após P1.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">P5 (Interno) só entra em cliente maduro com procedimentos escritos.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><span class="text-neutral-300">Esteira de 12 meses na mesma carteira &gt;2x receita por cliente.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-4-4.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Construção no-code</a>
+        <a href="../trilha5/index.html" class="px-5 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors text-center">Próxima trilha: Capacitação →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 4 — Módulo 4.5</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

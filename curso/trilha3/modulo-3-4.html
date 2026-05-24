@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.4 — Mapa de oportunidades | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124,58,237,.06); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 3</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 3.4</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold mb-4">MÓDULO 3.4</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">⚖️ Mapa de oportunidades</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Matriz de 6 eixos: impacto × facilidade × risco × urgência × potencial de venda × dependência humana. Quem domina essa matriz sai do diagnóstico com priorização defendível e cliente convencido sem objeção.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~35 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Coração</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Decisão</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📐 Os 6 eixos da matriz</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Os 6 eixos cobrem <strong class="text-purple-400">95% das decisões</strong> de priorização. Sem eles, você prioriza por intuição e o cliente questiona. Com eles, decisão é defendível por escrito.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h3 class="font-bold mb-4 text-purple-400">Os 6 eixos com escala 0-3</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-neutral-400 border-b border-dark-600">
+              <th class="py-2">Eixo</th>
+              <th class="py-2">Pergunta-guia</th>
+              <th class="py-2 text-center">Nota baixa (0-1)</th>
+              <th class="py-2 text-center">Nota alta (2-3)</th>
+            </tr>
+          </thead>
+          <tbody class="text-neutral-300">
+            <tr class="border-b border-dark-700"><td class="py-2 text-purple-400 font-semibold">Impacto</td><td>Quanto R$/horas isso economiza ou gera?</td><td class="text-xs">&lt; R$ 1k/mês</td><td class="text-xs">&gt; R$ 5k/mês</td></tr>
+            <tr class="border-b border-dark-700"><td class="py-2 text-purple-400 font-semibold">Facilidade</td><td>Tem dado pronto? Stack simples?</td><td class="text-xs">Sem dados, custom</td><td class="text-xs">Dados + no-code</td></tr>
+            <tr class="border-b border-dark-700"><td class="py-2 text-purple-400 font-semibold">Risco</td><td>Erro causa que estrago?</td><td class="text-xs">Baixo (estética)</td><td class="text-xs">Alto (dinheiro, contrato)</td></tr>
+            <tr class="border-b border-dark-700"><td class="py-2 text-purple-400 font-semibold">Urgência</td><td>Dói agora ou pode esperar?</td><td class="text-xs">Dá pra esperar trimestre</td><td class="text-xs">Resolver no mês</td></tr>
+            <tr class="border-b border-dark-700"><td class="py-2 text-purple-400 font-semibold">Venda</td><td>Cliente quer pagar por isso?</td><td class="text-xs">Pediu "tá legal"</td><td class="text-xs">Falou "preciso resolver"</td></tr>
+            <tr><td class="py-2 text-purple-400 font-semibold">Dep. humana</td><td>Precisa de julgamento humano?</td><td class="text-xs">Tudo IA pode resolver</td><td class="text-xs">Sempre precisa aprovar</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Como pontuar</h4>
+        <p class="text-neutral-300 text-sm">Risco e dependência humana são <strong>inversos</strong>: nota alta = projeto mais difícil/perigoso de automatizar. Score final = (Impacto + Facilidade + Urgência + Venda) − (Risco + Dep. humana).</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">6 eixos cobrem 95%</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Escala 0-3 em cada</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Soma transparente</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎯 Alta impacto + alta facilidade</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Quadrante superior direito: <strong class="text-purple-400">muito impacto, pouca complexidade</strong>. O primeiro projeto SEMPRE sai daqui. Esquecer impacto = projeto que não vende; esquecer facilidade = projeto que não entrega.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 border border-purple-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-purple-400 mb-3">💡 A lógica do ganho rápido</h3>
+        <p class="text-neutral-300 text-sm">Tendência do consultor novato é escolher o problema mais <strong class="text-red-400">interessante</strong>. Profissional escolhe o ganho mais <strong class="text-purple-400">rápido</strong> pra construir confiança. Cliente que sente resultado em 3 semanas autoriza projeto 2, 3, 4.</p>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="font-bold mb-4 text-purple-400">Os 4 quadrantes nomeados</h3>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+            <div class="text-purple-400 font-bold mb-1">🚀 PRIMEIRO PROJETO</div>
+            <div class="text-neutral-400 text-xs mb-1">Alta facilidade + alto impacto</div>
+            <div class="text-neutral-300">Ganhar rápido, vender o resto.</div>
+          </div>
+          <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+            <div class="text-blue-400 font-bold mb-1">🧗 PROJETO AMBICIOSO</div>
+            <div class="text-neutral-400 text-xs mb-1">Baixa facilidade + alto impacto</div>
+            <div class="text-neutral-300">Fica para fase 2, depois da confiança.</div>
+          </div>
+          <div class="bg-dark-700/50 border border-dark-600 rounded-lg p-4">
+            <div class="text-yellow-400 font-bold mb-1">🍰 RÁPIDO MAS SECUNDÁRIO</div>
+            <div class="text-neutral-400 text-xs mb-1">Alta facilidade + baixo impacto</div>
+            <div class="text-neutral-300">Bom de bônus, ruim de prioridade.</div>
+          </div>
+          <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+            <div class="text-red-400 font-bold mb-1">⛔ NÃO FAZER AGORA</div>
+            <div class="text-neutral-400 text-xs mb-1">Baixa facilidade + baixo impacto</div>
+            <div class="text-neutral-300">Distração disfarçada.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Exemplo prático</h4>
+        <p class="text-neutral-300 text-sm"><strong>Imobiliária com 3 oportunidades:</strong> (a) bot WhatsApp de qualificação — alto impacto, alta facilidade; (b) gerador de descrições de imóveis — médio impacto, alta facilidade; (c) preditor de preço com ML — alto impacto, baixíssima facilidade. <strong>Começa por (a)</strong>. (b) entra como bônus de fase 2.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Ganho rápido cria confiança</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Confiança paga próximos</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Difícil fica pra Fase 2</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📊 Visualização em quadrantes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Eixo X facilidade, eixo Y impacto. <strong class="text-purple-400">Imagem reduz objeção</strong>. "Por que esse antes daquele?" responde com o gráfico, não com argumento.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="font-bold mb-4 text-purple-400">Diagrama de quadrantes (exemplo: clínica)</h3>
+        <div class="relative bg-dark-900/60 border border-dark-600 rounded-lg p-6" style="height: 320px;">
+          <!-- Eixos -->
+          <div class="absolute left-1/2 top-4 bottom-4 w-px bg-dark-600"></div>
+          <div class="absolute top-1/2 left-4 right-4 h-px bg-dark-600"></div>
+          <!-- Labels -->
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 text-neutral-500 text-xs">↑ Impacto</div>
+          <div class="absolute bottom-2 right-2 text-neutral-500 text-xs">Facilidade →</div>
+          <!-- Quadrantes -->
+          <div class="absolute top-6 right-6 text-purple-400 text-xs font-semibold">🚀 Primeiro projeto</div>
+          <div class="absolute top-6 left-6 text-blue-400 text-xs font-semibold">🧗 Ambicioso</div>
+          <div class="absolute bottom-6 right-6 text-yellow-400 text-xs font-semibold">🍰 Bônus</div>
+          <div class="absolute bottom-6 left-6 text-red-400 text-xs font-semibold">⛔ Não agora</div>
+          <!-- Pontos -->
+          <div class="absolute top-[20%] right-[15%] w-4 h-4 rounded-full bg-purple-500 border-2 border-white" title="Bot WhatsApp"></div>
+          <div class="absolute top-[55%] right-[25%] w-4 h-4 rounded-full bg-yellow-500 border-2 border-white" title="FAQ site"></div>
+          <div class="absolute top-[25%] left-[20%] w-4 h-4 rounded-full bg-blue-500 border-2 border-white" title="Previsão de demanda"></div>
+          <div class="absolute top-[70%] left-[30%] w-4 h-4 rounded-full bg-red-500 border-2 border-white" title="App próprio"></div>
+        </div>
+        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+          <div class="flex items-center space-x-2"><div class="w-3 h-3 rounded-full bg-purple-500"></div><span class="text-neutral-300">Bot WhatsApp</span></div>
+          <div class="flex items-center space-x-2"><div class="w-3 h-3 rounded-full bg-yellow-500"></div><span class="text-neutral-300">FAQ site</span></div>
+          <div class="flex items-center space-x-2"><div class="w-3 h-3 rounded-full bg-blue-500"></div><span class="text-neutral-300">Previsão de demanda</span></div>
+          <div class="flex items-center space-x-2"><div class="w-3 h-3 rounded-full bg-red-500"></div><span class="text-neutral-300">App próprio</span></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Boa visualização</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>4 quadrantes nomeados</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Pontos coloridos por área</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Legenda curta abaixo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Cabe em uma tela do celular</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Visualização ruim</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mais de 8 pontos no gráfico</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem legenda dos quadrantes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cores aleatórias</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tabela em PDF de 3 páginas</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Gráfico &gt; tabela</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">4 quadrantes nomeados</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Pontos coloridos por área</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">⚠️ Risco &amp; dependência humana</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Tarefa com <strong class="text-purple-400">risco alto</strong> (dinheiro, contrato, dado sensível) ou alta dependência humana (julgamento, relação) fica com <strong>aprovação humana</strong>. Não automatizar tudo é parte do diagnóstico — não preguiça.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Os 3 níveis de automação</h3>
+        <div class="space-y-3 text-sm text-neutral-300">
+          <div class="bg-dark-900/50 rounded p-3">
+            <div class="font-semibold text-blue-400 mb-1">Nível 1 — IA prepara, humano aprova tudo</div>
+            <div>Apropriado para: cobrança, contrato, decisão de preço. IA escreve, humano clica "enviar".</div>
+          </div>
+          <div class="bg-dark-900/50 rounded p-3">
+            <div class="font-semibold text-blue-400 mb-1">Nível 2 — IA executa simples, humano aprova importante</div>
+            <div>Apropriado para: atendimento qualificado, resposta de FAQ. Bot resolve 80%, escala 20% pro humano.</div>
+          </div>
+          <div class="bg-dark-900/50 rounded p-3">
+            <div class="font-semibold text-blue-400 mb-1">Nível 3 — IA roda sozinha</div>
+            <div>Apropriado para: triagem inicial, classificação, lembrete. Sem risco financeiro/contratual.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Automatizar plenamente</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Resposta de FAQ</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Classificação de lead</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Lembrete de follow-up</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Geração de rascunho</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sempre com humano</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Envio de cobrança</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Aprovação de orçamento</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Resposta a reclamação séria</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Decisão sobre exceção</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Cliente teme perder controle. Mapa que <strong>mostra onde humano fica</strong> vence essa objeção antes dela aparecer. Diga na devolutiva: "Aqui você continua aprovando, não tá saindo da sua mão."</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Risco alto = aprovação humana</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Julgamento permanece humano</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">IA prepara, humano decide</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎤 Apresentar ao dono</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Apresente o mapa em <strong class="text-purple-400">10 minutos</strong>: contexto (3 frases dele), as 5 oportunidades, a recomendação. <strong>Pause em cada uma</strong> e pergunte "faz sentido?". Devolutiva é diálogo, não palestra.</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-2"># Roteiro de devolutiva (10 min)</div>
+        <div class="mt-3"><span class="text-purple-400">Min 0-2 — Reconectar:</span></div>
+        <div class="ml-3">"Na nossa conversa você falou que [3 frases verbatim dele]. Bati confere?"</div>
+
+        <div class="mt-3"><span class="text-purple-400">Min 2-5 — Apresentar o mapa:</span></div>
+        <div class="ml-3">"Aqui estão as 5 oportunidades que identifiquei, posicionadas em impacto × facilidade."</div>
+        <div class="ml-3">"Reparei que [X] tem maior nota porque [...]."</div>
+
+        <div class="mt-3"><span class="text-purple-400">Min 5-8 — Recomendação:</span></div>
+        <div class="ml-3">"Por isso, recomendo começar por [X]. Em 30 dias você vai sentir [resultado concreto]."</div>
+        <div class="ml-3">"Faz sentido pra você?"</div>
+
+        <div class="mt-3"><span class="text-purple-400">Min 8-10 — Próximos passos:</span></div>
+        <div class="ml-3">"Posso te mandar contrato pra começar segunda?"</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Devolutiva eficaz</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Frases dele literal no início</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Pausa pra validar a cada bloco</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Uma recomendação clara, não 5</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Termina com próximo passo</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Erros típicos</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Falar 20 min sem pausa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>5 recomendações sem priorizar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Termo técnico ("agente conversacional")</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Não pedir próximo passo</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Devolutiva bem feita transforma diagnóstico em contrato <strong>no mesmo dia</strong>. Mal feita, o cliente "vai pensar" e some. Trate cada devolutiva como conversão final, não como entrega.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Pausa pra validar</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Frases dele no relatório</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Recomendação clara, uma só</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🚫 O que NÃO recomendar</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Toda apresentação inclui <strong class="text-purple-400">1-2 oportunidades que você NÃO vai atacar agora</strong> — e o porquê. Mostra critério, não preguiça. Cliente confia em quem recusa.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Liste o que tirou da lista</h4>
+            <p class="text-neutral-300 text-sm">"Considerei mas não recomendo agora: X (motivo) · Y (motivo)."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Justifique em 1 linha</h4>
+            <p class="text-neutral-300 text-sm">"App próprio: muito custo pra ROI; voltamos a discutir após primeiro projeto."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Diferencie "não agora" de "nunca"</h4>
+            <p class="text-neutral-300 text-sm">"Não agora" abre porta pra projeto futuro. "Nunca" fecha conversa.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Diga "no" também ao cliente errado</h4>
+            <p class="text-neutral-300 text-sm">Se descobriu que não há fit real, recuse com elegância. Reputação &gt; receita curta.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 border border-purple-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-purple-400 mb-3">💡 Por que recusar fortalece a venda</h3>
+        <p class="text-neutral-300 text-sm">Lista cheia de "vamos fazer tudo" parece vendedor. Lista com cortes parece <strong>consultor</strong>. Cliente nota a diferença e confia mais no que ficou. Você sobe o ticket porque vira referência, não comodidade.</p>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Não cair na armadilha do "tudo é importante"</h4>
+        <p class="text-neutral-300 text-sm">Quando o dono dispara "queria atacar isso também e isso e aquilo", responda: <strong>"Vamos vencer o primeiro, e quando isso virar resultado, abro o segundo. Senão, viramos amador."</strong></p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Recusar valida critério</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">"Não agora" &gt; "nunca"</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Justificativa em uma linha</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você pontua cada oportunidade nos 6 eixos: impacto, facilidade, risco, urgência, venda, dependência humana.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você prioriza o primeiro projeto pelo quadrante de alto impacto + alta facilidade.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você apresenta o mapa em diagrama de 4 quadrantes, com pontos coloridos por área.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você define o nível de automação (1, 2 ou 3) de cada projeto conforme risco e dependência humana.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você tem coragem de recusar oportunidade na devolutiva — e isso fortalece a venda.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-3-3.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Módulo anterior</a>
+        <a href="modulo-3-5.html" class="px-5 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors text-center">Próximo: Relatório &amp; plano 30 dias →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 3 — Módulo 3.4</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

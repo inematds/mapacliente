@@ -15,14 +15,16 @@ Curso publicado no formato [INEMA.CLUB](https://inema.club) que forma profission
 
 ## Estrutura
 
-| Trilha | Foco | Status |
-|--------|------|--------|
-| T1 — Mercado & Mentalidade | Por que PME, nova profissão, virada mental, posicionamento | ✅ Index + Módulo 1.1 completos |
-| T2 — Venda Consultiva | Prospecção, abordagem, objeções, fechar diagnóstico | 🚧 Outline publicado |
-| T3 — Diagnóstico (D) | Entrevista com dono, 5 áreas, mapa de oportunidades | 🚧 Outline publicado |
-| T4 — Implementação (I) | Playbooks, aprovação humana, 5 pacotes | 🚧 Outline publicado |
-| T5 — Capacitação (C+A) | Treinar cliente, acompanhamento, recorrência | 🚧 Outline publicado |
-| T6 — Escala | Padronizar, precificar, portfólio, projeto final | 🚧 Outline publicado |
+| Trilha | Foco | Módulos |
+|--------|------|---------|
+| T1 — Mercado & Mentalidade | Por que PME, nova profissão, virada mental, posicionamento | 4 ✅ |
+| T2 — Venda Consultiva | Prospecção, abordagem, objeções, fechar diagnóstico | 6 ✅ |
+| T3 — Diagnóstico (D) | Entrevista com dono, 5 áreas, mapa de oportunidades | 5 ✅ |
+| T4 — Implementação (I) | Playbooks, aprovação humana, 5 pacotes | 5 ✅ |
+| T5 — Capacitação (C+A) | Treinar cliente, acompanhamento, recorrência | 4 ✅ |
+| T6 — Escala | Padronizar, precificar, portfólio, projeto final | 4 ✅ |
+
+**Total:** 6 trilhas · 28 módulos · 168 tópicos · ~15.000 linhas de HTML.
 
 ## Fontes conceituais
 

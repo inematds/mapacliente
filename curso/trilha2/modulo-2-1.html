@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.1 — Prospecção em PME | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(29,78,216,.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(29,78,216,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 2</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 2.1</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-4">MÓDULO 2.1</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🎯 Prospecção em PME</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">A diferença entre quem tem agenda cheia e quem fica olhando o WhatsApp não é talento de vendedor. É lista, canal certo e ritmo. Este módulo te dá os quatro canais que funcionam pra dono pequeno, mensagem padrão sem cheiro de spam e o CRM mínimo que cabe numa planilha.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Operacional</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Rotina</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📇 Montar lista de prospects</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Lista não é capricho. É a diferença entre <strong class="text-blue-400">rotina</strong> e <strong class="text-blue-400">impulso</strong>. Uma lista de 50-100 PMEs do seu nicho, com nome do dono, telefone e Instagram, sustenta 60-90 dias de prospecção sem você precisar pensar de manhã "pra quem mando hoje?".</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">💡 O critério de fit</h3>
+        <p class="text-neutral-300 text-sm mb-3">Antes de incluir o nome na lista, passe pelos 3 filtros:</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• <strong>Ticket plausível</strong> — fatura entre R$ 20k e R$ 300k/mês (paga diagnóstico sem suar)</li>
+          <li>• <strong>Dor compatível</strong> — algum dos 5 problemas (atendimento, vendas, marketing, gestão, financeiro) é visível de fora</li>
+          <li>• <strong>Decisor acessível</strong> — dono atende o telefone, não é grupo econômico com 5 níveis</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Fontes que funcionam</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Google Maps por categoria + raio de 10 km</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Instagram local (hashtag de bairro)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Indicação cruzada de outros donos</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Associação de classe ou sindicato</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Câmara de comércio local</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Fontes que queimam tempo</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Listas compradas de "1000 PMEs"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Apollo/ZoomInfo (PME quase nunca está lá)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>LinkedIn cold (dono pequeno não abre)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Spray para "todo comércio da rua"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Comece com 20 nomes do seu nicho e local. Cada noite, adicione 5. Em duas semanas você tem 90 prospects qualificados. Lista pequena bem feita rende mais que mil leads frios.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Nicho + raio geográfico</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Filtro de fit antes da inclusão</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Indicação vale 10x lista fria</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📱 Os 4 canais que funcionam</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">PME não está no LinkedIn. PME não responde email frio. PME está no <strong class="text-blue-400">WhatsApp e Instagram</strong>, e confia em quem alguém indicou. Email serve só pra mandar PDF depois que a conversa já começou.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Taxa de resposta plausível por canal</h3>
+        <p class="text-neutral-300 text-sm mb-3">Em prospecção bem feita, dá pra esperar:</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• WhatsApp Business (1º toque): 20-35% de resposta</li>
+          <li>• Instagram DM (após interação leve): 15-25%</li>
+          <li>• Indicação de cliente: 60-80%</li>
+          <li>• Presencial em evento: 40-60%</li>
+          <li>• Email frio: &lt; 2% (não vale o tempo)</li>
+        </ul>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">WhatsApp Business</h4>
+            <p class="text-neutral-300 text-sm">Use número dedicado. Foto profissional. Mensagem manual (não broadcast). Cuidado com bloqueio — máximo 20 toques novos por dia, espaçados.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Instagram DM</h4>
+            <p class="text-neutral-300 text-sm">Curta 2-3 posts dele antes de mandar DM. Comente algo específico. Só DEPOIS mande mensagem. Aquecimento triplica resposta.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Indicação cruzada</h4>
+            <p class="text-neutral-300 text-sm">Cada cliente fechado: peça 2-3 nomes de donos que ele conhece. Mensagem pro indicado começa com o nome de quem indicou. Fecha em metade do tempo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Presencial</h4>
+            <p class="text-neutral-300 text-sm">Câmara de comércio, evento de setor, café da manhã de associação. 2 horas presenciais geram 5 conversas qualificadas. Não subestime.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Mistura de canais &gt; 1 só</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Aquecer antes do toque frio</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Indicação fecha em metade do tempo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">✍️ Primeira mensagem padrão</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mensagem boa tem 3 elementos: <strong class="text-blue-400">nome dele + contexto específico</strong>, <strong class="text-blue-400">o que você faz para o nicho</strong>, <strong class="text-blue-400">convite leve sem agenda fechada</strong>. Cinco linhas. Sem link. Sem PDF. Sem áudio.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Modelo testado — imobiliária</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>Oi, Carlos! Vi no Instagram da Imob São José que vocês postam imóvel novo quase todo dia.</div>
+          <div class="mt-2">Trabalho com imobiliárias da região da Zona Sul ajudando o atendimento do WhatsApp a responder lead mesmo quando o corretor está em visita.</div>
+          <div class="mt-2">Toparia uma conversa rápida de 20 min essa semana pra eu entender melhor o fluxo de vocês? Sem compromisso de fechar nada.</div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Modelo testado — clínica</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>Dra. Marina, tudo bem? Sua paciente Júlia me indicou seu contato — ela atende com a senhora e me contou da clínica.</div>
+          <div class="mt-2">Eu ajudo clínicas pequenas a economizar tempo na confirmação de consulta e no atendimento do WhatsApp.</div>
+          <div class="mt-2">Posso te explicar em 20 minutos como funciona? Sem proposta agora, só conversar.</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Sempre</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Nome correto</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Algo específico que você notou</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Resultado em verbo de rotina</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Sem compromisso" explícito</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Nunca</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Olá, prezado(a)"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Link no primeiro toque</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Áudio sem permissão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Transformação digital com IA"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Nome correto = porta aberta</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Contexto local prova atenção</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Convite, não pitch</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📅 Ritmo &amp; frequência</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A maior causa de prospecção fraca não é mensagem ruim. É <strong class="text-blue-400">desistir antes do follow-up 2</strong>. 80% das respostas positivas aparecem no segundo ou terceiro toque, não no primeiro.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Primeiro toque</h4>
+            <p class="text-neutral-300 text-sm">Mensagem padrão personalizada. Não espera resposta imediata.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Follow-up 1 — ângulo diferente</h4>
+            <p class="text-neutral-300 text-sm">"Vi que ainda não respondeu, sem problema. Caso seja útil, achei isso que se aplica ao seu caso..." + insight curto. Sem cobrar.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D11</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Follow-up 2 — porta de saída</h4>
+            <p class="text-neutral-300 text-sm">"Sem retorno, fechei meu lado. Se quiser retomar mais à frente, é só me chamar." Paradoxalmente, esse é o que mais traz resposta.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">D+30</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Pausa, depois ângulo novo</h4>
+            <p class="text-neutral-300 text-sm">30 dias depois, tenta um motivo novo: caso público, época do ano, mudança no nicho. Não repete a mesma mensagem.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Meta diária realista: <strong>5 toques novos + 5 follow-ups = 10 ações por dia</strong>. Em 21 dias úteis, você fez 210 ações. Isso fecha 3-5 diagnósticos no início. Cresce com o tempo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Cadência leve, persistente</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Follow-up muda ângulo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Volume diário + constância</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🗂️ CRM mínimo em planilha</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Você não precisa de Pipedrive nem HubSpot agora. Você precisa de <strong class="text-blue-400">não esquecer ninguém</strong>. Uma planilha de 10 colunas no Google Sheets sustenta 100-200 prospects sem custo.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Estrutura mínima da planilha</h3>
+        <div class="font-mono text-xs text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4 overflow-x-auto">
+          <div>| Nome | Empresa | Nicho | Canal | 1º toque | Status | Próximo passo | Próxima data | Obs | Tags |</div>
+          <div>|------|---------|-------|-------|----------|--------|---------------|--------------|-----|------|</div>
+          <div>| Carlos | Imob SJ | Imóveis | WhatsApp | 12/03 | Conversando | Marcar diag | 25/03 | Curtiu fase 1 | indicado |</div>
+          <div>| Marina | Clínica Smile | Odonto | DM IG | 14/03 | Tocado | Follow-up 1 | 18/03 | Recepcionista 1 | bairro-x |</div>
+          <div>| João | Restaurante Mar | Food | Presencial | 15/03 | Proposta | Aguardando | 22/03 | Diag entregue | indicador |</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <h4 class="font-bold text-blue-400 mb-3">📌 Os 6 status</h4>
+          <ul class="space-y-1 text-neutral-300 text-sm">
+            <li>• <strong>Novo</strong> — ainda não toquei</li>
+            <li>• <strong>Tocado</strong> — mandei mensagem, sem resposta</li>
+            <li>• <strong>Conversando</strong> — respondeu, em diálogo</li>
+            <li>• <strong>Proposta</strong> — enviei orçamento/proposta</li>
+            <li>• <strong>Fechado</strong> — assinou e pagou</li>
+            <li>• <strong>Perdido</strong> — fechou com outro ou recusou</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+          <h4 class="font-bold text-blue-400 mb-3">🗓️ Rotina diária</h4>
+          <ul class="space-y-1 text-neutral-300 text-sm">
+            <li>• 8h — abrir planilha, filtrar "Próxima data ≤ hoje"</li>
+            <li>• Executar follow-ups da lista</li>
+            <li>• Adicionar 5 prospects novos</li>
+            <li>• Atualizar status do que mudou ontem</li>
+            <li>• Fechar antes das 10h. 1h30 por dia basta.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Migre pra CRM real (Pipedrive, RD, HubSpot Free) só quando ultrapassar <strong>200 ativos</strong> ou quando contratar segundo vendedor. Antes disso é overkill caro.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Status mínimo: 6 estados</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">"Próxima data" é a coluna mais importante</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Planilha sustenta até 200 ativos</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🚫 O que NÃO fazer</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Reputação local é ativo composto. Cada erro queima não só esse prospect — queima a indicação que ele poderia ter dado. Esses são os erros que <strong class="text-blue-400">queimam lista inteira</strong>.</p>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-6 mb-6">
+        <h4 class="font-bold text-red-400 mb-4">⚠️ Os erros caros</h4>
+        <ul class="space-y-3 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">✗</span><span><strong>Áudio sem permissão</strong> — dono pequeno odeia áudio de gente que não conhece. Texto sempre.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">✗</span><span><strong>Copiar e colar com nome errado</strong> — "Oi, [Nome]" mata a venda em 1 segundo.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">✗</span><span><strong>PDF de 12 páginas no primeiro toque</strong> — só anexa quando ele pedir.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">✗</span><span><strong>"Transformação digital com IA"</strong> — dono não fala assim.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">✗</span><span><strong>Desistir no primeiro silêncio</strong> — silêncio não é "não", é "agora não".</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">✗</span><span><strong>Spammar grupo de WhatsApp</strong> — você fica banido E queima a reputação no nicho.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Regra de ouro</h4>
+        <p class="text-neutral-300 text-sm">Antes de mandar qualquer mensagem nova, leia em voz alta. Se você não mandaria isso pra um conhecido seu da família, está ruim. Reescreve.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Áudio só com permissão</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Texto humano &gt; template</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Reputação local = ativo composto</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você sabe montar lista de 50-100 prospects com critério de fit, sem comprar lista pronta.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você conhece os 4 canais que funcionam pra PME e quando usar cada um.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você tem 2 modelos de mensagem padrão prontos pra adaptar ao seu nicho.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você sabe a cadência D1-D4-D11-D+30 e a meta de 10 ações/dia.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você tem CRM mínimo em planilha com 6 status e rotina diária definida.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você sabe os 6 erros que queimam lista e como evitar.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="index.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Voltar à Trilha 2</a>
+        <a href="modulo-2-2.html" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors text-center">Próximo: Abordagem &amp; quebra de gelo →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 2 — Módulo 2.1</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

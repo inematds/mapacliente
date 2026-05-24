@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.5 — Relatório de diagnóstico &amp; plano 30 dias | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124,58,237,.06); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 3</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 3.5</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold mb-4">MÓDULO 3.5</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">📄 Relatório de diagnóstico &amp; plano 30 dias</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">A página única que o dono lê em 5 min e assina em 10. Estrutura, linguagem, plano de 4 semanas, faixa de investimento e como transformar a devolutiva em contrato no mesmo dia.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~35 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Coração</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Entrega</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📑 Estrutura de 1 página</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Relatório longo <strong class="text-red-400">não é lido</strong>. O dono quer decisão, não dissertação. <strong class="text-purple-400">1 página</strong> força foco e mostra que você sabe priorizar. Os 5 blocos obrigatórios:</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-3"># Esqueleto do relatório (1 página)</div>
+
+        <div class="mt-3 text-purple-400">## 1. Situação atual (3-5 frases)</div>
+        <div>Resumo do contexto e dor principal. Em palavras dele.</div>
+
+        <div class="mt-3 text-purple-400">## 2. Oportunidades identificadas (3-5 itens)</div>
+        <div>Cada uma com: nome, área, impacto estimado, facilidade, score.</div>
+
+        <div class="mt-3 text-purple-400">## 3. Recomendação (primeira ação)</div>
+        <div>UMA recomendação clara. Qual assistente, em que área, com qual resultado.</div>
+
+        <div class="mt-3 text-purple-400">## 4. Plano 30 dias (4 semanas)</div>
+        <div>Entregável por semana. Marco visível.</div>
+
+        <div class="mt-3 text-purple-400">## 5. Investimento</div>
+        <div>Faixa, condições, escopo (e o que NÃO inclui).</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Boa estrutura</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>1 página principal + 1 anexo opcional</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>5 blocos fixos, mesma ordem sempre</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Diagrama de quadrantes incluso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Cabeçalho com data e nome da empresa</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Anti-padrões</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>PDF de 12 páginas com sumário</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tabela enorme de KPI por área</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>3 recomendações concorrendo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Plano de 90 dias (longo demais)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">1 página é meta</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">5 blocos fixos</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Anexo opcional pra detalhe</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🗣️ Linguagem de dono</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Trocar "implementar agente conversacional via LLM" por <strong class="text-purple-400">"atendimento que responde igual você"</strong>. Usar palavras dele no relatório (verbatim das notas). Jargão vira parede; linguagem dele vira ponte.</p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 border border-purple-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-purple-400 mb-3">💡 A tradução técnica → dono</h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Implementação de RAG com embeddings"</span> → <span class="text-purple-400 font-semibold">"Bot que responde do jeito que você responderia, usando sua tabela de preço"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Pipeline de qualificação com handoff"</span> → <span class="text-purple-400 font-semibold">"Filtra cliente sério antes de chegar em você"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Automação multi-step via webhook"</span> → <span class="text-purple-400 font-semibold">"Proposta sai sozinha quando a visita acaba"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Few-shot prompting com critérios"</span> → <span class="text-purple-400 font-semibold">"Aprende com 5 casos seus e replica o jeito"</span></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="font-bold mb-4 text-purple-400">📋 Checklist de linguagem antes de enviar</h3>
+        <div class="space-y-2 text-sm text-neutral-300">
+          <div class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Eliminei toda sigla técnica (LLM, RAG, NLP)?</span></div>
+          <div class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Usei pelo menos 3 frases verbatim do dono?</span></div>
+          <div class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Cada oportunidade tem resultado em "tempo" ou "real"?</span></div>
+          <div class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Passei no "teste do avô" (alguém de 70 anos entende)?</span></div>
+          <div class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>O nome do projeto descreve o resultado, não a ferramenta?</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Cite o dono entre aspas em pelo menos 2 lugares do relatório. Exemplo: <em>"como você disse: 'não consigo desligar o WhatsApp à noite' — esse projeto resolve exatamente isso."</em> Ele lê e sente que escreveu junto.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Resultado &gt; tecnologia</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Verbatim do dono</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Teste do avô antes de mandar</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📅 Plano de 30 dias</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Plano em <strong class="text-purple-400">semanas</strong> tira ansiedade. Cliente vê quando vai usar, não promessa abstrata. Marco semanal vira ritmo de pagamento. Cada semana com entregável claro.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">S1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Semana 1 — Coleta de dados &amp; casos</h4>
+            <p class="text-neutral-300 text-sm">Acesso a WhatsApp/CRM, 5 casos reais coletados, regras extraídas e validadas. Entregável: documento de regras aprovado pelo dono.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">S2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Semana 2 — Montagem do v1</h4>
+            <p class="text-neutral-300 text-sm">Prompt completo (6 blocos), conexão com canal (WhatsApp/Slack/email), testes internos com 10 casos. Entregável: assistente funcionando em ambiente de teste.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">S3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Semana 3 — Piloto com aprovação humana</h4>
+            <p class="text-neutral-300 text-sm">Assistente no ar com aprovação humana antes de cada resposta. Coleta de erros, ajuste de regras. Entregável: log de 50 interações com correções aplicadas.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">S4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Semana 4 — Ajuste fino &amp; treinamento</h4>
+            <p class="text-neutral-300 text-sm">Aprovação humana só em exceção, treinamento da equipe (1h), documentação de operação. Entregável: assistente em produção + manual interno.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Marcos visíveis = ritmo de pagamento</h3>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• <strong>30%</strong> na assinatura do contrato</li>
+          <li>• <strong>30%</strong> ao final da Semana 2 (assistente funcionando)</li>
+          <li>• <strong>40%</strong> ao final da Semana 4 (em produção)</li>
+        </ul>
+        <p class="text-neutral-300 text-sm mt-3">Pagamento parcelado por entregável reduz objeção e protege ambos lados.</p>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">30 dias é o horizonte mental do dono de PME. Mais que isso, ele esquece e desconfia. Menos que isso, você entrega sem qualidade. Cabe a você apertar o escopo pra caber em 4 semanas.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Entregável por semana</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Marco visível</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">30 dias = horizonte do dono</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💵 Investimento estimado</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Apresente <strong class="text-purple-400">faixa</strong> (R$ X-Y) com 2-3 condições. Número exato no diagnóstico te trava. Faixa abre conversa. Escopo explícito evita "achei que tinha".</p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-3"># Modelo de proposta de investimento</div>
+
+        <div class="mt-3 text-purple-400">## Opção A — Projeto + mensalidade</div>
+        <div>Setup (30 dias): R$ 4.500 – R$ 7.000</div>
+        <div>Mensalidade (manutenção + ajuste): R$ 800 – R$ 1.200/mês</div>
+        <div>Indicado para: cliente que quer recorrência baixa.</div>
+
+        <div class="mt-4 text-purple-400">## Opção B — Projeto fechado</div>
+        <div>Investimento único: R$ 8.000 – R$ 12.000</div>
+        <div>Inclui: setup + 60 dias de ajuste. Depois disso, cliente assume.</div>
+        <div>Indicado para: cliente com equipe técnica interna.</div>
+
+        <div class="mt-4 text-purple-400">## Inclui</div>
+        <div>- Coleta &amp; documentação de regras</div>
+        <div>- Prompt + conexão com canal</div>
+        <div>- 30 dias de ajuste + 1h treinamento</div>
+
+        <div class="mt-3 text-red-400">## NÃO inclui</div>
+        <div>- Custos de API (WhatsApp Business, OpenAI) — passados a custo</div>
+        <div>- Integração com sistemas legados (negociar à parte)</div>
+        <div>- Novos casos de uso fora do escopo (cotados separadamente)</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Boa apresentação de preço</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>2 opções (mensalidade vs fechado)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Faixa de valor, não número travado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Lista clara "inclui" e "NÃO inclui"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Custos externos transparentes (API)</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Erros caros</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Número exato sem flexibilidade</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"A partir de" sem teto</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Inclui" sem "NÃO inclui"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esconder custo de API "pra fechar"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Atenção ao escopo</h4>
+        <p class="text-neutral-300 text-sm">90% dos conflitos de projeto vêm de escopo mal definido. <strong>Lista de "NÃO inclui" é mais importante que a lista de "inclui"</strong>. Sem ela, todo pedido extra vira briga ou trabalho de graça.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Faixa &gt; número fechado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Setup + mensalidade clara</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">"NÃO inclui" explicitado</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎬 Call de 30 min de apresentação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mandar PDF e esperar fechar é o <strong class="text-red-400">pior caminho</strong>. Apresentar ao vivo elimina dúvida, ajusta na hora e fecha mais. <strong class="text-purple-400">30 minutos divididos em 3 blocos de 10.</strong></p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-3"># Roteiro da call de 30 min</div>
+
+        <div class="mt-3 text-purple-400">## Minutos 0-10 — Apresentação</div>
+        <div>- Tela compartilhada com o relatório aberto</div>
+        <div>- Reconectar com 3 frases dele da última conversa</div>
+        <div>- Caminhar pelos 5 blocos sem pressa</div>
+        <div>- Pausa pra "faz sentido?" entre blocos</div>
+
+        <div class="mt-3 text-purple-400">## Minutos 10-20 — Objeções &amp; ajuste</div>
+        <div>- "Tem alguma dúvida?" — esperar 5 segundos</div>
+        <div>- Anotar objeções literais</div>
+        <div>- Ajustar escopo/preço ao vivo se necessário</div>
+        <div>- Repetir a recomendação principal</div>
+
+        <div class="mt-3 text-purple-400">## Minutos 20-30 — Próximo passo &amp; agenda</div>
+        <div>- "Posso te mandar contrato pra começar segunda?"</div>
+        <div>- Se sim: marcar kickoff no calendário ali</div>
+        <div>- Se "vou pensar": agendar follow-up em 3 dias</div>
+        <div>- Encerrar com promessa clara</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+          <h4 class="font-bold text-purple-400 mb-4">✓ Mecânica que funciona</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Tela compartilhada (relatório aberto)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>30 min fechados (sem alongar)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Você guia, ele participa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Pede contrato dentro da call</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que mata a venda</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mandar PDF e esperar resposta</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Call de 1h+ sem foco</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Não pedir próximo passo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Te ligo semana que vem"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Se o dono não pode em 30 min, agende em 2 sessões. <strong>Nunca</strong> mande relatório sem call. Documento sem apresentação ao vivo cai para o final da fila mental dele.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">30 min &gt; 1h</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Tela compartilhada</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Próximo passo agendado na call</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📝 Abrir o contrato de projeto</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">No fim da call: <strong class="text-purple-400">"Posso te mandar o contrato pra começar semana que vem?"</strong>. Contrato curto (1-2 páginas) com escopo, prazo, valor, garantia. Assinatura digital. <strong>A janela quente fecha em 48h.</strong></p>
+
+      <div class="bg-dark-900/60 border border-dark-600 rounded-xl p-5 mb-6 font-mono text-sm text-neutral-300 leading-relaxed">
+        <div class="text-purple-400 font-bold mb-3"># Modelo de contrato (1-2 páginas)</div>
+
+        <div class="mt-3 text-purple-400">## 1. Partes</div>
+        <div>Nome completo + CNPJ/CPF dos dois lados.</div>
+
+        <div class="mt-3 text-purple-400">## 2. Objeto</div>
+        <div>"Desenvolvimento e implementação de [nome do projeto] conforme proposta anexa de [data]."</div>
+
+        <div class="mt-3 text-purple-400">## 3. Prazo</div>
+        <div>30 dias úteis, com marcos semanais conforme proposta.</div>
+
+        <div class="mt-3 text-purple-400">## 4. Valor &amp; pagamento</div>
+        <div>R$ X.XXX,00, dividido em 3 parcelas (30/30/40%) conforme entregas.</div>
+
+        <div class="mt-3 text-purple-400">## 5. Escopo (inclui / NÃO inclui)</div>
+        <div>Copiado verbatim da proposta. Sem ambiguidade.</div>
+
+        <div class="mt-3 text-purple-400">## 6. Garantia</div>
+        <div>30 dias após entrega para ajuste sem custo extra dentro do escopo original.</div>
+
+        <div class="mt-3 text-purple-400">## 7. Rescisão</div>
+        <div>Aviso prévio de 15 dias. Trabalho até data é pago proporcional.</div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Tenha modelo pronto</h4>
+            <p class="text-neutral-300 text-sm">Contrato em Google Docs ou DocuSign. Mudar só 4 campos: nome, valor, prazo, objeto. Mandar em 1h.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Assinatura digital</h4>
+            <p class="text-neutral-300 text-sm">DocuSign, ClickSign ou similar. Reduz fricção a zero. Cliente assina do celular.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Cobrar primeira parcela junto</h4>
+            <p class="text-neutral-300 text-sm">"Cliente que paga, começa." Primeira parcela na assinatura, e só aí marca kickoff.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Follow-up em 48h se não assinou</h4>
+            <p class="text-neutral-300 text-sm">"Oi [nome], tudo bem? Te mando ajuda em alguma dúvida do contrato?" Sem pressão, com cuidado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 border border-purple-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-purple-400 mb-3">💡 A janela quente</h3>
+        <p class="text-neutral-300 text-sm">Entre a devolutiva e a assinatura tem <strong>48-72h</strong> de janela quente. Mais que isso, a empolgação dele cai, surge outra urgência, e o projeto vai pro "depois". Sua disciplina é cumprir esse prazo: contrato em 1h, follow-up em 48h.</p>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Termine toda call de devolutiva com a frase: <strong>"Te mando o contrato ainda hoje. Você consegue assinar amanhã?"</strong>. Pequena cobrança verbal aumenta drasticamente a taxa de fechamento.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Pedir contrato dentro da call</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Modelo curto e pronto</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-purple-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Janela quente = 48h</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você escreve relatório de 1 página com 5 blocos fixos — situação, oportunidades, recomendação, plano, investimento.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você usa linguagem de dono — zero jargão, palavras dele verbatim, teste do avô antes de enviar.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você apresenta plano de 4 semanas com entregável claro por semana e pagamento parcelado por marco.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você propõe faixa de investimento com 2 opções e escopo explícito do que NÃO inclui.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><span class="text-neutral-300">Você conduz call de 30 min, pede contrato dentro da call e respeita a janela quente de 48h.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-3-4.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Módulo anterior</a>
+        <a href="../trilha4/index.html" class="px-5 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors text-center">Próxima trilha: Implementação →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 3 — Módulo 3.5</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

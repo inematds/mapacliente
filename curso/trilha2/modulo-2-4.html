@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.4 — As 6 objeções clássicas | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(29,78,216,.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(29,78,216,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 2</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 2.4</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-4">MÓDULO 2.4</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">🚧 As 6 objeções clássicas</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Toda objeção é informação. O dono te dá pista do que ainda falta esclarecer pra ele assinar. Não é parede; é janela. Aqui estão as 6 que aparecem em 90% das conversas, com script pronto de resposta, ângulo do reframing e o que NÃO dizer.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Decisivo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Scripts</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">⏰ "Não tenho tempo pra isso agora"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A objeção mais comum, e também a mais fácil. Quem diz "não tenho tempo" está dizendo "preciso muito disso". <strong class="text-blue-400">Devolva o tempo como argumento.</strong></p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script de resposta</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Justamente por isso, Carlos.</div>
+          <div class="mt-2">O diagnóstico custa 1 hora sua agora pra eu te entregar um mapa que te devolve <strong class="text-blue-400">5-10 horas por semana</strong> depois.</div>
+          <div class="mt-2">É o ROI mais barato do seu mês.</div>
+          <div class="mt-2">Quer marcar pra próxima terça às 14h? Te mando lembrete na segunda."</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que fazer</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Reconhecer ("justamente por isso")</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quantificar ganho em horas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Propor data específica</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tirar peso ("sem compromisso")</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que NÃO fazer</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Entendo, te chamo outro dia" (esfria)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Insistir no mesmo dia 3 vezes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pedir 1 hora sem proposta de troca</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Quando você puder me avisa"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Tempo é a dor — use a dor</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Quantifique o ganho em horas</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Proponha data específica</div></div>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🤖 "Isso é muito tecnológico pra mim"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A objeção do medo de não saber. O medo verdadeiro é <strong class="text-blue-400">perder controle</strong>. Devolva o controle nominalmente: ele decide, você executa.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script de resposta</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Você não precisa entender por dentro.</div>
+          <div class="mt-2">Eu cuido da parte técnica e te entrego algo que <strong class="text-blue-400">funciona no seu celular</strong>.</div>
+          <div class="mt-2">Você só precisa saber clicar em 'aprovar' quando aparecer uma mensagem nova pra revisar.</div>
+          <div class="mt-2">Quer que eu te mostre como vai aparecer na sua tela?"</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Tática complementar</h4>
+        <p class="text-neutral-300 text-sm">Tire o celular do bolso. Mostre uma demo de 30s do painel de aprovação. "Isso aqui é o que você vai ver. Aperta verde ou vermelho. Mais nada." A demo concreta desarma 80% desse medo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">"Você não precisa entender por dentro"</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Mostre a tela do celular</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Aprovação humana visível</div></div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">⚠️ "Tenho medo da IA errar com meu cliente"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A objeção da responsabilidade. O dono carrega na cabeça que <strong class="text-blue-400">a marca dele é o nome dele</strong>. Você precisa mostrar que o risco é zero no início.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script de resposta</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Faz total sentido. Por isso a gente trabalha em 3 fases:</div>
+          <div class="mt-2"><strong class="text-blue-400">Fase 1 (mês 1):</strong> a IA prepara a resposta, e você aprova TUDO. Zero risco.</div>
+          <div class="mt-1"><strong class="text-blue-400">Fase 2 (mês 2-3):</strong> ela já manda direto o que for simples (horário, endereço). Você aprova só o complexo.</div>
+          <div class="mt-1"><strong class="text-blue-400">Fase 3 (mês 4+):</strong> autonomia maior, mas só depois de 60 dias com histórico de acerto.</div>
+          <div class="mt-2">Quem decide quando passar de fase é você."</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Fase 1 — copiloto</h4>
+            <p class="text-neutral-300 text-sm">IA prepara, humano envia. Risco: zero. Tempo economizado: ~30%.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Fase 2 — autonomia parcial</h4>
+            <p class="text-neutral-300 text-sm">IA executa o simples sozinha, humano aprova o complexo. Risco: baixo. Economia: ~60%.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Fase 3 — autonomia plena</h4>
+            <p class="text-neutral-300 text-sm">Humano só vê alertas e exceções. Risco controlado, monitoria contínua. Economia: ~85%.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Aprovação humana por níveis</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Fase 1 = risco zero</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Autonomia só com histórico</div></div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💸 "Não sei se vou ter retorno"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A objeção financeira clássica. <strong class="text-blue-400">Transforme em motivo pra fazer o diagnóstico</strong>. Diagnóstico = "calcular o ROI antes de gastar projeto". É a venda mais elegante.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script de resposta</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Vamos olhar números do seu negócio agora mesmo.</div>
+          <div class="mt-2">Quantos leads você perde por demora hoje? Mesmo estimando — uns 5 por semana? Ticket médio R$ X?</div>
+          <div class="mt-2">Se a IA recuperar 30% disso, em 2 meses ela paga o projeto inteiro.</div>
+          <div class="mt-2">E o diagnóstico mostra essa conta <strong class="text-blue-400">antes de você decidir</strong> investir mais."</div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Conta de padaria — exemplo</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div>Leads perdidos/semana: 5</div>
+          <div>Ticket médio: R$ 800</div>
+          <div>Conversão se respondesse: 30%</div>
+          <div class="border-t border-dark-600 pt-2 mt-2">Perda mensal: 5 × 4 × 800 × 30% = <strong class="text-blue-400">R$ 4.800/mês</strong></div>
+          <div>Mensalidade do assistente: R$ 800/mês</div>
+          <div class="border-t border-dark-600 pt-2 mt-2">Saldo no mês 1: <strong class="text-blue-400">+R$ 4.000</strong></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">ROI em horas/leads/propostas</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Diagnóstico mostra a conta</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Sem conta, sem proposta</div></div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏠 "Minha empresa é pequena demais"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A objeção do "isso é pra empresa grande". <strong class="text-blue-400">Inverta o argumento</strong>: tamanho pequeno é vantagem, não desvantagem. Cite caso de outra PME do tamanho dele.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script de resposta</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Por isso eu trabalho com PME, e não com empresa grande.</div>
+          <div class="mt-2">Empresa grande tem TI, processo, equipe. A pequena tem <strong class="text-blue-400">você no centro de tudo</strong>, e é exatamente aí que a IA gera mais alívio.</div>
+          <div class="mt-2">Aliás, meus 3 últimos clientes têm <strong class="text-blue-400">menos funcionário que você</strong>.</div>
+          <div class="mt-2">Posso te contar o caso de uma clínica pequena que dobrou as confirmações de consulta? Leva 2 minutos."</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Por que pequeno tem vantagem</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Decisão rápida (1 pessoa decide)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Implementação em semanas, não meses</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Dono no centro = alívio é sentido na pele</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Investimento cabe (R$ 500-2k/mês vs. R$ 50k+)</span></li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">📖 Caso comparável</h4>
+          <p class="text-neutral-300 text-sm">Sempre tenha 2-3 casos "do tamanho dele" prontos pra citar. Não invente: cite caso real com nicho similar ou número de funcionários parecido. Se ainda não tem caso, use caso simulado: "se o seu cenário fosse 5 leads/dia, isso significaria..."</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Inversão: pequeno é o público</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Caso comparável tira dúvida</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Dono no centro = mais alívio</div></div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🔁 "Já tentei e não funcionou"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A objeção do trauma anterior. <strong class="text-blue-400">Não despreze a experiência</strong>. Use ela como prova de que o método dele estava errado, não a categoria. Você é o método diferente.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📋 Script de resposta</h3>
+        <div class="font-mono text-sm text-neutral-300 bg-dark-900/50 rounded p-4 leading-relaxed">
+          <div>"Conta como foi?</div>
+          <div class="mt-2">(escuta com atenção, anota)</div>
+          <div class="mt-2">— É, isso que você descreveu é exatamente o problema de <strong class="text-blue-400">comprar ferramenta sem adaptar ao processo</strong>.</div>
+          <div class="mt-2">Aqui a gente faz o contrário: mapeia primeiro como sua empresa funciona, depois escolhe ferramenta. Por isso o diagnóstico vem antes da implementação.</div>
+          <div class="mt-2">Posso te explicar a diferença em 10 minutos?"</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Importante</h4>
+        <p class="text-neutral-300 text-sm">Escute <strong>antes</strong> de propor. Cliente traumatizado precisa contar a história. Se você cortar pra vender, ele lembra que foi cortado igual da vez anterior. <strong>Dois minutos de escuta valem o restante da reunião.</strong></p>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Escute a história</h4>
+            <p class="text-neutral-300 text-sm">"Conta o que tentaram? Que ferramenta? O que aconteceu?" Anote. Demonstra cuidado.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Diagnostique o erro anterior</h4>
+            <p class="text-neutral-300 text-sm">"O que aconteceu é o problema de implementar sem adaptar. Faz sentido a frustração."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Posicione-se como o método oposto</h4>
+            <p class="text-neutral-300 text-sm">"A gente faz o contrário: mapeia antes, ferramenta depois. Garantia: se em 30 dias não faz sentido, devolvo."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Escute a história primeiro</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Diagnostique o erro anterior</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Posicione-se como método oposto</div></div>
+      </div>
+    </section>
+
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">"Não tenho tempo" — devolve tempo em horas economizadas; data específica.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">"Tecnológico demais" — devolve controle; mostra tela do celular; aprovação visível.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">"Medo de errar" — explica as 3 fases; risco zero no início; quem decide é o cliente.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">"Sem retorno" — calcula ROI na hora; diagnóstico é a conta antes do projeto.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">"Pequena demais" — inverte; cita caso comparável; pequena tem mais alívio.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">"Já tentei" — escuta antes; diagnostica o erro; posiciona como método oposto.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-2-3.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Explicar IA</a>
+        <a href="modulo-2-5.html" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors text-center">Próximo: Vender o diagnóstico →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 2 — Módulo 2.4</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

@@ -6,10 +6,15 @@
   <title>Trilha 6 — Escala do Profissional | Mapa Cliente</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
   <style>
     body { font-family: 'Inter', sans-serif; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
     .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
     html:not(.dark) body { background-color: #f8fafc; }
     html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
     html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
@@ -20,14 +25,18 @@
     html:not(.dark) .text-neutral-400 { color: #6b7280; }
     html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
     html:not(.dark) .text-rose-400 { color: #be123c; }
     html:not(.dark) .bg-rose-500\/20 { background-color: rgba(190,18,60,.12); }
     html:not(.dark) .bg-rose-500\/10 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .bg-rose-900\/20 { background-color: rgba(190,18,60,.06); }
+    html:not(.dark) .bg-rose-900\/30 { background-color: rgba(190,18,60,.08); }
     html:not(.dark) .border-rose-500\/30 { border-color: rgba(190,18,60,.25); }
+    html:not(.dark) .hover\:bg-rose-500\/30:hover { background-color: rgba(190,18,60,.18); }
     html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
     html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
-    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
-    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
     html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
     html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
@@ -38,6 +47,8 @@
     html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
     html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
     html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; }
     html:not(.dark) .text-yellow-400 { color: #a16207; }
     html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
@@ -48,32 +59,34 @@
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
 
   <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
-      <div class="flex items-center space-x-4">
-        <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
-        <span class="text-neutral-600">|</span>
-        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
       </div>
-      <div class="flex items-center space-x-1 sm:space-x-2">
-        <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
-        <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
-        <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
-        <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
-        <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
-        <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
-        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-        </button>
-      </div>
-    </div></div>
+    </div>
   </nav>
 
   <header class="bg-gradient-to-br from-rose-900/30 via-dark-900 to-dark-800 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <span class="inline-flex px-4 py-2 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-400 text-sm font-semibold mb-6">TRILHA 6</span>
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">🚀 Escala do Profissional</h1>
-      <p class="text-neutral-300 max-w-3xl text-lg mb-8">Como sair do "vendi um projeto" para "tenho carteira". Padronização da entrega, precificação por modelo, portfólio que vende sozinho e o projeto final que valida sua formação.</p>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-8">Sair do "vendi um projeto" e chegar em "tenho carteira e marca". Padronização da entrega, três camadas de receita, portfólio que vende sozinho e o projeto final que valida sua formação.</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Módulos</div><div class="font-bold text-lg">4</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Tópicos</div><div class="font-bold text-lg">24</div></div>
@@ -88,18 +101,381 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.1</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">⚙️ Padronizar entrega</h3><p class="text-sm text-neutral-400">Personalizar diagnóstico, padronizar projeto.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.2</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">💵 Precificação</h3><p class="text-sm text-neutral-400">Avulso, projeto, mensalidade.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.3</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">📁 Portfólio &amp; casos</h3><p class="text-sm text-neutral-400">Caso público &gt; anúncio pago.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.4</span><span class="text-xs text-neutral-500">~30 min</span></div><h3 class="font-bold mb-1">🎓 Projeto final</h3><p class="text-sm text-neutral-400">Cliente real ou simulado.</p></div>
+        <a href="#modulo-6-1" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-rose-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.1</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">⚙️ Padronizar entrega</h3>
+          <p class="text-sm text-neutral-400">Personaliza diagnóstico, padroniza projeto.</p>
+        </a>
+        <a href="#modulo-6-2" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-rose-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.2</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">💵 Precificação</h3>
+          <p class="text-sm text-neutral-400">Avulso, projeto, mensalidade.</p>
+        </a>
+        <a href="#modulo-6-3" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-rose-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.3</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">📁 Portfólio &amp; casos</h3>
+          <p class="text-sm text-neutral-400">Caso público &gt; anúncio pago.</p>
+        </a>
+        <a href="#modulo-6-4" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-rose-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-rose-400 font-bold">6.4</span><span class="text-xs text-neutral-500">~30 min</span></div>
+          <h3 class="font-bold mb-1">🎓 Projeto final</h3>
+          <p class="text-sm text-neutral-400">Cliente real, método DICA completo.</p>
+        </a>
       </div>
     </section>
 
-    <div class="bg-rose-900/20 border border-rose-500/30 rounded-2xl p-8 text-center">
-      <div class="text-4xl mb-3">🚧</div>
-      <h2 class="text-2xl font-bold mb-3">Conteúdo detalhado em construção</h2>
-      <p class="text-neutral-300 mb-4">Esta trilha trará playbook de padronização, calculadora de precificação, template de caso público e o briefing do projeto final da formação.</p>
-      <p class="text-neutral-400 text-sm">Próxima publicação: módulo 6.1 com manual de operação padronizada.</p>
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MÓDULO 6.1 -->
+    <div id="modulo-6-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-rose-400 font-bold">6.1</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">⚙️ Padronizar entrega</h3>
+        <p class="text-neutral-400 text-sm">Regra de ouro da escala: personalizar diagnóstico, padronizar projeto. Biblioteca de playbooks, kit de implementação e onboarding repetível.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">🥇 Regra de ouro da escala</div><div class="text-sm text-neutral-400">Personaliza diagnóstico, padroniza projeto.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">A entrevista, o mapa de processo e o relatório de diagnóstico são únicos por cliente. Já o projeto (assistente de WhatsApp, máquina de proposta, painel financeiro) tem 80% do código, prompts e fluxo iguais entre clientes do mesmo nicho.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem essa virada você vira refém de cada cliente: cada projeto começa do zero, demora 6 semanas e a margem evapora. Com ela, o terceiro cliente do nicho fica pronto em 10 dias.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Frente do cliente: hiperpersonalizada</li><li>Bastidor: 80% repetível</li><li>Tempo de entrega cai a cada projeto</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">📚 Biblioteca pessoal de playbooks</div><div class="text-sm text-neutral-400">Seu ativo invisível que cresce a cada projeto.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Notion (ou pasta versionada) com: roteiro de diagnóstico por nicho, prompts mestres, fluxos n8n exportados, propostas-modelo, FAQs por vertical, calculadora de ROI, scripts de objeção.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Memória externa libera sua cabeça. Você para de "inventar" a cada cliente e começa a executar com confiança. Em 6 meses sua biblioteca vale mais que qualquer curso.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>1 pasta por nicho</li><li>Versionar cada melhoria</li><li>Cada cliente alimenta o próximo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📦 Kit de implementação por pacote</div><div class="text-sm text-neutral-400">Três pacotes nomeados, escopo claro.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Pacote Atende (assistente WhatsApp + FAQ + handoff), Pacote Vende (qualificação de lead + proposta automática + follow-up), Pacote Opera (procedimentos internos + checklist + relatório). Cada pacote tem checklist próprio.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente compra nome simples, não arquitetura. Pacote nomeado fecha mais rápido e protege escopo de inflar no meio do projeto.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Nome &gt; descrição técnica</li><li>Escopo fechado por contrato</li><li>Add-on é venda futura, não desconto</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🚪 Onboarding do cliente em 5 passos</div><div class="text-sm text-neutral-400">Primeiros 7 dias definem o resto.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">D1 kickoff de 45min · D2 envio do checklist de acessos · D3 coleta de exemplos reais (10-20 conversas/propostas) · D5 versão 1 funcionando · D7 ajuste com cliente e início de treinamento.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Onboarding lento gera ansiedade. Cliente que vê algo funcionando em 5 dias confia, paga em dia e indica. Cliente sem entrega visível na 1ª semana começa a duvidar.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Vitória rápida em 5 dias</li><li>Acessos antes de promessa</li><li>Treinamento começa cedo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">✅ Checklist de qualidade pré-entrega</div><div class="text-sm text-neutral-400">O que checar antes de dizer "está pronto".</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Lista fixa de 15-20 itens: prompt revisado, casos-limite testados, mensagem de erro tratada, métrica configurada, treinamento agendado, documentação simples entregue, contato de suporte definido.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem checklist você esquece algo a cada projeto, descobre na 2ª semana e queima reputação. Checklist transforma qualidade em hábito, não em sorte.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Mesmos 20 itens em todo projeto</li><li>Cliente assina a entrega</li><li>Cada bug vira novo item da lista</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">🛡️ Evitar refazer tudo do zero</div><div class="text-sm text-neutral-400">A armadilha do "esse cliente é diferente".</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Todo dono acha o negócio dele único. Em 90% das vezes a diferença é vocabulário, não fluxo. Sua função é traduzir a versão pessoal para o template, não desmontar o template.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Ceder à pressão de "fazer especial" zera margem. Aprenda a oferecer o template como padrão e cobrar add-on quando o cliente realmente precisa de algo customizado.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Vocabulário muda, fluxo não</li><li>Customização tem preço de customização</li><li>Diga "no nosso método..." com calma</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-6-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-6-1.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 6.2 -->
+    <div id="modulo-6-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-rose-400 font-bold">6.2</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">💵 Precificação — modelo de 3 camadas</h3>
+        <p class="text-neutral-400 text-sm">Avulso (porta), projeto (fôlego) e mensalidade (estabilidade). Quando subir preço e como ajustar por nicho.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">🪜 As 3 camadas de receita</div><div class="text-sm text-neutral-400">Avulso R$ 1-2.5k · Projeto R$ 5-15k · Mensal R$ 500-1.5k.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Camada 1 — Diagnóstico avulso (R$ 1.000-2.500): porta de entrada, fácil de fechar, baixo risco. Camada 2 — Projeto (R$ 5.000-15.000): implementação completa de um pacote. Camada 3 — Mensalidade (R$ 500-1.500): manutenção, ajustes, novas pautas, suporte mensal.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cada camada tem função: avulso traz volume e aprendizado; projeto traz fôlego financeiro pontual; mensalidade traz previsibilidade. Quem só vende projeto vive em montanha-russa.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Esteira: avulso → projeto → mensal</li><li>Recorrência paga sua estrutura</li><li>Projeto único é receita, não negócio</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">📈 Quando subir preço</div><div class="text-sm text-neutral-400">Sinais objetivos, não emoção.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Suba 15-25% quando: (a) últimos 5 prospects fecharam sem negociar, (b) agenda lotada para 30+ dias, (c) você tem 2-3 casos públicos no nicho, (d) tempo de entrega caiu pela metade.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Preço baixo só faz sentido enquanto você está aprendendo. Manter preço de iniciante depois de virar referência é deixar dinheiro na mesa e atrair clientes ruins.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Lista de espera = sinal de preço baixo</li><li>Reajuste 1x por semestre</li><li>Mantém preço antigo para carteira atual</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">🎯 Preço por nicho</div><div class="text-sm text-neutral-400">Clínica ≠ imobiliária ≠ restaurante.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Clínicas e advocacia pagam mais (ticket alto do cliente final). Restaurantes e salões pagam menos (margem apertada). Imobiliárias e auto centers pagam médio mas têm volume. Ajuste o preço de cada pacote por vertical.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Preço único trata diferente como igual. Você perde projeto em nicho caro por estar barato e perde projeto em nicho barato por estar caro. Tabela por nicho conserta isso.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Ticket do cliente do cliente importa</li><li>Margem do nicho importa</li><li>Tabela é interna, não pública</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🤝 Negociação sem desconto cego</div><div class="text-sm text-neutral-400">Quando ceder, o que ceder, como ceder.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Não baixe preço sem tirar escopo. Se o cliente pede 20% off, ofereça pacote menor (sem follow-up automático, por exemplo) ou prazo de pagamento. Mantenha a percepção de valor.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Desconto sem contrapartida ensina o mercado que seu preço é fictício. Em 6 meses todo cliente vai negociar. Quem mantém estrutura cobra com calma.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Desconto = tirar escopo</li><li>Parcelar ≠ baratear</li><li>"Não" é resposta válida</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">🔁 Construir receita previsível</div><div class="text-sm text-neutral-400">Mensalidade é o coração da operação.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Meta: 10-15 clientes em mensalidade média de R$ 800 = R$ 8-12k previsíveis. Cima disso vai para projetos novos e reajuste. Sem mensalidade, todo mês começa em zero.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Mensalidade muda sua psicologia: para de aceitar cliente ruim, escolhe nicho, planeja folga. É o que separa freelancer de consultor de carreira.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>MRR &gt; ticket pontual</li><li>Contrato de 6-12 meses</li><li>Renovação automática</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">💸 Custos invisíveis</div><div class="text-sm text-neutral-400">O que o preço precisa cobrir além do seu tempo.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">APIs (OpenAI/Anthropic), automação (n8n cloud/Make), WhatsApp Business API, hospedagem, ferramentas (Notion, Linear, Figma), imposto (~16% no Simples), reserva para meses fracos, tempo de prospecção não faturado.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Preço calculado só pela sua hora ignora 30-40% do custo real. Resultado: você acha que ganhou bem e descobre no fim do mês que não sobrou nada.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Repasse explícito de API ao cliente</li><li>Pró-labore separado do caixa</li><li>Reserva de 3 meses como meta</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-6-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-6-2.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 6.3 -->
+    <div id="modulo-6-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-rose-400 font-bold">6.3</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📁 Portfólio &amp; casos — marketing assíncrono</h3>
+        <p class="text-neutral-400 text-sm">Um caso público bem escrito vende mais que três meses de anúncio. Como construir autoridade no nicho enquanto você dorme.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">🏆 Caso público &gt; anúncio pago</div><div class="text-sm text-neutral-400">Prova social vence promessa.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Um caso com nome, foto do dono, número antes/depois e citação curta gera mais lead qualificado que tráfego pago. Custa zero, dura anos, indexa em busca local.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Dono de PME confia em outro dono de PME que ele conhece de vista. Anúncio vira ruído; caso vira referência. Quem tem 5 casos publicados não precisa prospectar todo dia.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Específico vende</li><li>Foto + número + frase</li><li>Caso local indexa local</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">📝 Template de caso de sucesso</div><div class="text-sm text-neutral-400">Problema → método → resultado em números.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Estrutura fixa: (1) Quem é o cliente — nicho, porte, cidade. (2) Qual era a dor — em frase do dono. (3) Que método aplicamos — DICA em uma linha. (4) Resultado em números — horas, R$, %. (5) Próximo passo — o que continua daqui.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Template fixo evita texto solto. Cada caso fica comparável, escaneável e adaptado para LinkedIn, site e Instagram com mudanças mínimas.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>5 blocos, sempre os mesmos</li><li>Citação direta do dono</li><li>Número específico &gt; "muito melhor"</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">🤝 Permissão do cliente</div><div class="text-sm text-neutral-400">Pedir cedo, pedir certo, pedir por escrito.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Coloque cláusula no contrato: "permito uso de logotipo, foto e números agregados em material institucional". Confirme por mensagem antes de publicar o caso pronto e mande preview.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem permissão você cria desconfiança e arrisca constrangimento. Cláusula no contrato vira fluxo natural. Cliente que vê a peça antes vira embaixador.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Contrato resolve 90%</li><li>Preview antes da publicação</li><li>Anonimizar quando o cliente preferir</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">📣 Publicar em LinkedIn, site e Instagram</div><div class="text-sm text-neutral-400">Um caso, três formatos.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">LinkedIn: post longo em primeira pessoa, voltado a outros donos. Site: página fixa com SEO local. Instagram: carrossel de 6 cards com número grande no primeiro. Mesmo conteúdo, três embalagens.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Quem espalha caso onde o cliente vê fecha venda sem prospectar. LinkedIn pega gestor, Instagram pega dono local, site pega quem busca "consultor IA + cidade".</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Adapta formato, não conteúdo</li><li>Cada canal puxa público diferente</li><li>Republicar a cada 6 meses</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">🎖️ Autoridade no nicho</div><div class="text-sm text-neutral-400">Ser conhecido como "o cara de X em Y".</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Escolha 1 nicho + 1 região. Publique 1 caso/mês + 2 posts curtos/semana sobre dores específicas do nicho. Em 6-9 meses você é a primeira referência local para aquela combinação.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Generalista compete com tudo. "Consultor de IA para clínicas odontológicas em Florianópolis" compete com ninguém. Especificidade vira monopólio local.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Nicho + região = vantagem</li><li>Frequência &gt; perfeição</li><li>6 meses para consolidar</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">😴 Vender enquanto você dorme</div><div class="text-sm text-neutral-400">Conteúdo é estoque, não evento.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Cada caso vive no site, no Google, no LinkedIn. Lead descobre você no domingo de noite, marca reunião pra terça. Sem você fazer nada na hora. Conteúdo é ativo, não trabalho.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">A diferença entre quem corre atrás e quem escolhe cliente é o estoque de conteúdo. Quem publicou 30 casos não prospecta — atende a fila.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Cada post é semente que rende anos</li><li>SEO local é gratuito e perpétuo</li><li>Estoque &gt; ato</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-6-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-6-3.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 6.4 -->
+    <div id="modulo-6-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-rose-400 font-bold">6.4</span><span class="text-xs text-neutral-500">~30 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎓 Projeto final — DICA do início ao fim</h3>
+        <p class="text-neutral-400 text-sm">Pegar um cliente real (ou simulado), aplicar DICA completo, entregar relatório + assistente + treinamento + check-in. Sair da formação com prova viva.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">📋 Briefing do projeto final</div><div class="text-sm text-neutral-400">Escopo, prazo, entregáveis.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Você escolhe 1 cliente (real preferencialmente, ou simulado realista). Aplica DICA: Diagnóstico (semana 1) → Implementação (semanas 2-3) → Capacitação do cliente (semana 4) → Acompanhamento (30 dias). Entregáveis: relatório, 1 assistente funcionando, vídeo de treinamento, plano de continuidade.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem projeto final, a formação fica teórica. Com projeto final, você sai com um caso real para mostrar — primeiro do portfólio, prova viva da metodologia.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>4 semanas + 30 dias de acompanhamento</li><li>4 entregáveis fechados</li><li>Real &gt; simulado, mas simulado vale</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">🎯 Critérios de avaliação</div><div class="text-sm text-neutral-400">O que precisa estar de pé.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">5 critérios: (1) Diagnóstico mostra dor real quantificada. (2) Implementação resolve uma das 5 áreas. (3) Cliente recebe treinamento e usa sem você. (4) Métrica antes/depois registrada. (5) Plano de continuidade combinado.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Critérios objetivos evitam projeto "bonito mas vazio". Cada item é checkpoint da formação: se algum falhar, o projeto inteiro perde força.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Cliente usa sem você = teste real</li><li>Métrica registrada = caso publicável</li><li>Continuidade = oportunidade de mensalidade</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">🎤 Apresentação final</div><div class="text-sm text-neutral-400">15 minutos que viram seu pitch.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Apresenta em 15 min: 2min contexto · 3min diagnóstico · 5min demo da implementação · 3min números · 2min plano de continuidade. Vira material de venda para os próximos prospects.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">A apresentação ensaiada vira seu pitch de venda padrão. Cada minuto investido aqui paga juros nas próximas 50 conversas comerciais.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Demo viva &gt; slide bonito</li><li>Números fechando cada bloco</li><li>Grava para reaproveitar</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🗺️ Pós-formação: virar referência local</div><div class="text-sm text-neutral-400">O que fazer nos 90 dias depois.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Dia 1-30: transformar o projeto final em caso público, publicar nos 3 canais. Dia 31-60: prospectar 30 contatos no mesmo nicho usando o caso. Dia 61-90: fechar 2-3 novos clientes, configurar carteira inicial de mensalidade.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem plano de 90 dias o impulso da formação se perde. Plano de 90 dias transforma certificado em receita real.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>30 / 30 / 30 — publicar, prospectar, fechar</li><li>Caso final vira chamariz</li><li>Meta: 3 clientes em 90 dias</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">⚠️ Riscos que travam o projeto</div><div class="text-sm text-neutral-400">O que costuma sair errado.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Cliente some no meio · escopo infla por pedido de favor · acesso a sistemas demora · você quer "perfeito" e não entrega · ferramenta nova no meio do projeto · medo de cobrar e adiar entrega.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Saber o risco antes vira anticorpo. Quem antecipa o desvio combina prazo, escopo e SLA logo no kickoff e protege a entrega.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Escopo fechado por escrito</li><li>Acessos no D1 ou prazo para</li><li>"Pronto o suficiente" &gt; "perfeito"</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">🎯 Encerramento da formação</div><div class="text-sm text-neutral-400">Como você sai daqui.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-rose-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Você sai com: método DICA aplicado · 1 caso público · pacotes nomeados · tabela de preço · biblioteca pessoal de playbooks · plano de 90 dias · pitch ensaiado · primeira mensalidade no horizonte.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Não é diploma — é estrutura de negócio. O valor da formação aparece nos 6 meses seguintes, conforme cada peça aprendida começa a render carteira.</p></div>
+            <div><div class="text-rose-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Você termina com negócio, não certificado</li><li>Carteira é a métrica real</li><li>Próximos 12 meses definem tudo</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-6-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-6-4.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
     </div>
 
     <div class="flex justify-between items-center mt-12 pt-8 border-t border-dark-600">
@@ -109,9 +485,28 @@
 
   </main>
 
-  <footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 6</div></footer>
+  <!-- MODAIS -->
+  <div id="modal-6-1" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 6.1</h3><button onclick="closeModal('modal-6-1')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-6-1.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-6-2" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 6.2</h3><button onclick="closeModal('modal-6-2')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-6-2.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-6-3" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 6.3</h3><button onclick="closeModal('modal-6-3')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-6-3.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-6-4" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 6.4</h3><button onclick="closeModal('modal-6-4')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-6-4.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 6</div>
+  </footer>
 
   <script>
+    function toggleTopic(button) {
+      const current = button.parentElement;
+      const container = current.parentElement;
+      const explanation = current.querySelector('.topic-explanation');
+      const items = container.querySelectorAll('.topic-item .topic-explanation');
+      items.forEach((item) => { if (item !== explanation) item.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeModal(id) { const m = document.getElementById(id); if (m) m.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden')); document.body.style.overflow = ''; } });
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');

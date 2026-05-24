@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.3 — Explicar IA sem assustar | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(29,78,216,.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(29,78,216,.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 2</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 2.3</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-4">MÓDULO 2.3</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">💬 Explicar IA sem assustar</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">O dono de PME tem entre 35 e 65 anos e não fala "LLM", "RAG" nem "agente". Ele fala "respondo cliente", "preparo proposta", "fecho relatório". Quem traduz IA pra linguagem dele vende; quem usa jargão amedronta. Este módulo te dá o vocabulário, as analogias, as demos e o reset emocional quando o cliente trava.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Comunicação</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Tradução</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🗣️ Falar a língua do dono</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cada palavra técnica é uma chance de ele desistir antes de comprar. <strong class="text-blue-400">Substitua substantivo técnico por verbo de rotina</strong>. O cliente quer saber o que muda na segunda-feira dele.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">💡 Tabela de tradução</h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Implemento um LLM com RAG"</span> → <span class="text-blue-400 font-semibold">"Coloco um atendimento que conhece a sua tabela e responde igual você"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Agente autônomo com tools"</span> → <span class="text-blue-400 font-semibold">"Um assistente que pega informação da planilha sozinho"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Pipeline de prompt engineering"</span> → <span class="text-blue-400 font-semibold">"A receita que ensina a IA a responder do jeito da sua empresa"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Fine-tuning do modelo"</span> → <span class="text-blue-400 font-semibold">"Treinar com os seus textos pra ela falar igual você fala"</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><span class="text-neutral-400 line-through">"Workflow automatizado"</span> → <span class="text-blue-400 font-semibold">"A engrenagem que faz sozinha do começo ao fim"</span></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Antes de toda reunião, faça uma lista das 3-5 palavras técnicas que você usaria e traduza cada uma. Cole no canto da tela. Olha de vez em quando pra não cair na armadilha.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Verbo de rotina &gt; substantivo técnico</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Exemplo concreto &gt; conceito geral</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">"Funciona assim" &gt; "a arquitetura é"</div></div>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🪞 As analogias que funcionam</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Analogia ancora algo <strong class="text-blue-400">novo</strong> em algo <strong class="text-blue-400">familiar</strong>. O dono já entende funcionário; agora ele entende IA. Use analogias de gente, não de máquina.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">👷 Funcionário de carteira</div><p class="text-neutral-300 text-sm">"É como contratar um funcionário que não dorme, não esquece, não tira férias e custa R$ X por mês. Só que ele só sabe fazer aquilo que você ensinar — e ensinar é a parte que eu faço."</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">🎓 Estagiário rápido</div><p class="text-neutral-300 text-sm">"Pense num estagiário muito rápido — você manda a regra dele uma vez, ele segue à risca em segundos. Mas se você não der a regra, ele não inventa."</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">☎️ Recepcionista</div><p class="text-neutral-300 text-sm">"É uma recepcionista do WhatsApp que sabe sua tabela, agenda, política de retorno e atende mesmo às 23h. Pra dúvida fora do padrão, ela te chama."</p></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="text-blue-400 font-bold mb-2">📝 Assistente pessoal</div><p class="text-neutral-300 text-sm">"Uma assistente que escreve a primeira versão da proposta com a sua cara e te entrega pra revisar. Você só edita; não monta do zero toda vez."</p></div>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">📊 Use a analogia também pro custo</h4>
+        <p class="text-neutral-300 text-sm">"Funcionário CLT custa R$ 3-5k por mês mais encargos. Esse assistente que faz parte do que ele faria custa R$ 800/mês e roda 24h. Não substitui o funcionário; alivia a sobrecarga dele."</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Analogia de gente, não de máquina</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Custos comparáveis a salário/serviço</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Limites também pela analogia</div></div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">👴 O teste do avô</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Antes de mandar proposta ou rodar pitch, leia em voz alta pra alguém leigo (avó, vizinho, mãe). Se a pessoa precisa perguntar "o que é isso?", <strong class="text-blue-400">o texto está ruim</strong>. Reescreve até passar.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">💡 Os 4 testes de clareza</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• <strong>Teste do avô</strong> — pessoa de 70 anos entende?</li>
+          <li>• <strong>Teste da rua</strong> — você diria isso na padaria? Se não, é jargão.</li>
+          <li>• <strong>Teste do verbo</strong> — toda frase tem verbo concreto (responder, lembrar, preparar)?</li>
+          <li>• <strong>Teste do exemplo</strong> — depois de cada conceito, tem exemplo real?</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Antes do teste</h4>
+          <p class="text-neutral-300 text-sm italic">"Implementaremos uma solução de inteligência artificial generativa integrada ao seu canal de atendimento, garantindo escalabilidade e melhoria contínua através de aprendizado supervisionado."</p>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Depois do teste</h4>
+          <p class="text-neutral-300 text-sm italic">"Vou colocar um atendimento automático no WhatsApp que responde lead em 2 minutos, mesmo às 23h. Você aprova os textos antes de ir pra produção. Em 30 dias a gente afia o que não saiu como você queria."</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Frase curta &gt; oração subordinada</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Verbo concreto &gt; nominalização</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Exemplo &gt; definição</div></div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📱 Demo rápida no celular</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">2 minutos de demo no celular vencem 30 minutos de slide. <strong class="text-blue-400">Visual concreto desbloqueia confiança</strong>. Tenha sempre 1-2 demos pré-carregadas, prontas pra mostrar mesmo sem wi-fi.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">A</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Demo de atendimento WhatsApp</h4>
+            <p class="text-neutral-300 text-sm">Vídeo de 90s: cliente pergunta horário, assistente responde com a tabela; cliente pergunta preço, assistente pega da planilha; cliente quer agendar, assistente cria evento no Google Calendar.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">B</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Demo de proposta automática</h4>
+            <p class="text-neutral-300 text-sm">Vídeo de 60s: você manda áudio de 30s descrevendo o cliente, e em 1 minuto o assistente devolve proposta em PDF formatada com a marca da empresa.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">C</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Demo de relatório semanal</h4>
+            <p class="text-neutral-300 text-sm">Print de WhatsApp toda segunda às 8h com resumo do que aconteceu semana passada: faturamento, leads, agendamentos, principais reclamações.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Mostre o erro também</h4>
+        <p class="text-neutral-300 text-sm">Inclua um exemplo de quando a IA errou e como a aprovação humana pegou. Honestidade vende mais que demo perfeita. "Aqui ela tentou agendar fora do horário; meu cliente clicou em 'recusar' e ela aprendeu."</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Demo curta, sem som</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Pré-carregada offline</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Mostrar erro = gerar confiança</div></div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🧱 Mostrar o limite</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cliente que entrou no projeto com expectativa correta vira recorrente. Cliente vendido com mágica vira reclamação no terceiro mês. <strong class="text-blue-400">Combinar o que a IA NÃO faz na frente</strong> é vacina contra frustração.</p>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-6 mb-6">
+        <h4 class="font-bold text-red-400 mb-4">⚠️ O que dizer ao cliente</h4>
+        <ul class="space-y-3 text-neutral-300 text-sm">
+          <li>• <strong>"Não substitui sua decisão"</strong> — em caso complexo, ela passa pra você</li>
+          <li>• <strong>"Não acerta 100%"</strong> — nas primeiras semanas, ~10% das respostas precisarão de ajuste</li>
+          <li>• <strong>"Não funciona sem o que você sabe"</strong> — o conhecimento da empresa precisa estar escrito; senão ela vira ChatGPT genérico</li>
+          <li>• <strong>"Não opera sem revisão no início"</strong> — fase 1 sempre tem aprovação humana</li>
+          <li>• <strong>"Não atualiza sozinha"</strong> — quando muda preço/política, alguém precisa atualizar a base</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">💡 O efeito</h4>
+        <p class="text-neutral-300 text-sm">Quando você diz os limites antes de o cliente perguntar, ele relaxa. Vê que você não é vendedor mágico. Confia mais. Compra mais fácil. Cobra menos depois.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Limite explícito = expectativa controlada</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Honestidade fecha venda madura</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Combinar antes &gt; corrigir depois</div></div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧯 Quando o cliente entra em pânico técnico</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Vai acontecer: no meio da conversa, o cliente trava com "mas eu não entendo nada disso". <strong class="text-blue-400">Reset emocional</strong> antes de continuar. Devolva o controle a ele e reduza tudo a 2 opções.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">💡 O reset em 3 frases</h3>
+        <div class="space-y-3 text-sm">
+          <div class="bg-dark-700/50 rounded p-3 text-neutral-300"><strong class="text-blue-400">1.</strong> "Tudo bem, isso é normal. Você não precisa entender a parte técnica."</div>
+          <div class="bg-dark-700/50 rounded p-3 text-neutral-300"><strong class="text-blue-400">2.</strong> "Eu cuido dessa parte. Você só precisa decidir uma coisa."</div>
+          <div class="bg-dark-700/50 rounded p-3 text-neutral-300"><strong class="text-blue-400">3.</strong> "Prefere que isso faça por você (e eu monto) ou prefere continuar fazendo manualmente?"</div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/40 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Por que funciona</h4>
+        <p class="text-neutral-300 text-sm">Reduzir a 2 opções tira ansiedade. Ele não precisa escolher entre 10 features; precisa escolher entre <strong>fazer ou não fazer</strong>. Decisão binária é a única que cliente em pânico consegue tomar.</p>
+      </div>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-blue-400 mb-2">🛡️ Frases de reforço</h4>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• "Você é o decisor, eu sou o tradutor."</li>
+          <li>• "Nada acontece sem o seu OK."</li>
+          <li>• "Se em 30 dias você quiser desligar, desliga. Nada fica preso."</li>
+          <li>• "Eu te entrego em linguagem que você usa todo dia."</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">"Você não precisa entender por dentro"</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Reduzir a 2 opções</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-blue-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Reset emocional antes de continuar</div></div>
+      </div>
+    </section>
+
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você tem tabela de tradução jargão → linguagem de dono e usa antes de cada reunião.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você usa 4 analogias de gente (funcionário, estagiário, recepcionista, assistente) para ancorar IA.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você aplica o teste do avô em toda proposta e pitch antes de mandar.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você tem 2-3 demos pré-carregadas no celular, com erro incluído.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você mostra os 5 limites antes do cliente perguntar — vacina contra reclamação.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><span class="text-neutral-300">Você sabe o reset em 3 frases quando o cliente entra em pânico técnico.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-2-2.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Abordagem</a>
+        <a href="modulo-2-4.html" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors text-center">Próximo: As 6 objeções clássicas →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 2 — Módulo 2.3</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

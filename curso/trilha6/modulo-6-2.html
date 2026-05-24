@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 6.2 — Precificação | Mapa Cliente</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark .border-dark-600 { border-color: #374151; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .bg-dark-700\/30 { background-color: rgba(243,244,246,.5); }
+    html:not(.dark) .bg-dark-700\/50 { background-color: rgba(243,244,246,.7); }
+    html:not(.dark) .bg-dark-900\/50 { background-color: rgba(255,255,255,.7); }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-rose-400 { color: #be123c; }
+    html:not(.dark) .bg-rose-500\/20 { background-color: rgba(190,18,60,.12); }
+    html:not(.dark) .bg-rose-500\/10 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .bg-rose-900\/20 { background-color: rgba(190,18,60,.06); }
+    html:not(.dark) .bg-rose-900\/30 { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .border-rose-500\/30 { border-color: rgba(190,18,60,.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
+    html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
+    html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,.06); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,.25); }
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29,78,216,.06); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29,78,216,.25); }
+    html:not(.dark) .text-emerald-400 { color: #047857; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5,150,105,.06); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-neutral-100">Início</a>
+      <span class="mx-2">/</span>
+      <a href="index.html" class="hover:text-neutral-100">Trilha 6</a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-100">Módulo 6.2</span>
+    </nav>
+  </div>
+
+  <header class="bg-gradient-to-br from-rose-900/30 via-dark-900 to-dark-800 border-b border-dark-600 mt-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <span class="inline-flex px-3 py-1 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-4">MÓDULO 6.2</span>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4">💵 Precificação — modelo de 3 camadas</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-6">Quem só vende projeto vive em montanha-russa. Quem só vende mensalidade demora para crescer. O segredo é a esteira: avulso vira projeto, projeto vira mensalidade. Aqui você sai com tabela de preços por nicho, sinais objetivos pra subir, e o cálculo dos custos invisíveis que comem 30-40% da sua receita aparente.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tópicos</div><div class="font-bold">6</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Duração</div><div class="font-bold">~30 min</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Nível</div><div class="font-bold">Financeiro</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-3"><div class="text-neutral-500 text-xs">Tipo</div><div class="font-bold">Estratégia</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🪜 As 3 camadas de receita</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">As três camadas existem porque cada uma resolve um problema diferente do seu negócio. <strong class="text-rose-400">Avulso</strong> traz volume e aprendizado. <strong class="text-rose-400">Projeto</strong> traz fôlego financeiro pontual. <strong class="text-rose-400">Mensalidade</strong> traz previsibilidade. Negócio saudável tem as três rodando ao mesmo tempo.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">💰 Tabela mestra de preços</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-2 bg-dark-900/50 rounded p-4">
+          <div class="grid grid-cols-3 gap-2 border-b border-dark-600 pb-2 mb-2 font-bold text-rose-400">
+            <div>Camada</div><div>Faixa</div><div>Função</div>
+          </div>
+          <div class="grid grid-cols-3 gap-2"><div>Diagnóstico avulso</div><div>R$ 1.000 – 2.500</div><div>Porta de entrada</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Projeto Atende</div><div>R$ 5.000 – 8.000</div><div>Fôlego</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Projeto Vende</div><div>R$ 6.000 – 12.000</div><div>Fôlego</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Projeto Opera</div><div>R$ 8.000 – 15.000</div><div>Fôlego</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Mensalidade Light</div><div>R$ 500 – 800</div><div>Manutenção</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Mensalidade Plena</div><div>R$ 800 – 1.500</div><div>Estabilidade</div></div>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Diagnóstico avulso — Porta</h4>
+            <p class="text-neutral-300 text-sm">Baixo risco para o cliente, baixa fricção pra fechar. Você cobra para diagnosticar. Sai com mapa de oportunidades. Cliente decide se contrata projeto. Conversão típica: 50-70%.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Projeto — Fôlego</h4>
+            <p class="text-neutral-300 text-sm">Implementação completa de 1 pacote. Entrega em 3-4 semanas. Preço fechado, parcelado em 2-3x. É o que vira caso de sucesso. Sem projeto, não tem portfólio.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Mensalidade — Estabilidade</h4>
+            <p class="text-neutral-300 text-sm">Manutenção + ajustes + 1 nova pauta por mês. Contrato 6-12 meses. Sustenta operação. 10-15 clientes = R$ 8-12k previsíveis todo mês.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Esteira avulso → projeto → mensal</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Recorrência paga a estrutura</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Projeto único é receita, não negócio</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📈 Quando subir preço</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Subir preço por emoção (cansaço, frustração, comparação com colega) é receita pra perder cliente sem reposição. Suba por <strong class="text-rose-400">sinais objetivos</strong>: pressão de demanda, repertório consolidado, tempo de entrega caindo.</p>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Os 4 sinais pra subir 15-25%</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-rose-400">1. Conversão alta sem negociação</strong> — últimos 5 prospects fecharam no preço cheio. Mercado está dizendo que tá barato.</li>
+          <li><strong class="text-rose-400">2. Agenda lotada para 30+ dias</strong> — você tem lista de espera. Lista de espera é sinal econômico claro de preço abaixo do mercado.</li>
+          <li><strong class="text-rose-400">3. 2-3 casos públicos no nicho</strong> — você não é mais "promessa", é referência. Referência custa mais que promessa.</li>
+          <li><strong class="text-rose-400">4. Tempo de entrega caiu pela metade</strong> — biblioteca madura. Sua hora vale mais, mesmo entregando o mesmo escopo.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Reajuste saudável</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>15-25% por vez, 1-2x por ano</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Carteira atual mantém preço antigo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Comunica reajuste com 60 dias de antecedência</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Justifica com novo pacote ou novo SLA</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Reajuste por impulso</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dobrar preço de uma vez</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Aumentar pra carteira atual sem aviso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Reajustar porque viu colega cobrando mais</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esperar 3 anos sem reajuste e dar choque</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Quando subir preço, mantenha a carteira atual no preço antigo por <strong>12 meses</strong> e comunique reajuste planejado para a renovação. Você não perde cliente bom e abre vaga para cliente novo no preço novo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Lista de espera = preço baixo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Reajuste 1x por semestre</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Carteira antiga preserva preço</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎯 Preço por nicho</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mesmo pacote, preços diferentes. <strong class="text-rose-400">Clínica</strong> paga mais por hora salva que <strong class="text-rose-400">restaurante</strong> — porque a hora vale mais. Sua tabela precisa refletir isso, sob risco de perder o nicho caro por estar barato e perder o nicho barato por estar caro.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📊 Tabela de fator por nicho (sobre preço-base)</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-2 bg-dark-900/50 rounded p-4">
+          <div class="grid grid-cols-3 gap-2 border-b border-dark-600 pb-2 mb-2 font-bold text-rose-400">
+            <div>Nicho</div><div>Fator</div><div>Por quê</div>
+          </div>
+          <div class="grid grid-cols-3 gap-2"><div>Clínicas / odontologia</div><div>1.3 – 1.5×</div><div>Ticket alto do cliente final</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Advocacia</div><div>1.3 – 1.5×</div><div>Hora cara, regulação</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Imobiliárias</div><div>1.0 – 1.2×</div><div>Volume alto, margem média</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Auto center / oficina</div><div>0.9 – 1.1×</div><div>Volume médio</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>Restaurante / salão</div><div>0.7 – 0.9×</div><div>Margem apertada</div></div>
+          <div class="grid grid-cols-3 gap-2"><div>E-commerce nichado</div><div>1.0 – 1.3×</div><div>Depende do ticket</div></div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Conceito principal</h3>
+        <p class="text-neutral-300">O que importa não é seu custo. É o <strong>ticket do cliente do seu cliente</strong> e a <strong>margem do nicho</strong>. Clínica que fatura R$ 80k/mês com 30% de margem paga R$ 12k de projeto sem piscar. Restaurante que fatura R$ 80k/mês com 8% de margem não.</p>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">A tabela por nicho é <strong>interna, não pública</strong>. No site, mostre só o preço-base. Na conversa de venda, aplique o fator. Nada de cliente comparando preço com cliente de outro nicho.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Ticket do cliente final importa</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Margem do nicho define preço</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Tabela interna, não pública</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🤝 Negociação sem desconto cego</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Desconto sem contrapartida é veneno. Em 6 meses todo prospect vai negociar e seu preço de tabela vira ficção. <strong class="text-rose-400">Toda concessão precisa ter contrapartida</strong>: menos escopo, prazo de pagamento maior, ou contrato mais longo.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">🎚️ As 4 trocas válidas</h3>
+        <div class="space-y-3 text-sm">
+          <div class="bg-dark-700/50 rounded p-3"><strong class="text-rose-400">"Quero 20% off"</strong> → <span class="text-neutral-300">"Faço sem follow-up automático e sem dashboard. Mesmo prazo."</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><strong class="text-rose-400">"Tá apertado, dá pra parcelar?"</strong> → <span class="text-neutral-300">"Parcelo em 4x sem juros se assinar mensalidade de 12 meses junto."</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><strong class="text-rose-400">"Preciso de mais coisa pelo mesmo preço"</strong> → <span class="text-neutral-300">"Adiciono como Fase 2, mesmo escopo do pacote original."</span></div>
+          <div class="bg-dark-700/50 rounded p-3"><strong class="text-rose-400">"Conheço alguém que cobra metade"</strong> → <span class="text-neutral-300">"Vale a pena conversar com ele. Quando voltar, meu preço é esse."</span></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Mantém percepção de valor</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Desconto sempre vinculado a tirar escopo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Parcelamento condicionado a contrato longo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Não" é resposta válida e profissional</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tabela de preço é a mesma pra todo mundo</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Erode o negócio</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"OK, faço por 30% off, fica entre nós"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cliente A descobre que cliente B pagou metade</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Aceita prazo de 90 dias pra "fechar a venda"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Coloca preço cheio no site mas todo cliente negocia</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-primary mb-2">💡 Dica prática</h4>
+        <p class="text-neutral-300 text-sm">Treine a frase: <strong>"Esse preço considera o pacote completo X, Y e Z. Pra fechar nesse valor que você pediu, eu tiro [Z] do escopo. Funciona assim?"</strong> Em 80% das vezes o cliente reconsidera e fecha cheio.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">Desconto = tirar escopo</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Parcelar ≠ baratear</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">"Não" é resposta profissional</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔁 Construir receita previsível</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Mensalidade é o <strong class="text-rose-400">coração</strong> da operação madura. Sem ela, todo dia 1 do mês você começa em zero, com ansiedade. Com 10-15 mensalidades ativas, você tem R$ 8-12k garantidos antes de prospectar qualquer projeto novo.</p>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💰 Conta da carteira-base</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-1 bg-dark-900/50 rounded p-4">
+          <div>Meta inicial: 10 mensalidades × R$ 800 = R$ 8.000 / mês</div>
+          <div>Meta madura: 15 mensalidades × R$ 1.000 = R$ 15.000 / mês</div>
+          <div class="border-t border-dark-600 pt-2 mt-2">+ 2-3 projetos novos / mês = R$ 12-25k variáveis</div>
+          <div class="text-rose-400 font-bold mt-2">Receita típica de consultor maduro: R$ 25-40k / mês</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Contrato 6-12 meses</h4>
+            <p class="text-neutral-300 text-sm">Mensalidade só vale com contrato. Mês a mês é gorjeta, não receita previsível. Multa razoável (50% das parcelas restantes) protege e não assusta.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Renovação automática</h4>
+            <p class="text-neutral-300 text-sm">Contrato com renovação automática + cláusula de cancelamento com 30 dias. Cliente fica por inércia, sai por escolha.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Entrega mensal visível</h4>
+            <p class="text-neutral-300 text-sm">Toda mensalidade entrega 1 melhoria + 1 relatório + 1 reunião de 30min. Cliente nunca se pergunta "pra que tô pagando".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center"><span class="text-rose-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Reajuste anual indexado</h4>
+            <p class="text-neutral-300 text-sm">Cláusula: reajuste anual pelo IPCA + 3%. Cliente entende, contrato se preserva, sua margem não derrete com tempo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">MRR &gt; ticket pontual</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Contrato com renovação automática</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Entrega mensal visível</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">💸 Custos invisíveis</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Preço calculado só pela sua hora ignora 30-40% do custo real. Resultado clássico: receita parece boa, fim do mês não sobra nada. Trazer os custos invisíveis pra planilha não é pessimismo, é higiene financeira.</p>
+
+      <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-blue-400 mb-3">📉 Os custos que comem sua margem</h3>
+        <div class="font-mono text-sm text-neutral-300 space-y-2 bg-dark-900/50 rounded p-4">
+          <div class="grid grid-cols-2 gap-2 border-b border-dark-600 pb-2 mb-2 font-bold text-rose-400">
+            <div>Custo</div><div>Faixa típica</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2"><div>API (OpenAI / Anthropic)</div><div>R$ 50-300/cliente/mês</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Automação (n8n cloud, Make)</div><div>R$ 100-400/mês total</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>WhatsApp Business API</div><div>R$ 0-400/cliente/mês</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Hospedagem / domínio</div><div>R$ 100/mês</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Ferramentas (Notion, Linear, Figma)</div><div>R$ 200-400/mês</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Imposto (Simples ~16%)</div><div>16% do faturamento</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Pró-labore + INSS</div><div>R$ 1.500-3.000/mês</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Prospecção não faturada</div><div>20-30% do seu tempo</div></div>
+          <div class="grid grid-cols-2 gap-2"><div>Reserva (meses fracos)</div><div>10% da receita</div></div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 border border-rose-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-bold text-rose-400 mb-3">💡 Regra prática de saúde financeira</h3>
+        <p class="text-neutral-300 text-sm mb-3">Da receita bruta:</p>
+        <ul class="space-y-1 text-neutral-300 text-sm">
+          <li>• <strong class="text-rose-400">16%</strong> vai pra imposto (Simples Nacional)</li>
+          <li>• <strong class="text-rose-400">15-20%</strong> vai pra custos operacionais (APIs, ferramentas, infra)</li>
+          <li>• <strong class="text-rose-400">10%</strong> vai pra reserva (3 meses de operação)</li>
+          <li>• <strong class="text-rose-400">10%</strong> vai pra investimento (cursos, equipamento, marketing)</li>
+          <li>• <strong class="text-rose-400">~45%</strong> sobra pra pró-labore e lucro</li>
+        </ul>
+      </div>
+
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+        <h4 class="font-bold text-red-400 mb-2">⚠️ Atenção</h4>
+        <p class="text-neutral-300 text-sm">Repasse explícito de API ao cliente quando o consumo for alto. Cláusula do contrato: <strong>"Custo de API acima de R$ X/mês é repassado integralmente"</strong>. Evita prejuízo quando o cliente começa a usar muito o assistente.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 1</div><div class="text-neutral-300 text-sm">API repassada explicitamente</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 2</div><div class="text-neutral-300 text-sm">Pró-labore separado do caixa</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-rose-400 text-sm font-semibold mb-1">Conceito 3</div><div class="text-neutral-300 text-sm">Reserva de 3 meses</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL -->
+    <section class="bg-dark-800 rounded-2xl border border-dark-600 p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">📌 Resumo do módulo</h2>
+      <div class="space-y-3 mb-8">
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem o modelo de 3 camadas: <strong>avulso → projeto → mensalidade</strong>, cada uma com função clara.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você sabe os 4 sinais objetivos pra subir preço — sem chutar, sem esperar 3 anos.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você tem tabela de fator por nicho, sensível ao ticket do cliente final.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você aprendeu a negociar trocando escopo, prazo ou contrato — nunca preço cego.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você projetou sua carteira-meta: 10-15 mensalidades = R$ 8-15k recorrentes.</span></div>
+        <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span class="text-neutral-300">Você incluiu os custos invisíveis no preço — 30-40% que normalmente são esquecidos.</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="modulo-6-1.html" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors text-center">← Anterior: Padronizar entrega</a>
+        <a href="modulo-6-3.html" class="px-5 py-3 bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors text-center">Próximo: Portfólio &amp; casos →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Trilha 6 — Módulo 6.2</div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const syncIcons = () => { themeToggleDarkIcon.classList.toggle('hidden', !isDark()); themeToggleLightIcon.classList.toggle('hidden', isDark()); };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    syncIcons();
+    themeToggleBtn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', isDark() ? 'dark' : 'light'); syncIcons(); });
+  </script>
+</body>
+</html>

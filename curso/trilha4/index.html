@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trilha 4 — Implementação DICA (I) | Mapa Cliente</title>
+  <title>Trilha 4 — Implementação DICA — I | Mapa Cliente</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };</script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { dark: { 900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280' }, primary:'#FACC15' } } } };
+  </script>
   <style>
     body { font-family: 'Inter', sans-serif; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
     .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
     html:not(.dark) body { background-color: #f8fafc; }
     html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
     html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
@@ -20,24 +25,29 @@
     html:not(.dark) .text-neutral-400 { color: #6b7280; }
     html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
     html:not(.dark) .text-amber-400 { color: #b45309; }
     html:not(.dark) .bg-amber-500\/20 { background-color: rgba(180,83,9,.12); }
     html:not(.dark) .bg-amber-500\/10 { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(180,83,9,.06); }
     html:not(.dark) .border-amber-500\/30 { border-color: rgba(180,83,9,.25); }
-    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
-    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
-    html:not(.dark) .hover\:text-blue-400:hover { color: #1d4ed8; }
-    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(29,78,216,.08); }
-    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
-    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(180,83,9,.18); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #b45309; }
     html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(180,83,9,.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #047857; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,.08); }
     html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
     html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,.08); }
     html:not(.dark) .hover\:text-rose-400:hover { color: #be123c; }
     html:not(.dark) .hover\:bg-rose-500\/10:hover { background-color: rgba(190,18,60,.08); }
     html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
     html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; }
     html:not(.dark) .text-yellow-400 { color: #a16207; }
     html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
@@ -48,37 +58,39 @@
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
 
   <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
-      <div class="flex items-center space-x-4">
-        <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
-        <span class="text-neutral-600">|</span>
-        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🗺️</span><span class="font-bold text-lg hidden sm:inline">Mapa Cliente</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
+          <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
       </div>
-      <div class="flex items-center space-x-1 sm:space-x-2">
-        <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Mercado</span></a>
-        <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Venda</span></a>
-        <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Diagnóstico</span></a>
-        <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Implementação</span></a>
-        <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Capacitação</span></a>
-        <a href="../trilha6/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Escala</span></a>
-        <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-        </button>
-      </div>
-    </div></div>
+    </div>
   </nav>
 
   <header class="bg-gradient-to-br from-amber-900/30 via-dark-900 to-dark-800 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <span class="inline-flex px-4 py-2 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-sm font-semibold mb-6">TRILHA 4 · DICA — I</span>
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🛠️ Implementação</h1>
-      <p class="text-neutral-300 max-w-3xl text-lg mb-8">Do diagnóstico ao assistente em produção. Como escolher o primeiro assistente, escrever playbooks que a IA entende, calibrar aprovação humana por níveis de risco e entregar os 5 pacotes vendáveis.</p>
+      <span class="inline-flex px-4 py-2 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-sm font-semibold mb-6">TRILHA 4</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">🔧 Implementação DICA — I</h1>
+      <p class="text-neutral-300 max-w-3xl text-lg mb-8">Do diagnóstico ao assistente em produção. Como escolher o primeiro caso, escrever playbook, configurar aprovação humana, montar no-code e entregar um dos 5 pacotes prontos.</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Módulos</div><div class="font-bold text-lg">5</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Tópicos</div><div class="font-bold text-lg">30</div></div>
         <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Duração</div><div class="font-bold text-lg">~3h</div></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Nível</div><div class="font-bold text-lg">Aplicado</div></div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-4"><div class="text-neutral-500 text-sm">Nível</div><div class="font-bold text-lg">Mão na massa</div></div>
       </div>
     </div>
   </header>
@@ -88,19 +100,378 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.1</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">🎯 O primeiro assistente</h3><p class="text-sm text-neutral-400">Critério de escolha do escopo inicial.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.2</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">📓 Playbooks operacionais</h3><p class="text-sm text-neutral-400">Contexto/objetivo/regras/saída.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.3</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">🚦 Aprovação humana por níveis</h3><p class="text-sm text-neutral-400">Fase 1, 2, 3 — controle gradual.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.4</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">🔧 Construção no-code</h3><p class="text-sm text-neutral-400">WhatsApp + Sheets + n8n + LLM.</p></div>
-        <div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.5</span><span class="text-xs text-neutral-500">~35 min</span></div><h3 class="font-bold mb-1">📦 Os 5 pacotes prontos</h3><p class="text-sm text-neutral-400">Atendimento, propostas, conteúdo, follow-up, operação.</p></div>
+        <a href="#modulo-4-1" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.1</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">🎯 O primeiro assistente</h3>
+          <p class="text-sm text-neutral-400">Alta dor, baixo risco.</p>
+        </a>
+        <a href="#modulo-4-2" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.2</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">📓 Playbooks operacionais</h3>
+          <p class="text-sm text-neutral-400">Linguagem que IA entende.</p>
+        </a>
+        <a href="#modulo-4-3" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.3</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">🚦 Aprovação por níveis</h3>
+          <p class="text-sm text-neutral-400">Controle gradual da IA.</p>
+        </a>
+        <a href="#modulo-4-4" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.4</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">🔧 Construção no-code</h3>
+          <p class="text-sm text-neutral-400">n8n + WhatsApp + Sheets.</p>
+        </a>
+        <a href="#modulo-4-5" class="block bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-3"><span class="text-amber-400 font-bold">4.5</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-bold mb-1">📦 Os 5 pacotes prontos</h3>
+          <p class="text-sm text-neutral-400">O que vender amanhã.</p>
+        </a>
       </div>
     </section>
 
-    <div class="bg-amber-900/20 border border-amber-500/30 rounded-2xl p-8 text-center">
-      <div class="text-4xl mb-3">🚧</div>
-      <h2 class="text-2xl font-bold mb-3">Conteúdo detalhado em construção</h2>
-      <p class="text-neutral-300 mb-4">Esta trilha trará playbooks prontos, templates de prompts estruturados, fluxos n8n e modelos para cada um dos 5 pacotes vendáveis.</p>
-      <p class="text-neutral-400 text-sm">Próxima publicação: módulo 4.1 com critério de escolha do primeiro assistente.</p>
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MÓDULO 4.1 -->
+    <div id="modulo-4-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.1</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎯 O primeiro assistente</h3>
+        <p class="text-neutral-400 text-sm">Critério: alta dor + baixo risco + escopo claro. O primeiro caso decide se o cliente vai te chamar de volta — ou nunca mais.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <div class="flex-1"><div class="font-semibold">⚖️ Os 3 critérios de escolha</div><div class="text-sm text-neutral-400">Alta dor + baixo risco + escopo claro.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Três filtros aplicados na ordem: (1) o dono cita a dor sem precisar lembrar, (2) erro da IA não custa cliente ou processo, (3) entrada/saída são óbvias em uma frase.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem esses critérios, você escolhe pelo brilho. O caso mais empolgante quase nunca é o que entrega a primeira vitória rápido.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Dor visível para o dono</li><li>Erro reversível em segundos</li><li>Escopo definível em 1 frase</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <div class="flex-1"><div class="font-semibold">📱 WhatsApp como primeiro caso</div><div class="text-sm text-neutral-400">A porta mais rápida para começar.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Atendimento de WhatsApp: qualificação de lead, FAQ automatizada, agendamento. Dor diária do dono, erro fácil de corrigir, dados claros (mensagem entra, resposta sai).</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É onde 8 de cada 10 PMEs reconhecem a dor sem você explicar. E o resultado aparece em dias, não meses.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Resposta padrão antes de bot inteligente</li><li>Triagem &gt; resolução total</li><li>Handoff humano sempre disponível</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <div class="flex-1"><div class="font-semibold">📝 Outros casos seguros para começar</div><div class="text-sm text-neutral-400">Gerador de proposta, follow-up de lead.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Gerador de proposta a partir de briefing curto (entrada clara, saída revisável). Follow-up automático de lead após 24/48/72h (dor reconhecida, erro = mensagem extra).</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Quando o WhatsApp não cabe (ex.: dono não atende lá), você precisa ter dois outros casos de baixo risco no bolso.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Proposta = template + dados</li><li>Follow-up = lembrete + sugestão</li><li>Sempre revisável pelo dono</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <div class="flex-1"><div class="font-semibold">🚫 Anti-padrões — o que NÃO escolher</div><div class="text-sm text-neutral-400">Onde os primeiros projetos morrem.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Não comece por integração com ERP, por área que o dono não usa, por automação que toca dinheiro, por "agente que faz tudo", nem por demanda do funcionário sem patrocínio do dono.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Anti-padrões custam relacionamento. Um único caso ruim com a IA bloqueia 3 vendas seguintes na empresa e em indicações.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Sem patrocínio do dono = não começa</li><li>Sem dado claro = não começa</li><li>Sem reversibilidade = não começa</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <div class="flex-1"><div class="font-semibold">📏 Definição de sucesso em 30 dias</div><div class="text-sm text-neutral-400">Métricas combinadas antes da entrega.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Combinar 2-3 métricas observáveis antes de começar: ex. "todo lead respondido em menos de 5 min entre 8h-22h", "30 propostas geradas no mês", "70% dos follow-ups disparados na hora".</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem critério escrito, o cliente julga pelo humor. Com critério, você defende o resultado mesmo no dia ruim.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Métrica observável &gt; sentimento</li><li>Acordada antes, não depois</li><li>30 dias é o prazo justo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4">
+          <button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <div class="flex-1"><div class="font-semibold">🗂️ Roteiro de priorização</div><div class="text-sm text-neutral-400">Matriz simples impacto × risco.</div></div>
+          </button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Liste 5-7 candidatos do diagnóstico. Para cada: impacto (1-5), risco (1-5), prontidão de dado (1-5). Pegue o que tem maior impacto/risco com prontidão ≥ 3.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Decidir por instinto cansa. Matriz simples é tudo o que precisa para defender escolha junto ao cliente.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Decisão escrita &gt; intuição</li><li>3 eixos resolvem 90% dos casos</li><li>Defesa em 1 página</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-1.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4.2 -->
+    <div id="modulo-4-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.2</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📓 Playbooks operacionais</h3>
+        <p class="text-neutral-400 text-sm">O documento que transforma "jeito de fazer" do dono em instruções que a IA executa repetidamente.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">🧱 As 7 partes obrigatórias</div><div class="text-sm text-neutral-400">Contexto, objetivo, entradas, regras, exemplos, saída, limites.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Todo playbook tem: (1) contexto da empresa, (2) objetivo do agente, (3) entradas esperadas, (4) regras de decisão, (5) exemplos resolvidos, (6) formato de saída, (7) limites e exceções.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É um esqueleto. Quando você tem o esqueleto, escreve playbook novo em 2 horas em vez de 2 dias.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Estrutura repetível</li><li>Cada seção responde uma pergunta da IA</li><li>Falta de uma quebra o agente</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">🗣️ Linguagem que IA entende</div><div class="text-sm text-neutral-400">Imperativo, exemplos, "se… então…".</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Verbos no imperativo ("responda", "classifique"), regras em formato "se X então Y", exemplos pareando entrada→saída, sem advérbios vagos ("simpaticamente", "rapidamente").</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">A IA segue padrão. Linguagem clara reduz alucinação. Linguagem vaga produz resposta inventada.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Imperativo &gt; descritivo</li><li>Exemplo &gt; explicação</li><li>Regras explícitas &gt; bom senso implícito</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">🎬 Exemplos resolvidos (few-shot)</div><div class="text-sm text-neutral-400">3-5 casos reais é o que muda tudo.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Para cada situação típica, mostre entrada real e saída correta. Inclua 1 caso difícil e 1 caso onde a IA deve devolver para o humano.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Exemplo cura 70% dos erros de tom e formato. É mais rápido escrever 5 exemplos do que descrever 50 regras.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>3-5 exemplos diversos</li><li>Caso difícil obrigatório</li><li>Caso "devolve para humano" obrigatório</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">📐 Formato de saída fixo</div><div class="text-sm text-neutral-400">JSON, markdown ou texto puro?</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Defina o formato exato: se vai para humano via WhatsApp, texto curto. Se vai para sistema (Sheets, CRM), JSON com campos nomeados. Sempre mostre um exemplo do formato esperado.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem formato fixo, integração quebra. Com formato fixo, o n8n/Make encaixa o output direto na próxima etapa.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>JSON para sistemas</li><li>Texto curto para humanos</li><li>Sempre um exemplo do formato</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">📂 Onde mora o playbook</div><div class="text-sm text-neutral-400">Notion ou Google Docs, sempre versionado.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Notion (página dedicada por agente) ou Google Docs (1 doc por agente, mesma pasta). Nunca dentro do n8n ou apenas no prompt — você precisa que o dono leia e revise.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Playbook é documento vivo do cliente, não código seu. Tem que estar onde a equipe acessa e edita.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Notion ou Docs, não n8n</li><li>1 documento por agente</li><li>Dono lê e aprova</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">🔁 Versionamento e iteração</div><div class="text-sm text-neutral-400">v1 → v2 → v3 com data e motivo.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Cabeçalho do playbook: versão atual, data, autor, principais mudanças. Histórico no fim. Toda mudança é uma versão nova.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Quando o agente errar (e vai), você precisa saber qual versão do playbook ele estava seguindo. Sem histórico, depuração vira adivinhação.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Versão visível no topo</li><li>Histórico no rodapé</li><li>Mudança = nova versão sempre</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-2.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4.3 -->
+    <div id="modulo-4-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.3</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🚦 Aprovação humana por níveis</h3>
+        <p class="text-neutral-400 text-sm">A IA não chega autônoma. Ela sobe escalada — fase 1, 2, 3 — e o cliente sente segurança em cada degrau.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">🔒 Fase 1 — IA prepara, humano aprova tudo</div><div class="text-sm text-neutral-400">Semana 1-2: confiança zero, controle total.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">A IA gera rascunho — resposta de WhatsApp, proposta, conteúdo. Nenhuma sai sem o humano clicar "aprovar". Aprovação em fila no Notion/Sheets/WhatsApp.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente novo precisa ver o agente acertando antes de soltar. Fase 1 é onde a confiança nasce.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>100% aprovação humana</li><li>Fila visível ao dono</li><li>2 semanas para colher dados</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">⚖️ Fase 2 — IA executa simples, humano aprova importante</div><div class="text-sm text-neutral-400">Semana 3-6: divisão por critério.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Mensagens triviais (saudação, FAQ, agendamento) saem sozinhas. Casos com palavra-chave ("orçamento", "reclamação", "cancelar") vão para fila de aprovação humana.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É a fase que descarrega o dono. Ele para de aprovar bom-dia e só vê o que importa. Sem essa fase, ele abandona.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Lista clara do "importante"</li><li>Auto-resposta nos triviais</li><li>Fila menor, mais útil</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">🌊 Fase 3 — IA roda, humano só vê exceção</div><div class="text-sm text-neutral-400">Semana 7+: autonomia com guard-rails.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">A IA roda em fluxo. Humano só é chamado para risco (valor alto, cliente VIP, sentimento ruim, dúvida fora do escopo). Tudo registrado em log para auditoria.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É onde aparece o ganho de escala. Sem chegar à Fase 3, o ROI não fecha e o cliente cancela em 90 dias.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Lista de exceções é a chave</li><li>Log obrigatório</li><li>Revisão semanal de amostras</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">🏷️ Classificando o que é "importante"</div><div class="text-sm text-neutral-400">Critérios objetivos, não bom senso.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Defina junto com o dono: valor &gt; R$ X, palavras-chave ("urgente", "advogado", "reembolso"), cliente recorrente, fora do horário, primeira interação com novo lead.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">"Importante" não é universal. É da empresa. Definir junto evita que a IA acerte no padrão e erre no caso que mais dói.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Critério em lista, não na cabeça</li><li>Co-criado com o dono</li><li>Revisado a cada upgrade de fase</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">🎚️ Classificando risco</div><div class="text-sm text-neutral-400">Baixo/médio/alto, decidido antes.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Baixo: mensagem trivial, custo zero se errar. Médio: resposta a cliente, custo = correção em minutos. Alto: ação que move dinheiro, dado ou contrato — humano sempre.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Sem classificação de risco, todo upgrade vira aposta. Com classificação, você sobe nível somente onde é seguro.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>3 níveis, não 7</li><li>Risco alto fica sempre na Fase 1</li><li>Decidido na proposta, não no caos</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">💬 Conversa de upgrade de fase</div><div class="text-sm text-neutral-400">Como subir de Fase 1 para 2, e de 2 para 3.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Reunião de 30 min: mostre amostra de 50 casos da fase atual com taxa de aprovação. Se &gt; 85% acerto, proponha upgrade. Liste o que muda, o que continua humano, e a porta de volta.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Upgrade sem ritual gera medo. Upgrade com dado + opção de voltar gera confiança.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Dado &gt; opinião</li><li>Porta de volta sempre aberta</li><li>Cliente decide, não você</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-3.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4.4 -->
+    <div id="modulo-4-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.4</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🔧 Construção no-code</h3>
+        <p class="text-neutral-400 text-sm">O stack mínimo que monta 80% dos casos da Trilha 4. WhatsApp + Sheets + n8n + LLM + Notion.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">🧰 O stack mínimo</div><div class="text-sm text-neutral-400">5 ferramentas que resolvem quase tudo.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Canal: WhatsApp Business API (ou ManyChat) · Dados: Google Sheets ou Airtable · Orquestração: n8n ou Make · LLM: Claude ou GPT · Playbook: Notion.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Você não precisa dominar 30 ferramentas. Domine 5 e cubra a maioria dos casos. Adicione ferramenta nova só quando o caso exigir.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>1 canal, 1 base, 1 orquestrador</li><li>1 LLM, 1 lugar de playbook</li><li>Trocar ferramenta &gt; trocar processo</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">📲 Canal — WhatsApp como entrada</div><div class="text-sm text-neutral-400">Business API vs. ManyChat vs. Z-API.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Business API oficial (Meta) via parceiros como 360dialog/Twilio para empresas maiores. ManyChat para início rápido, sem código. Z-API/Evolution API para projetos pequenos com baixo custo.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">A escolha depende do volume e do orçamento. Não comprometa: tenha 1 padrão e desvie só com motivo.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Volume &gt; 500/mês: API oficial</li><li>MVP rápido: ManyChat ou Z-API</li><li>Sempre tenha número dedicado</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">📊 Dados — Sheets ou Airtable</div><div class="text-sm text-neutral-400">Onde mora a memória do agente.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Sheets: grátis, simples, dono já entende. Airtable: melhor para relações entre tabelas (lead ⇄ proposta ⇄ atendimento). Comece em Sheets e migre só quando precisar.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É de onde a IA pega contexto e onde grava resultado. Estrutura limpa de planilha = agente que funciona.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Sheets na Fase 1</li><li>Airtable quando há relações</li><li>Backup automático sempre</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">🔀 Orquestração — n8n vs. Make</div><div class="text-sm text-neutral-400">Quem conecta tudo.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">n8n: open-source, self-hosted possível, mais flexível, melhor para projetos complexos. Make: cloud, visual amigável, ótimo para começar. Os dois resolvem 95% dos casos.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Escolha 1 e domine. Trocar a cada cliente é desperdício de tempo. n8n se você se sente confortável com mais técnica; Make se valoriza simplicidade.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>1 ferramenta padrão</li><li>n8n para flexibilidade</li><li>Make para velocidade</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">🌊 Fluxo de exemplo — lead no WhatsApp</div><div class="text-sm text-neutral-400">Do "oi" ao log em 6 passos.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">(1) Lead manda mensagem no WhatsApp → (2) n8n recebe via webhook → (3) IA classifica e responde via Claude/GPT com o playbook → (4) Resposta sai pelo WhatsApp → (5) Sheets recebe linha nova → (6) Notion log atualizado.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Esse fluxo, com pequenas variações, atende WhatsApp, follow-up, proposta e conteúdo. Memorize a anatomia.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Webhook é a porta de entrada</li><li>LLM no meio, sempre</li><li>Log no fim, sempre</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">💵 Custos típicos</div><div class="text-sm text-neutral-400">Quanto custa rodar isso no mês.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">n8n cloud (~R$ 100) + WhatsApp API (~R$ 30-80, depende do volume) + Claude/GPT (~R$ 30-100) + Sheets/Notion (grátis ou Plus R$ 30). Total: R$ 50-200/mês de ferramentas para projetos PME.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Cliente sempre pergunta "quanto vai custar pra rodar?". Resposta pronta evita objeção e ancora seu preço.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Custo &lt; R$ 200/mês na maioria</li><li>Pago pelo cliente, não por você</li><li>Inclui no orçamento da proposta</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-4.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4.5 -->
+    <div id="modulo-4-5" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.5</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📦 Os 5 pacotes prontos</h3>
+        <p class="text-neutral-400 text-sm">Cinco soluções com nome, preço e tempo de entrega. É o cardápio que você apresenta para fechar venda na primeira reunião.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div class="flex-1"><div class="font-semibold">📱 Pacote 1 — Atendimento + Vendas WhatsApp</div><div class="text-sm text-neutral-400">R$ 4-8k + R$ 600-1.200/mês.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Assistente que qualifica lead, responde FAQ, agenda visita e passa para humano nos casos importantes. Entrega: 2-3 semanas. Quando vende: cliente perde lead por demora.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o pacote de entrada. Curto, claro, mensurável. Conversão alta na primeira reunião.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Preço de entrada acessível</li><li>Resultado visível em dias</li><li>Mensalidade segura recorrência</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div class="flex-1"><div class="font-semibold">📄 Pacote 2 — Agente de Proposta</div><div class="text-sm text-neutral-400">R$ 3-6k + R$ 400-800/mês.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">A partir de briefing curto (form ou conversa), IA gera proposta em PDF pronta para revisão. Inclui preço, escopo, prazo, condições. Entrega: 1-2 semanas. Quando vende: dono perde fim de semana fazendo proposta.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Pacote barato de implementar, ROI evidente em horas economizadas. Excelente segundo projeto na mesma empresa.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Template + dados + revisão</li><li>Saída em PDF</li><li>ROI = horas do dono</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div class="flex-1"><div class="font-semibold">📣 Pacote 3 — Máquina de Conteúdo Local</div><div class="text-sm text-neutral-400">R$ 4-7k + R$ 800-1.500/mês.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Calendário editorial mensal + pauta + variações (Insta, Facebook, WhatsApp Status) gerados em lote. Aprovação no Notion, agenda no Buffer/Metricool. Entrega: 2-3 semanas. Quando vende: dono "não tem tempo para postar".</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Mensalidade mais alta, fidelização forte. Toda PME local quer "estar nas redes" e não consegue manter o ritmo.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Pauta antes do post</li><li>Aprovação no Notion</li><li>Agenda automática</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div class="flex-1"><div class="font-semibold">🔁 Pacote 4 — Assistente de Follow-up</div><div class="text-sm text-neutral-400">R$ 2-5k + R$ 400-700/mês.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">IA monitora pipeline (Sheets/CRM) e dispara mensagens personalizadas a 24h/3d/7d/15d. Personalizadas com nome, contexto da última conversa e oferta relevante. Entrega: 1-2 semanas.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o pacote mais barato de implementar e o que mais gera "uau" no cliente — porque ele já tinha desistido daquele lead.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Cadência fixa, conteúdo variável</li><li>Para a sequência se lead responde</li><li>Excelente upsell do Pacote 1</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div class="flex-1"><div class="font-semibold">🏢 Pacote 5 — Assistente Operacional Interno</div><div class="text-sm text-neutral-400">R$ 5-9k + R$ 800-1.500/mês.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Bot interno (Slack, WhatsApp ou Notion AI) que responde dúvidas da equipe sobre procedimentos, gera relatório semanal, lembra prazo. Entrega: 3-4 semanas. Quando vende: equipe pergunta a mesma coisa três vezes por dia.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">É o pacote de maior ticket e maior fidelização. Mas exige cliente maduro — não tente vender como primeiro projeto.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Base de conhecimento da empresa</li><li>Relatório automático semanal</li><li>Ticket alto, recorrência alta</li></ul></div>
+          </div>
+        </div>
+
+        <div class="topic-item p-4"><button onclick="toggleTopic(this)" class="w-full flex items-start space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div class="flex-1"><div class="font-semibold">🗺️ Como sequenciar os pacotes</div><div class="text-sm text-neutral-400">Esteira de upsell na mesma carteira.</div></div></button>
+          <div class="topic-explanation mt-3 pl-9 space-y-3 text-sm">
+            <div><div class="text-amber-400 font-semibold mb-1">O que é</div><p class="text-neutral-300">Mês 1: Pacote 1 (WhatsApp). Mês 2-3: Pacote 4 (Follow-up). Mês 4-5: Pacote 2 (Proposta) ou Pacote 3 (Conteúdo). Mês 6+: Pacote 5 (Interno). Mesma empresa, ticket crescente.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Por que aprender</div><p class="text-neutral-300">Conquistar cliente novo custa caro. Esteira de upsell na carteira que você já tem multiplica receita sem multiplicar prospecção.</p></div>
+            <div><div class="text-amber-400 font-semibold mb-1">Conceitos-chave</div><ul class="list-disc list-inside text-neutral-300 space-y-1"><li>Pacote 1 abre porta</li><li>Pacote 4 mostra escala</li><li>Pacote 5 fideliza por anos</li></ul></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-5.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
     </div>
 
     <div class="flex justify-between items-center mt-12 pt-8 border-t border-dark-600">
@@ -110,9 +481,29 @@
 
   </main>
 
-  <footer class="border-t border-dark-600 py-8 mt-10"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 4</div></footer>
+  <!-- MODAIS -->
+  <div id="modal-4-1" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 4.1</h3><button onclick="closeModal('modal-4-1')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-4-1.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-4-2" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 4.2</h3><button onclick="closeModal('modal-4-2')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-4-2.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-4-3" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 4.3</h3><button onclick="closeModal('modal-4-3')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-4-3.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-4-4" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 4.4</h3><button onclick="closeModal('modal-4-4')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-4-4.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+  <div id="modal-4-5" class="hidden fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div class="bg-dark-900 border border-dark-600 rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-dark-600"><h3 class="font-bold">Módulo 4.5</h3><button onclick="closeModal('modal-4-5')" class="text-neutral-400 hover:text-neutral-100 text-2xl">×</button></div><iframe src="modulo-4-5.html" class="flex-1 w-full rounded-b-2xl"></iframe></div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-500">Mapa Cliente | Formação DICA — Trilha 4</div>
+  </footer>
 
   <script>
+    function toggleTopic(button) {
+      const current = button.parentElement;
+      const container = current.parentElement;
+      const explanation = current.querySelector('.topic-explanation');
+      const items = container.querySelectorAll('.topic-item .topic-explanation');
+      items.forEach((item) => { if (item !== explanation) item.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeModal(id) { const m = document.getElementById(id); if (m) m.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden')); document.body.style.overflow = ''; } });
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
